@@ -1,9 +1,11 @@
 import React from "react";
 import "./App.css";
+import Login from "./component/Login/Login";
 
 function App() {
   return (
     <div className="App">
+    <Login/>
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div className="container">
           <a className="navbar-brand js-scroll-trigger" href="#page-top">
