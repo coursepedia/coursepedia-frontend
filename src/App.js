@@ -7,7 +7,7 @@ function App() {
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div className="container">
           <a className="navbar-brand js-scroll-trigger" href="#page-top">
-            Start Bootstrap
+            <b>Coursepedia</b>
           </a>
           <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -17,7 +17,7 @@ function App() {
             <ul className="navbar-nav text-uppercase ml-auto">
               <li className="nav-item">
                 <a className="nav-link js-scroll-trigger" href="#services">
-                  Services
+                  Awesome Feature
                 </a>
               </li>
               <li className="nav-item">
@@ -48,10 +48,13 @@ function App() {
       <header className="masthead">
         <div className="container">
           <div className="intro-text">
-            <div className="intro-lead-in">Welcome To Our Studio!</div>
-            <div className="intro-heading text-uppercase">It's Nice To Meet You</div>
+            <div className="intro-lead-in">Welcome To Coursepedia</div>
+            <div className="intro-heading text-uppercase">Find Recommendation Courses Easily</div>
             <a className="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">
-              Tell Me More
+              Adult Activity
+            </a>{" "}
+            <a className="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">
+              Kids Activity
             </a>
           </div>
         </div>
@@ -61,8 +64,10 @@ function App() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">
-              <h2 className="section-heading text-uppercase">Services</h2>
-              <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+              <h2 className="section-heading text-uppercase">
+                <b>Awesome Feature</b>
+              </h2>
+              <h3 className="section-subheading text-muted">Find out activities what you want to learn</h3>
             </div>
           </div>
           <div className="row text-center">
@@ -71,7 +76,7 @@ function App() {
                 <i className="fa fa-circle fa-stack-2x text-primary"></i>
                 <i className="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
               </span>
-              <h4 className="service-heading">E-Commerce</h4>
+              <h4 className="service-heading">Find Recommendation Learning Course</h4>
               <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
             </div>
             <div className="col-md-4">
@@ -79,7 +84,7 @@ function App() {
                 <i className="fa fa-circle fa-stack-2x text-primary"></i>
                 <i className="fa fa-laptop fa-stack-1x fa-inverse"></i>
               </span>
-              <h4 className="service-heading">Responsive Design</h4>
+              <h4 className="service-heading">Add Recommendation Learning Course</h4>
               <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
             </div>
             <div className="col-md-4">
@@ -87,7 +92,7 @@ function App() {
                 <i className="fa fa-circle fa-stack-2x text-primary"></i>
                 <i className="fa fa-lock fa-stack-1x fa-inverse"></i>
               </span>
-              <h4 className="service-heading">Web Security</h4>
+              <h4 className="service-heading">Better Future with Qualified Trainer</h4>
               <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
             </div>
           </div>
@@ -98,8 +103,10 @@ function App() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">
-              <h2 className="section-heading text-uppercase">Portfolio</h2>
-              <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+              <h2 className="section-heading text-uppercase">
+                <b>Our Popular Courses</b>
+              </h2>
+              <h3 className="section-subheading text-muted">Choose what course by what do you want to learn</h3>
             </div>
           </div>
           <div className="row">
@@ -195,7 +202,9 @@ function App() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">
-              <h2 className="section-heading text-uppercase">About</h2>
+              <h2 className="section-heading text-uppercase">
+                <b>About Us</b>
+              </h2>
               <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
           </div>
@@ -279,8 +288,10 @@ function App() {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">
-              <h2 className="section-heading text-uppercase">Our Amazing Team</h2>
-              <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+              <h2 className="section-heading text-uppercase">
+                <b>Happy Students</b>
+              </h2>
+              <h3 className="section-subheading text-muted">Testimonials from students who found the best place to learn</h3>
             </div>
           </div>
           <div className="row">
@@ -393,48 +404,50 @@ function App() {
       </section>
 
       <section className="page-section" id="contact">
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-12 text-center">
-          <h2 className="section-heading text-uppercase">Contact Us</h2>
-          <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-lg-12">
-          <form id="contactForm" name="sentMessage" novalidate="novalidate">
-            <div className="row">
-              <div className="col-md-6">
-                <div className="form-group">
-                  <input className="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name." />
-                  <p className="help-block text-danger"></p>
-                </div>
-                <div className="form-group">
-                  <input className="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address." />
-                  <p className="help-block text-danger"></p>
-                </div>
-                <div className="form-group">
-                  <input className="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number." />
-                  <p className="help-block text-danger"></p>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                  <textarea className="form-control" id="message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
-                  <p className="help-block text-danger"></p>
-                </div>
-              </div>
-              <div className="clearfix"></div>
-              <div className="col-lg-12 text-center">
-                <div id="success"></div>
-                <button id="sendMessageButton" className="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
-              </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 text-center">
+              <h2 className="section-heading text-uppercase">Contact Us</h2>
+              <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-          </form>
+          </div>
+          <div className="row">
+            <div className="col-lg-12">
+              <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <input className="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name." />
+                      <p className="help-block text-danger"></p>
+                    </div>
+                    <div className="form-group">
+                      <input className="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address." />
+                      <p className="help-block text-danger"></p>
+                    </div>
+                    <div className="form-group">
+                      <input className="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number." />
+                      <p className="help-block text-danger"></p>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <textarea className="form-control" id="message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
+                      <p className="help-block text-danger"></p>
+                    </div>
+                  </div>
+                  <div className="clearfix"></div>
+                  <div className="col-lg-12 text-center">
+                    <div id="success"></div>
+                    <button id="sendMessageButton" className="btn btn-primary btn-xl text-uppercase" type="submit">
+                      Send Message
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
       <footer className="footer">
         <div className="container">
