@@ -1,25 +1,29 @@
-import React, { useLayoutEffect, useState } from "react";
+import React from "react";
 import Home from "./components/Home";
+import SignUp from "./components/RegisterForm"
+import SignIn from "./components/LoginForm"
 
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import "./App.css";
-import Login from "./component/Login/Login";
+import LoginForm from "./components/LoginForm";
 
 function App() {
-	return (
-		// routing ========================================================================================================================//
-		<Router>
-      
-			<Switch>
-				<Route exact path="/">
-					<Home />
-				</Route>
+  return (
+    // routing ========================================================================================================================//
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/register">
+          <SignUp />
+        </Route>
         <Route path="/login">
-          <Login/>
-				</Route>
-			</Switch>
-		</Router>
-	);
+        <SignIn/>
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;
