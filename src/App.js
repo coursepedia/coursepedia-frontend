@@ -5,7 +5,6 @@ import SignIn from "./components/LoginForm"
 
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import "./App.css";
-import LoginForm from "./components/LoginForm";
 
 function App() {
   return (
