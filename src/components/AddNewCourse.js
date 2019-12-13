@@ -65,55 +65,53 @@ function AddNewCourse() {
   return (
     <div>
       <AddNewNavbar />
-      <br />
-      <br />
       <MDBContainer style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         <MDBRow>
           <MDBCol md="10">
-            <form>
-              <p className="h5 text-center mb-4">
-                <b>Adding Your New Recommendation With Form Below !</b>
-              </p>
-              <br />
-              <div className="grey-text">
-                <MDBInput label="Course Name" group type="text" validate error="wrong" success="right" />
-                <MDBInput label="Course Adress" group type="email" validate error="wrong" success="right" />
-                <MDBInput label="Course Phone Number" group type="text" validate error="wrong" success="right" />
-                <MDBInput label="Price" group type="text" validate error="wrong" success="right" />
-                <MDBInput label="Rating" group type="text" validate error="wrong" success="right" />
-                {/* <div> */}
-                <MDBFormInline>
-                  <MDBInput onClick={() => handleClick(1)} checked={options.radio === 1 ? true : false} label="Adults" type="radio" id="radio" containerClass="mr-5" />
-                  <MDBInput onClick={() => handleClick(2)} checked={options.radio === 2 ? true : false} label="Kids" type="radio" id="radio2" containerClass="mr-5" />
-                </MDBFormInline>
-                {/* </div> */}
-                {/* <MDBInput type="textarea" rows="2" label="Your message" /> */}
-              </div>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-controlled-open-select-label"> Category </InputLabel>
-                <Select labelId="demo-controlled-open-select-label" id="demo-controlled-open-select" open={open} onClose={handleClose} onOpen={handleOpen} value={field} onChange={handleChange}>
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  {options.radio === 1 ? selectValue.adult.map(item => <MenuItem value={10}>{item}</MenuItem>) : selectValue.kids.map(item => <MenuItem value={10}>{item}</MenuItem>)}
-                  {/* <MenuItem value={10}>Art</MenuItem>
+            <section id="form-add">
+              <form>
+                <p className="h5 text-center mb-4">
+                  <b>Adding Your New Recommendation Course With Form Below !</b>
+                </p>
+                <br />
+                <div className="grey-text">
+                  <MDBInput label="Course Name" group type="text" validate error="wrong" success="right" />
+                  <MDBInput label="Course Adress" group type="email" validate error="wrong" success="right" />
+                  <MDBInput label="Course Phone Number" group type="text" validate error="wrong" success="right" />
+                  <MDBInput label="Price" group type="text" validate error="wrong" success="right" />
+                  <MDBInput label="Rating (Please give rate 1 - 5)" group type="number" validate error="wrong" success="right" />
+                  {/* <div> */}
+                  <MDBFormInline>
+                    <MDBInput onClick={() => handleClick(1)} checked={options.radio === 1 ? true : false} label="Adults" type="radio" id="radio" containerClass="mr-5" />
+                    <MDBInput onClick={() => handleClick(2)} checked={options.radio === 2 ? true : false} label="Kids" type="radio" id="radio2" containerClass="mr-5" />
+                  </MDBFormInline>
+                  {/* </div> */}
+                  {/* <MDBInput type="textarea" rows="2" label="Your message" /> */}
+                </div>
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-controlled-open-select-label"> Category </InputLabel>
+                  <Select labelId="demo-controlled-open-select-label" id="demo-controlled-open-select" open={open} onClose={handleClose} onOpen={handleOpen} value={field} onChange={handleChange}>
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    {options.radio === 1 ? selectValue.adult.map(item => <MenuItem value={10}>{item}</MenuItem>) : selectValue.kids.map(item => <MenuItem value={10}>{item}</MenuItem>)}
+                    {/* <MenuItem value={10}>Art</MenuItem>
                 <MenuItem value={20}>Sport</MenuItem>
                 <MenuItem value={30}>Math and Science</MenuItem> */}
-                </Select>
-              </FormControl>
-              <br />
-              <br />
-              <div className="text-center">
-                <MDBBtn outline color="secondary">
-                  Send <MDBIcon far icon="paper-plane" className="ml-1" />
-                </MDBBtn>
-              </div>
-            </form>
+                  </Select>
+                </FormControl>
+                <br />
+                <br />
+                <div className="text-center">
+                  <MDBBtn outline color="secondary">
+                    Send <MDBIcon far icon="paper-plane" className="ml-1" />
+                  </MDBBtn>
+                </div>
+              </form>
+            </section>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-      <br />
-      <br />
       <AddNewFooter />
     </div>
   );

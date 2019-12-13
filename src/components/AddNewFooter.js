@@ -3,7 +3,7 @@ import React from "react";
 function AddNewFooter() {
   return (
     <div>
-      <footer className="footer">
+      <footer className="footer bg-light page-section">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-4">
