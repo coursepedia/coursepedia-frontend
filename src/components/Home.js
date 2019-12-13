@@ -1,45 +1,60 @@
-import React, { useLayoutEffect, useState } from "react";
-
+import React, { useLayoutEffect, useState, useEffect } from "react";
+import Rating from "@material-ui/lab/Rating";
+// import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import axios from "axios";
 
 function Home() {
-    const [scrollY, setScrollY] = useState(0);
-    const [bg, setBg] = useState("");
-    const [color, setColor] = useState("")
-  
-    function getScrollHeight() {
-      setScrollY(window.pageYOffset);
-      if (scrollY >= 460) {
-        setBg("navdark-bg");
-        setColor("textcolor-change")
-      } else {
-        setBg("")
-        setColor("");
-      }
+  const [scrollY, setScrollY] = useState(0);
+  const [bg, setBg] = useState("");
+  const [color, setColor] = useState("");
+
+  function getScrollHeight() {
+    setScrollY(window.pageYOffset);
+    if (scrollY >= 460) {
+      setBg("navdark-bg");
+      setColor("textcolor-change");
+    } else {
+      setBg("");
+      setColor("");
     }
-  
-    useLayoutEffect(() => {
-      function watchScroll() {
-        window.addEventListener("scroll", getScrollHeight);
-      }
-  
-      watchScroll();
-  
-      return () => {
-        window.removeEventListener("scroll", getScrollHeight);
-      };
-      // (window).scroll(function(){
-      //   ('nav').toggleClass('scroll', (this).scrollTop() > 50);
-      // });
-    }, [getScrollHeight]);
+  }
 
+  useLayoutEffect(() => {
+    function watchScroll() {
+      window.addEventListener("scroll", getScrollHeight);
+    }
 
+    watchScroll();
 
-    return (
-        <div>
+    return () => {
+      window.removeEventListener("scroll", getScrollHeight);
+    };
+    // (window).scroll(function(){
+    //   ('nav').toggleClass('scroll', (this).scrollTop() > 50);
+    // });
+  }, [getScrollHeight]);
+
+  const [listCourses, setListCourses] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://coursepediabackend.herokuapp.com/courses")
+      .then(res => {
+        // console.log(res);
+        setListCourses(res.data);
+        console.log(res.data);
+      })
+      .catch(error => console.log(error.message));
+  }, []);
+
+  // console.log(listCourses);
+  return (
+    <div>
       <nav className={`navbar navbar-expand-lg ${bg} fixed-top`} id="mainNav">
         <div className="container">
           <a className="navbar-brand js-scroll-trigger" href="#page-top">
-            <b className = {`${color}`}>Coursepedia</b>
+            <b className={`${color}`}>Coursepedia</b>
           </a>
           <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -83,10 +98,10 @@ function Home() {
             <div className="intro-lead-in">Welcome To Coursepedia</div>
             <div className="intro-heading text-uppercase">Find Recommended Courses Easily</div>
             <a className="btn btn-primary btn-xl js-scroll-trigger" href="#services">
-              ADULTS <br/> 15 y.o
+              ADULTS <br /> 15 y.o
             </a>{" "}
             <a className="btn btn-primary btn-xl js-scroll-trigger" href="#services">
-              KIDS <br/>  8-14 y.o
+              KIDS <br /> 8-14 y.o
             </a>
           </div>
         </div>
@@ -142,91 +157,34 @@ function Home() {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a className="portfolio-link" data-toggle="modal" href="#portfolioModal1">
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
+            {listCourses.map((item, index) => {
+              if (item.rating === 5)
+                return (
+                  <div key={index} className="col-md-4 col-sm-6 portfolio-item">
+                    <a className="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                      <div className="portfolio-hover">
+                        <div className="portfolio-hover-content">
+                          <i className="fa fa-plus fa-3x"></i>
+                        </div>
+                      </div>
+                      <img className="img-fluid" src={item.imageUrl} alt="" />
+                    </a>
+                    <div className="portfolio-caption">
+                      <h4>{item.name}</h4>
+                      <p className="text-muted">Rp {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}, 00</p>
+                      <br />
+                      <Box component="fieldset" mb={3} borderColor="transparent">
+                        {/* <Typography component="legend">Excellent!</Typography> */}
+                        <Rating name="read-only" value={item.rating} readOnly />
+                      </Box>
+                    </div>
                   </div>
-                </div>
-                <img className="img-fluid" src="img/portfolio/01-thumbnail.jpg" alt="" />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Threads</h4>
-                <p className="text-muted">Illustration</p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a className="portfolio-link" data-toggle="modal" href="#portfolioModal2">
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img className="img-fluid" src="img/portfolio/02-thumbnail.jpg" alt="" />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Explore</h4>
-                <p className="text-muted">Graphic Design</p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a className="portfolio-link" data-toggle="modal" href="#portfolioModal3">
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img className="img-fluid" src="img/portfolio/03-thumbnail.jpg" alt="" />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Finish</h4>
-                <p className="text-muted">Identity</p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a className="portfolio-link" data-toggle="modal" href="#portfolioModal4">
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img className="img-fluid" src="img/portfolio/04-thumbnail.jpg" alt="" />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Lines</h4>
-                <p className="text-muted">Branding</p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a className="portfolio-link" data-toggle="modal" href="#portfolioModal5">
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img className="img-fluid" src="img/portfolio/05-thumbnail.jpg" alt="" />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Southwest</h4>
-                <p className="text-muted">Website Design</p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a className="portfolio-link" data-toggle="modal" href="#portfolioModal6">
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img className="img-fluid" src="img/portfolio/06-thumbnail.jpg" alt="" />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Window</h4>
-                <p className="text-muted">Photography</p>
-              </div>
-            </div>
+                );
+            })}
           </div>
+          <a className="btn btn-primary btn-xl js-scroll-trigger" href="#services">
+            View More
+          </a>
         </div>
       </section>
 
@@ -520,7 +478,7 @@ function Home() {
         </div>
       </footer>
     </div>
-    )
+  );
 }
 
-export default Home
+export default Home;
