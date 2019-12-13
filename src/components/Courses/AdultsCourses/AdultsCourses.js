@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { MDBContainer, MDBRow, MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBIcon } from "mdbreact";
+import { MDBContainer, MDBRow, MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBIcon, MDBTooltip } from "mdbreact";
 import axios from "axios";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+
+const style = { display: "inline-block", maxWidth: "50vh" };
 
 export default class AdultsCourses extends React.Component {
 	// const [techList, setTechList] = useState([]);
@@ -54,24 +56,75 @@ export default class AdultsCourses extends React.Component {
 	render() {
 		console.log(this.state.techList);
 		return (
-			<div>
-				<section className="page-section" id="services">
-					<div className="container">
-						<div className="row">
-							<div className="col-lg-12 text-center">
-								<h2 className="section-heading text-uppercase">
-									<b>Adult's Courses</b>
-								</h2>
-								<h3 className="section-subheading text-muted">Find out activities what you want to learn</h3>
+			<div className="courses">
+				<MDBContainer>
+					<section className="page-section" id="services">
+						<div className="container">
+							<div className="row">
+								<div className="col-lg-12 text-center">
+									<h2 className="section-heading text-uppercase">
+										<h3>
+											<b>Adult's Courses</b>
+										</h3>
+									</h2>
+									<h3 className="section-subheading text-muted">Find out activities what you want to learn</h3>
+								</div>
 							</div>
 						</div>
-						<button onClick={this.showAll}>show all</button>
-						<button onClick={this.showArtList}>show art list</button>
-					</div>
-				</section>
-				<MDBContainer>
+					</section>
 					<MDBRow>
-						{/* show all */}
+						{/* for button */}
+
+						<MDBCol size="3">
+							<MDBBtn color="purple" onClick={this.showAll}>
+								Show All
+							</MDBBtn>
+						</MDBCol>
+						<MDBCol size="3">
+							<MDBBtn color="deep-purple" onClick={this.showArtList}>
+								Art
+							</MDBBtn>
+						</MDBCol>
+						<MDBCol size="3">
+							<MDBBtn color="indigo">Tech</MDBBtn>
+						</MDBCol>
+						<MDBCol size="3">
+							<MDBBtn color="light-blue">Soft Skill</MDBBtn>
+						</MDBCol>
+					</MDBRow>
+				</MDBContainer>
+				{/*  */}
+				<MDBContainer className="text-center p-5">
+					<MDBTooltip placement="top">
+						<MDBBtn color="primary">Top tooltip</MDBBtn>
+						<div>MDBTooltip on top</div>
+					</MDBTooltip>
+
+					<div>
+						<div style={style} className="text-right">
+							<MDBTooltip placement="left">
+								<MDBBtn color="primary">Left tooltip</MDBBtn>
+								<div>MDBTooltip on left</div>
+							</MDBTooltip>
+						</div>
+
+						<div style={style} className="text-left">
+							<MDBTooltip placement="right">
+								<MDBBtn color="primary">Right tooltip</MDBBtn>
+								<div>MDBTooltip on right</div>
+							</MDBTooltip>
+						</div>
+					</div>
+
+					<MDBTooltip placement="bottom">
+						<MDBBtn color="primary">Bottom tooltip</MDBBtn>
+						<div>MDBTooltip on bottom</div>
+					</MDBTooltip>
+				</MDBContainer>
+				{/*  */}
+				<MDBContainer>
+					{/* show all */}
+					<MDBRow className="course-adult-all">
 						{this.state.allList &&
 							this.state.allList.map((data, index) => (
 								<MDBCol>
@@ -91,7 +144,9 @@ export default class AdultsCourses extends React.Component {
 									</MDBCard>
 								</MDBCol>
 							))}
-						{/* show art */}
+					</MDBRow>
+					{/* show art */}
+					<MDBRow className="course-adult-art">
 						{this.state.artList &&
 							this.state.artList.map((data, index) => (
 								<MDBCol>

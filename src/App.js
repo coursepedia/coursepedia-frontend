@@ -5,10 +5,7 @@ import SignIn from "./components/LoginForm";
 
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import "./App.css";
-import LoginForm from "./components/LoginForm";
 import AdultsCourses from "./components/Courses/AdultsCourses/AdultsCourses";
-import KidsCourses from "./components/Courses/KidsCourses/KidsCourses";
-import Art from "./components/Courses/AdultsCourses/Art";
 import CourseLandingPage from "./components/Courses/CourseLandingPage";
 import NavBar from "./components/NavBar";
 
@@ -16,7 +13,7 @@ function App() {
 	return (
 		// routing ========================================================================================================================//
 		<Router>
-			<NavBar />
+			{/* <NavBar /> */}
 			<Switch>
 				<Route exact path="/">
 					<Home />
