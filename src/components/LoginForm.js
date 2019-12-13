@@ -66,9 +66,9 @@ function SignIn(props) {
     axios
       .post(`${API}/users/login`, user)
       .then(result => {
-        localStorage.setItem("token", result.data.token);
+        // localStorage.setItem("token", result.data.token);
         console.log(result);
-        props.history.push("/dashboard");
+        // props.history.push("/dashboard");
       })
       .catch(error => {
         if (error.response.data) {

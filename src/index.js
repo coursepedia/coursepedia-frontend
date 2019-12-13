@@ -5,6 +5,9 @@ import "./index.css";
 import "./assets/css/agency.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+//mdb
+import 'mdbreact/dist/css/mdb.css';
+
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
