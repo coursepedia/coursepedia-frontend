@@ -1,8 +1,16 @@
-import React, { useLayoutEffect, useState } from "react";
-import Popover from "@material-ui/core/Popover";
-import { useHistory } from "react-router-dom"
+import React, { useLayoutEffect, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import Rating from "@material-ui/lab/Rating";
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import Box from "@material-ui/core/Box";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import NavigationIcon from '@material-ui/icons/Navigation';
+import axios from 'axios;
 
 
 function Home() {
@@ -10,20 +18,42 @@ function Home() {
   const [scrollY, setScrollY] = useState(0);
   const [bg, setBg] = useState("");
   const [color, setColor] = useState("");
+  const [display, setDisplay] = useState("")
+  
+  const [listCourses, setListCourses] = useState([]);
 
-  // Popover Login
-  // const [anchorPos, setAnchorPos] = useState(null);
-  // const open = Boolean(anchorPos);
-  // const id = open ? 'This is login' : undefined
+  useEffect(() => {
+    axios
+      .get("https://coursepediabackend.herokuapp.com/courses")
+      .then(res => {
+        // console.log(res);
+        setListCourses(res.data);
+        console.log(res.data);
+      })
+      .catch(error => console.log(error.message));
+  }, []);
+
+  const floatButtonStyle = {
+    display: 'none',
+    margin : 0,
+    top: 'auto',
+    right: 20,
+    bottom: 40,
+    left: 'auto',
+    position: 'fixed',
+    transition: 'display 2s ease'
+  }
 
   function getScrollHeight() {
     setScrollY(window.pageYOffset);
     if (scrollY >= 400) {
       setBg("navdark-bg");
       setColor("textcolor-change");
+      setDisplay("floatbutton-show")
     } else {
       setBg("");
       setColor("");
+      setDisplay("")
     }
   }
 
@@ -42,18 +72,15 @@ function Home() {
     // });
   }, [getScrollHeight]);
 
-  // Popover Login Method
-  // const handleClick = event => {
-  //   setAnchorPos(event.currentTarget);
-  // };
-
-  // const handleClose = () => {
-  //   setAnchorPos(null);
-  // };
-
-
   return (
     <div>
+      {/* floating action button */}
+      <div>
+      <Fab style={floatButtonStyle} className={display} color="primary" aria-label="add">
+        <AddIcon />
+      </Fab>
+      </div>
+
       <nav
         style={{ transition: "0.75s ease" }}
         className={`navbar navbar-expand-lg ${bg} fixed-top`}
@@ -135,13 +162,11 @@ function Home() {
           </div>
         </div>
       </nav>
-
-      {/* Login Popover */}
       
-
       <header className="masthead">
         <div className="container">
           <div className="intro-text">
+
             <div className="intro-lead-norm">Welcome To Coursepedia</div>
             <div className="intro-heading text-uppercase">
               Find Recommended Courses Easily
@@ -226,139 +251,36 @@ function Home() {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a
-                className="portfolio-link"
-                data-toggle="modal"
-                href="#portfolioModal1"
-              >
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
+
+            {listCourses.map((item, index) => {
+              if (item.rating === 5)
+                return (
+                  <div key={index} className="col-md-4 col-sm-6 portfolio-item">
+                    <a className="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                      <div className="portfolio-hover">
+                        <div className="portfolio-hover-content">
+                          <i className="fa fa-plus fa-3x"></i>
+                        </div>
+                      </div>
+                      <img className="img-fluid" src={item.imageUrl} alt="" />
+                    </a>
+                    <div className="portfolio-caption">
+                      <h4>{item.name}</h4>
+                      <p className="text-muted">Rp {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}, 00</p>
+                      <br />
+                      <Box component="fieldset" mb={3} borderColor="transparent">
+                        {/* <Typography component="legend">Excellent!</Typography> */}
+                        <Rating name="read-only" value={item.rating} readOnly />
+                      </Box>
+                    </div>
                   </div>
-                </div>
-                <img
-                  className="img-fluid"
-                  src="img/portfolio/01-thumbnail.jpg"
-                  alt=""
-                />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Threads</h4>
-                <p className="text-muted">Illustration</p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a
-                className="portfolio-link"
-                data-toggle="modal"
-                href="#portfolioModal2"
-              >
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img
-                  className="img-fluid"
-                  src="img/portfolio/02-thumbnail.jpg"
-                  alt=""
-                />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Explore</h4>
-                <p className="text-muted">Graphic Design</p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a
-                className="portfolio-link"
-                data-toggle="modal"
-                href="#portfolioModal3"
-              >
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img
-                  className="img-fluid"
-                  src="img/portfolio/03-thumbnail.jpg"
-                  alt=""
-                />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Finish</h4>
-                <p className="text-muted">Identity</p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a
-                className="portfolio-link"
-                data-toggle="modal"
-                href="#portfolioModal4"
-              >
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img
-                  className="img-fluid"
-                  src="img/portfolio/04-thumbnail.jpg"
-                  alt=""
-                />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Lines</h4>
-                <p className="text-muted">Branding</p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a
-                className="portfolio-link"
-                data-toggle="modal"
-                href="#portfolioModal5"
-              >
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img
-                  className="img-fluid"
-                  src="img/portfolio/05-thumbnail.jpg"
-                  alt=""
-                />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Southwest</h4>
-                <p className="text-muted">Website Design</p>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6 portfolio-item">
-              <a
-                className="portfolio-link"
-                data-toggle="modal"
-                href="#portfolioModal6"
-              >
-                <div className="portfolio-hover">
-                  <div className="portfolio-hover-content">
-                    <i className="fa fa-plus fa-3x"></i>
-                  </div>
-                </div>
-                <img
-                  className="img-fluid"
-                  src="img/portfolio/06-thumbnail.jpg"
-                  alt=""
-                />
-              </a>
-              <div className="portfolio-caption">
-                <h4>Window</h4>
-                <p className="text-muted">Photography</p>
-              </div>
-            </div>
+                );
+            })}
+            
           </div>
+          <a className="btn btn-primary btn-xl js-scroll-trigger" href="#services">
+            View More
+          </a>
         </div>
       </section>
 
