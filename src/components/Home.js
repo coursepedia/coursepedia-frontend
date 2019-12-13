@@ -1,8 +1,13 @@
 import React, { useLayoutEffect, useState } from "react";
-import Popover from "@material-ui/core/Popover";
 import { useHistory } from "react-router-dom"
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import NavigationIcon from '@material-ui/icons/Navigation';
 
 
 function Home() {
@@ -11,10 +16,23 @@ function Home() {
   const [bg, setBg] = useState("");
   const [color, setColor] = useState("");
 
+  const useStyles = makeStyles(theme => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+      },
+    },
+    extendedIcon: {
+      marginRight: theme.spacing(1),
+    },
+  }));
+
+  const classes = useStyles() 
   // Popover Login
   // const [anchorPos, setAnchorPos] = useState(null);
   // const open = Boolean(anchorPos);
   // const id = open ? 'This is login' : undefined
+
 
   function getScrollHeight() {
     setScrollY(window.pageYOffset);
@@ -736,6 +754,11 @@ function Home() {
             </div>
           </div>
         </div>
+        <div className={classes.root}>
+      <Fab color="primary" aria-label="add">
+        <AddIcon />
+      </Fab>
+      </div>
       </footer>
     </div>
   );
