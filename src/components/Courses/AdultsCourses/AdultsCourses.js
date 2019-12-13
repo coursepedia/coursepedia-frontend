@@ -4,6 +4,7 @@ import axios from "axios";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import { height } from "@material-ui/system";
 
 const style = { display: "inline-block", maxWidth: "50vh" };
 
@@ -26,7 +27,10 @@ export default class AdultsCourses extends React.Component {
 				result.data.map(item => {
 					if (item.ageCategory == "adult") {
 						this.setState({
-							allList: [...this.state.allList, item]
+							allList: [...this.state.allList, item],
+							techList: [],
+							artList: [],
+							softSkillList: []
 						});
 					}
 				});
@@ -43,7 +47,10 @@ export default class AdultsCourses extends React.Component {
 				result.data.map(item => {
 					if (item.fieldCategory == "art" && item.ageCategory == "adult") {
 						this.setState({
-							artList: [...this.state.artList, item]
+							artList: [...this.state.artList, item],
+							allList: [],
+							techList: [],
+							softSkillList: []
 						});
 					}
 				});
@@ -72,9 +79,10 @@ export default class AdultsCourses extends React.Component {
 							</div>
 						</div>
 					</section>
+				</MDBContainer>
+				{/* for button */}
+				<MDBContainer>
 					<MDBRow>
-						{/* for button */}
-
 						<MDBCol size="3">
 							<MDBBtn color="purple" onClick={this.showAll}>
 								Show All
@@ -92,45 +100,18 @@ export default class AdultsCourses extends React.Component {
 							<MDBBtn color="light-blue">Soft Skill</MDBBtn>
 						</MDBCol>
 					</MDBRow>
+					<br />
+					<br />
 				</MDBContainer>
-				{/*  */}
-				<MDBContainer className="text-center p-5">
-					<MDBTooltip placement="top">
-						<MDBBtn color="primary">Top tooltip</MDBBtn>
-						<div>MDBTooltip on top</div>
-					</MDBTooltip>
-
-					<div>
-						<div style={style} className="text-right">
-							<MDBTooltip placement="left">
-								<MDBBtn color="primary">Left tooltip</MDBBtn>
-								<div>MDBTooltip on left</div>
-							</MDBTooltip>
-						</div>
-
-						<div style={style} className="text-left">
-							<MDBTooltip placement="right">
-								<MDBBtn color="primary">Right tooltip</MDBBtn>
-								<div>MDBTooltip on right</div>
-							</MDBTooltip>
-						</div>
-					</div>
-
-					<MDBTooltip placement="bottom">
-						<MDBBtn color="primary">Bottom tooltip</MDBBtn>
-						<div>MDBTooltip on bottom</div>
-					</MDBTooltip>
-				</MDBContainer>
-				{/*  */}
+				{/* show all */}
 				<MDBContainer>
-					{/* show all */}
-					<MDBRow className="course-adult-all">
+					<MDBRow>
 						{this.state.allList &&
 							this.state.allList.map((data, index) => (
-								<MDBCol>
-									<MDBCard style={{ width: "22rem" }}>
+								<MDBCol size="6">
+									<MDBCard>
 										<MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
-										<MDBCardBody>
+										<MDBCardBody style={{height:'auto'}}>
 											<MDBCardTitle>{data.name}</MDBCardTitle>
 											<MDBCardText>{data.address}</MDBCardText>
 											<MDBCardText>Rp {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},00</MDBCardText>
@@ -146,13 +127,13 @@ export default class AdultsCourses extends React.Component {
 							))}
 					</MDBRow>
 					{/* show art */}
-					<MDBRow className="course-adult-art">
+					<MDBRow>
 						{this.state.artList &&
 							this.state.artList.map((data, index) => (
-								<MDBCol>
-									<MDBCard style={{ width: "22rem" }}>
+								<MDBCol size="6">
+									<MDBCard>
 										<MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
-										<MDBCardBody>
+										<MDBCardBody style={{height:'auto'}}>
 											<MDBCardTitle>{data.name}</MDBCardTitle>
 											<MDBCardText>{data.address}</MDBCardText>
 											<MDBCardText>Rp {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},00</MDBCardText>
