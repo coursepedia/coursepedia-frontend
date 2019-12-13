@@ -10,7 +10,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import Box from "@material-ui/core/Box";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import NavigationIcon from '@material-ui/icons/Navigation';
-import axios from 'axios;
+import axios from 'axios';
 
 
 function Home() {
