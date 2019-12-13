@@ -12,8 +12,23 @@ nav {
 }
 
 .textcolor-change {
-  color: white;
+  color : white!important;
 }
+
+.padding-sml {
+  padding: 10px 50px;
+}
+
+.register-background {
+  border-color : #327BFF;
+  border: 100px;
+}
+
+.floatbutton-show {
+  display: inline!important;
+}
+
+/* This is the divider to divide original App.css */
 
 .App {
   text-align: center;
