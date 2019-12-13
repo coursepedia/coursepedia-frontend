@@ -19,6 +19,7 @@ function Home() {
   const [bg, setBg] = useState("");
   const [color, setColor] = useState("");
   const [display, setDisplay] = useState("")
+
   
   const [listCourses, setListCourses] = useState([]);
 
@@ -278,9 +279,13 @@ function Home() {
             })}
             
           </div>
+          <div className="row">
+            <div className="col-lg-12 text-center">
           <a className="btn btn-primary btn-xl js-scroll-trigger" href="#services">
             View More
           </a>
+          </div> 
+          </div>
         </div>
       </section>
 
