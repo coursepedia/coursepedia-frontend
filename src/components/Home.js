@@ -15,33 +15,29 @@ function Home() {
   const [scrollY, setScrollY] = useState(0);
   const [bg, setBg] = useState("");
   const [color, setColor] = useState("");
+  const [display, setDisplay] = useState("")
 
-  const useStyles = makeStyles(theme => ({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-    extendedIcon: {
-      marginRight: theme.spacing(1),
-    },
-  }));
-
-  const classes = useStyles() 
-  // Popover Login
-  // const [anchorPos, setAnchorPos] = useState(null);
-  // const open = Boolean(anchorPos);
-  // const id = open ? 'This is login' : undefined
-
+  const floatButtonStyle = {
+    display: 'none',
+    margin : 0,
+    top: 'auto',
+    right: 20,
+    bottom: 40,
+    left: 'auto',
+    position: 'fixed',
+    transition: 'display 2s ease'
+  }
 
   function getScrollHeight() {
     setScrollY(window.pageYOffset);
     if (scrollY >= 400) {
       setBg("navdark-bg");
       setColor("textcolor-change");
+      setDisplay("floatbutton-show")
     } else {
       setBg("");
       setColor("");
+      setDisplay("")
     }
   }
 
@@ -72,6 +68,13 @@ function Home() {
 
   return (
     <div>
+      {/* floating action button */}
+      <div>
+      <Fab style={floatButtonStyle} className={display} color="primary" aria-label="add">
+        <AddIcon />
+      </Fab>
+      </div>
+
       <nav
         style={{ transition: "0.75s ease" }}
         className={`navbar navbar-expand-lg ${bg} fixed-top`}
@@ -754,11 +757,6 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className={classes.root}>
-      <Fab color="primary" aria-label="add">
-        <AddIcon />
-      </Fab>
-      </div>
       </footer>
     </div>
   );

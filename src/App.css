@@ -20,6 +20,10 @@ html {
   border: 100px;
 }
 
+.floatbutton-show {
+  display: inline!important;
+}
+
 /* This is the divider to divide original App.css */
 
 .App {
