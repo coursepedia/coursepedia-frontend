@@ -1,11 +1,11 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import SignUp from "./components/RegisterForm";
 import SignIn from "./components/LoginForm";
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./App.css";
 import AddNewCourse from "./components/AddNewCourse";
+
+import "./App.css";
 
 function App() {
   return (

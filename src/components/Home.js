@@ -1,16 +1,17 @@
 import React, { useLayoutEffect, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Rating from "@material-ui/lab/Rating";
+// import Rating from "@material-ui/lab/Rating";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 // import { makeStyles } from '@material-ui/core/styles';
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 // import EditIcon from '@material-ui/icons/Edit';
-import Box from "@material-ui/core/Box";
+// import Box from "@material-ui/core/Box";
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 // import NavigationIcon from '@material-ui/icons/Navigation';
 import axios from "axios";
+import ModalPage from "./Modal";
 
 function Home() {
   let history = useHistory();
@@ -184,7 +185,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-light page-section" id="portfolio">
+      {/* <section className="bg-light page-section" id="portfolio">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">
@@ -211,9 +212,9 @@ function Home() {
                       <h4>{item.name}</h4>
                       <p className="text-muted">Rp {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}, 00</p>
                       <br />
-                      <Box component="fieldset" mb={3} borderColor="transparent">
-                        {/* <Typography component="legend">Excellent!</Typography> */}
-                        <Rating name="read-only" value={item.rating} readOnly />
+                      <Box component="fieldset" mb={3} borderColor="transparent"> */}
+      {/* <Typography component="legend">Excellent!</Typography> */}
+      {/* <Rating name="read-only" value={item.rating} readOnly />
                       </Box>
                     </div>
                   </div>
@@ -224,7 +225,9 @@ function Home() {
             View More
           </a>
         </div>
-      </section>
+      </section> */}
+
+      <ModalPage />
 
       <section className="page-section" id="about">
         <div className="container">
@@ -267,34 +270,6 @@ function Home() {
                     </div>
                   </div>
                 </li>
-                {/* <li>
-                  <div className="timeline-image">
-                    <img className="rounded-circle img-fluid" src="img/about/3.jpg" alt="" />
-                  </div>
-                  <div className="timeline-panel">
-                    <div className="timeline-heading">
-                      <h4>December 2012</h4>
-                      <h4 className="subheading">Transition to Full Service</h4>
-                    </div>
-                    <div className="timeline-body">
-                      <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                    </div>
-                  </div>
-                </li> */}
-                {/* <li className="timeline-inverted">
-                  <div className="timeline-image">
-                    <img className="rounded-circle img-fluid" src="img/about/4.jpg" alt="" />
-                  </div>
-                  <div className="timeline-panel">
-                    <div className="timeline-heading">
-                      <h4>July 2014</h4>
-                      <h4 className="subheading">Phase Two Expansion</h4>
-                    </div>
-                    <div className="timeline-body">
-                      <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-                    </div>
-                  </div>
-                </li> */}
                 <li className="timeline-inverted">
                   <div className="timeline-image">
                     <h4>
