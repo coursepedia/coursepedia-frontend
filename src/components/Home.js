@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from "react";
 import Popover from "@material-ui/core/Popover";
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
@@ -86,12 +86,15 @@ function Home() {
                 </a>
               </li>
               <li className="nav-item">
+                
+                <Link to='/courses'>
                 <a
                   className={`nav-link ${color} js-scroll-trigger`}
-                  href="#portfolio"
+                  href="#"
                 >
                   Courses
                 </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a

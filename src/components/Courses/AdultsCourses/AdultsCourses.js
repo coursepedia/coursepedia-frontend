@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBContainer, MDBRow, MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBIcon, MDBTooltip } from "mdbreact";
+import { MDBContainer, MDBRow, MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
 import axios from "axios";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
@@ -9,15 +9,41 @@ import { height } from "@material-ui/system";
 const style = { display: "inline-block", maxWidth: "50vh" };
 
 export default class AdultsCourses extends React.Component {
-	// const [techList, setTechList] = useState([]);
 	constructor() {
 		super();
 		this.state = {
+			allListShownFirst: [],
 			allList: [],
 			techList: [],
 			artList: [],
-			softSkillList: []
+			softSkillList: [],
+			modal: false,
+			dataModal:[],
+			targetId:''
 		};
+	}
+
+	toggle = () => {
+		this.setState({
+			modal: !this.state.modal
+		});
+	};
+
+	showAllFirstShown = () => {
+		if (this.state.allListShownFirst.length > 0) return;
+		axios.get(`http://coursepediabackend.herokuapp.com/courses/`).then(result => {
+			result.data.map(item => {
+				if (item.ageCategory == "adult") {
+					this.setState({
+						allListShownFirst: [...this.state.allListShownFirst, item]
+					});
+				}
+			});
+		});
+	};
+
+	componentDidMount() {
+		this.showAllFirstShown();
 	}
 
 	showAll = () => {
@@ -28,9 +54,11 @@ export default class AdultsCourses extends React.Component {
 					if (item.ageCategory == "adult") {
 						this.setState({
 							allList: [...this.state.allList, item],
+							allListShownFirst: [],
 							techList: [],
 							artList: [],
 							softSkillList: []
+							
 						});
 					}
 				});
@@ -42,12 +70,14 @@ export default class AdultsCourses extends React.Component {
 	};
 
 	showArtList = () => {
+		if (this.state.artList.length > 0) return;
 		axios.get(`http://coursepediabackend.herokuapp.com/courses/`)
 			.then(result => {
 				result.data.map(item => {
 					if (item.fieldCategory == "art" && item.ageCategory == "adult") {
 						this.setState({
 							artList: [...this.state.artList, item],
+							allListShownFirst: [],
 							allList: [],
 							techList: [],
 							softSkillList: []
@@ -59,6 +89,42 @@ export default class AdultsCourses extends React.Component {
 				console.log(error);
 			});
 	};
+
+	showTechList = () => {
+		if (this.state.techList.length > 0) return;
+		axios.get(`http://coursepediabackend.herokuapp.com/courses/`).then(result => {
+			result.data.map(item => {
+				if (item.fieldCategory && "tech" && item.ageCategory == "adult") {
+					this.setState({
+						techList: [...this.state.techList, item],
+						allListShownFirst: [],
+						allList: [],
+						artList: [],
+						softSkillList: []
+					});
+				}
+			});
+		});
+	};
+
+	getDataModal = ()=>{
+		if (this.state.dataModal.length > 0) return;
+		axios.get(`http://coursepediabackend.herokuapp.com/courses/`)
+		.then(result=>{
+			result.data.map(item=>{
+				this.setState({
+					dataModal:[...this.state.dataModal, item]
+				})
+			})
+		})
+	}
+
+	getTargetId=(event)=>{
+		if(this.state.targetId.length>0)return
+		this.setState({
+			targetId:event.target.value
+		})
+	}
 
 	render() {
 		console.log(this.state.techList);
@@ -103,6 +169,56 @@ export default class AdultsCourses extends React.Component {
 					<br />
 					<br />
 				</MDBContainer>
+
+				{/* show all first */}
+				<MDBContainer>
+					<MDBRow>
+						{this.state.allListShownFirst.map((data, index) => (
+							<MDBCol size="6">
+								<MDBCard>
+									<MDBCardImage className="img-fluid" src={data.imageUrl} waves />
+									<MDBCardBody className="card-body">
+										<MDBCardTitle>{data.name}</MDBCardTitle>
+										<MDBCardText>{data.address}</MDBCardText>
+										<MDBCardText>Rp {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},00</MDBCardText>
+										<MDBCardText>
+											<Box component="fieldset" mb={3} borderColor="transparent">
+												<Rating name="read-only" value={data.rating} readOnly />
+											</Box>
+										</MDBCardText>
+										{/* first line modal */}
+										<MDBContainer>
+											<MDBBtn onClick={()=>{this.toggle();this.getDataModal();this.getTargetId()}} value={data.id}>Modal</MDBBtn>
+											<MDBModal isOpen={this.state.modal} toggle={this.toggle}>
+												
+
+												{/* TANYAIN OJAN YG DIBAWAH INI */}
+												{/* {this.state.dataModal && this.state.dataModal.map(item=>{
+														if(item.id == this.state.targetId){
+															()=>{}
+														}}
+												)} */}
+
+												<MDBModalHeader toggle={this.toggle}>MDBModal title</MDBModalHeader>
+												<MDBModalBody>
+
+												</MDBModalBody>
+												<MDBModalFooter>
+													<MDBBtn color="secondary" onClick={this.toggle}>
+														Close
+													</MDBBtn>
+												</MDBModalFooter>
+												
+											</MDBModal>
+										</MDBContainer>
+										{/* last line modal */}
+									</MDBCardBody>
+								</MDBCard>
+							</MDBCol>
+						))}
+					</MDBRow>
+				</MDBContainer>
+
 				{/* show all */}
 				<MDBContainer>
 					<MDBRow>
@@ -111,7 +227,7 @@ export default class AdultsCourses extends React.Component {
 								<MDBCol size="6">
 									<MDBCard>
 										<MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
-										<MDBCardBody style={{height:'auto'}}>
+										<MDBCardBody style={{ height: "auto" }}>
 											<MDBCardTitle>{data.name}</MDBCardTitle>
 											<MDBCardText>{data.address}</MDBCardText>
 											<MDBCardText>Rp {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},00</MDBCardText>
@@ -126,6 +242,7 @@ export default class AdultsCourses extends React.Component {
 								</MDBCol>
 							))}
 					</MDBRow>
+
 					{/* show art */}
 					<MDBRow>
 						{this.state.artList &&
@@ -133,7 +250,30 @@ export default class AdultsCourses extends React.Component {
 								<MDBCol size="6">
 									<MDBCard>
 										<MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
-										<MDBCardBody style={{height:'auto'}}>
+										<MDBCardBody style={{ height: "auto" }}>
+											<MDBCardTitle>{data.name}</MDBCardTitle>
+											<MDBCardText>{data.address}</MDBCardText>
+											<MDBCardText>Rp {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},00</MDBCardText>
+											<MDBCardText>
+												<Box component="fieldset" mb={3} borderColor="transparent">
+													<Rating name="read-only" value={data.rating} readOnly />
+												</Box>
+											</MDBCardText>
+											<MDBBtn href="#">MDBBtn</MDBBtn>
+										</MDBCardBody>
+									</MDBCard>
+								</MDBCol>
+							))}
+					</MDBRow>
+
+					{/* show tech */}
+					<MDBRow>
+						{this.state.techList &&
+							this.state.techList.map((data, index) => (
+								<MDBCol size="6">
+									<MDBCard>
+										<MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
+										<MDBCardBody style={{ height: "auto" }}>
 											<MDBCardTitle>{data.name}</MDBCardTitle>
 											<MDBCardText>{data.address}</MDBCardText>
 											<MDBCardText>Rp {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},00</MDBCardText>

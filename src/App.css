@@ -71,3 +71,12 @@ html {
   border: 2px solid #fff;
   text-align: center;
 }
+
+.img-fluid{
+  height:350px;
+  width:1000px;
+}
+
+.card-body{
+   min-height:350px;
+}
