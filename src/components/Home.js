@@ -76,6 +76,7 @@ function Home() {
       {/* floating action button */}
       <div>
         <Fab style={floatButtonStyle} className={display} color="primary" aria-label="add">
+          <span className="tooltiptext">Adding Recommendation Course</span>
           <AddIcon />
         </Fab>
       </div>
@@ -195,7 +196,7 @@ function Home() {
           </div>
           <div className="row">
             {listCourses.map((item, index) => {
-              if (item.rating === 5)
+              if (item.name === "Impact Byte" || item.name === "Maison Bleu of Culinary Art" || item.name === "Alvin Adam Public Speaking and Communication School" || item.name === "Ohayo Drawing School" || item.name === "Anak Air Swim School" || item.name === "Engineering For Kids")
                 return (
                   <div key={index} className="col-md-4 col-sm-6 portfolio-item">
                     <a className="portfolio-link" data-toggle="modal" href="#portfolioModal1">

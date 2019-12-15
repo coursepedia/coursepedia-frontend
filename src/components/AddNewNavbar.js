@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 // import { makeStyles } from '@material-ui/core/styles';
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
+// import Fab from "@material-ui/core/Fab";
+// import AddIcon from "@material-ui/icons/Add";
 // import EditIcon from '@material-ui/icons/Edit';
 
 function AddNewNavbar() {
@@ -14,16 +14,16 @@ function AddNewNavbar() {
   const [color, setColor] = useState("");
   const [display, setDisplay] = useState("");
 
-  const floatButtonStyle = {
-    display: "none",
-    margin: 0,
-    top: "auto",
-    right: 20,
-    bottom: 40,
-    left: "auto",
-    position: "fixed",
-    transition: "display 2s ease"
-  };
+  // const floatButtonStyle = {
+  //   display: "none",
+  //   margin: 0,
+  //   top: "auto",
+  //   right: 20,
+  //   bottom: 40,
+  //   left: "auto",
+  //   position: "fixed",
+  //   transition: "display 2s ease"
+  // };
 
   function getScrollHeight() {
     setScrollY(window.pageYOffset);
@@ -56,11 +56,11 @@ function AddNewNavbar() {
   return (
     <div>
       {/* floating action button */}
-      <div>
+      {/* <div>
         <Fab style={floatButtonStyle} className={display} color="primary" aria-label="add">
           <AddIcon />
         </Fab>
-      </div>
+      </div> */}
 
       <nav style={{ transition: "0.75s ease" }} className={`navbar navbar-expand-lg ${bg} fixed-top`} id="mainNav">
         <div className="container">
@@ -77,13 +77,13 @@ function AddNewNavbar() {
                 <a className={`nav-link ${color} js-scroll-trigger`} href="#services">
                   Awesome Feature
                 </a>
-              </li>
+              </li> */}
               <li className="nav-item">
-                <a className={`nav-link ${color} js-scroll-trigger`} href="#portfolio">
-                  Courses
+                <a className={`nav-link ${color} js-scroll-trigger`} href="#courses" onClick={() => history.push("/")}>
+                  Home
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className={`nav-link ${color} js-scroll-trigger`} href="#about">
                   About
                 </a>
@@ -94,17 +94,17 @@ function AddNewNavbar() {
                 </a>
               </li> */}
               <li className="nav-item">
-                <a className={`nav-link ${color} js-scroll-trigger`} href="#contact">
-                  Home
+                <a className={`nav-link ${color} js-scroll-trigger`} href="#portofolio" onClick={() => history.push("/")}>
+                  Courses
                 </a>
               </li>
             </ul>
             <ButtonGroup>
-              <Button variant="outlined" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/register")}>
+              {/* <Button variant="outlined" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/register")}>
                 Sign Up
-              </Button>
+              </Button> */}
               <Button variant="contained" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/login")}>
-                login
+                logout
               </Button>
             </ButtonGroup>
           </div>
