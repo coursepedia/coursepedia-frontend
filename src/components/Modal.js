@@ -7,6 +7,7 @@ import Rating from "@material-ui/lab/Rating";
 function ModalPage() {
   const [toggle, setToggle] = useState(false);
   const [listCourses, setListCourses] = useState([]);
+  const [modalContent, setModalContent] = useState({});
 
   useEffect(() => {
     axios
@@ -19,8 +20,10 @@ function ModalPage() {
       .catch(error => console.log(error.message));
   }, []);
 
-  const handleClick = () => {
+  const handleClick = data => {
     setToggle(prevState => !prevState);
+    console.log(data);
+    setModalContent(data);
   };
 
   return (
@@ -39,42 +42,24 @@ function ModalPage() {
             if (item.name === "Impact Byte" || item.name === "Maison Bleu of Culinary Art" || item.name === "Alvin Adam Public Speaking and Communication School" || item.name === "Ohayo Drawing School" || item.name === "Anak Air Swim School" || item.name === "Engineering For Kids")
               return (
                 <div name="course" className="col-md-4 col-sm-6 portfolio-item">
-                  <a className="portfolio-link">
-                    <div key={index} className="portfolio-hover" onClick={handleClick} data-target={`$item.id`} data-toggle="modal">
+                  <span class="portfolio-link" data-toggle="modal">
+                    <div key={index} className="portfolio-hover" onClick={() => handleClick(item)} data-target={`$item.id`} data-toggle="modal">
                       <div className="portfolio-hover-content">
                         <i className="fa fa-plus fa-3x"></i>
                       </div>
                     </div>
-                    <img className="img-fluid" src={item.imageUrl} alt="" />
-                  </a>
+                  </span>
+                  <div className="h-50">
+                    <img src={item.imageUrl} alt="course" height="100%" width="100%" />
+                  </div>
                   <div className="portfolio-caption">
                     <h4>{item.name}</h4>
-                    <p className="text-muted">Rp {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}, 00</p>
+                    <p className="text-muted">{new Intl.NumberFormat("id-ID", { style: "currency", currency: "idr" }).format(item.price)}</p>
                     <br />
                     <Box component="fieldset" mb={3} borderColor="transparent">
                       <Rating name="read-only" value={item.rating} readOnly />
                     </Box>
                   </div>
-                  {/* Modal */}
-                  <MDBContainer key={index} name="modal">
-                    <MDBModal isOpen={toggle} size="lg" centered>
-                      <MDBModalHeader>{item.name}</MDBModalHeader>
-                      <MDBModalBody>
-                        <>
-                          <img className="img-fluid" src={item.imageUrl} alt="" />
-                        </>
-                        <div className="portofolio-caption">
-                          <p className="text-muted">Rp {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}, 00</p>
-                        </div>
-                      </MDBModalBody>
-                      <MDBModalFooter>
-                        <MDBBtn color="secondary" onClick={handleClick}>
-                          Close
-                        </MDBBtn>
-                        <MDBBtn color="primary">Save changes</MDBBtn>
-                      </MDBModalFooter>
-                    </MDBModal>
-                  </MDBContainer>
                 </div>
               );
           })}
@@ -87,6 +72,29 @@ function ModalPage() {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {Object.keys(modalContent).length !== 0 && (
+        <MDBContainer name="modal">
+          <MDBModal isOpen={toggle} size="lg" centered>
+            <MDBModalHeader>{modalContent.name}</MDBModalHeader>
+            <MDBModalBody>
+              <>
+                <img className="img-fluid" src={modalContent.imageUrl} alt="" />
+              </>
+              <div className="portofolio-caption">
+                <p className="text-muted">{new Intl.NumberFormat("id-ID", { style: "currency", currency: "idr" }).format(modalContent.price)}</p>
+              </div>
+            </MDBModalBody>
+            <MDBModalFooter>
+              <MDBBtn color="secondary" onClick={handleClick}>
+                Close
+              </MDBBtn>
+              <MDBBtn color="primary">Save changes</MDBBtn>
+            </MDBModalFooter>
+          </MDBModal>
+        </MDBContainer>
+      )}
     </section>
   );
 }
