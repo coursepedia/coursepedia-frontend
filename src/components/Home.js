@@ -13,6 +13,7 @@ import AddIcon from "@material-ui/icons/Add";
 import axios from "axios";
 import ModalPage from "./Modal";
 import { UserContext } from "./UserContext";
+import { userAuth } from "../helpers/userAuth";
 // import AuthButton from "./AuthButton";
 
 function Home() {
@@ -132,11 +133,18 @@ function Home() {
                 </a>
               </li>
             </ul>
-            {users ? (
+            {userAuth.isAuthenticated ? (
               // `Welcome, ${users.username} !`,
               <div>
-                <span>Welcome, {users.username} ! </span>
-                <Button variant="contained" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/login")}>
+                <span>Welcome {users.username} ! </span>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={`nav-link ${color} js-scroll-trigger`}
+                  onClick={() => {
+                    userAuth.signout(() => history.push("/"));
+                  }}
+                >
                   logout
                 </Button>
               </div>
