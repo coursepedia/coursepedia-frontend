@@ -16,6 +16,9 @@ import axios from "axios";
 import { withRouter } from "react-router";
 
 import { Link } from "react-router-dom";
+
+import { userAuth } from "../helpers/userAuth";
+
 // import RegisterForm from "./RegisterForm";
 import { BACKEND_URI } from "../helpers/path.js";
 
@@ -72,13 +75,14 @@ function SignIn(props) {
         // localStorage.setItem("token", result.data.token);
         console.log(result);
         addUsers(result.data.user);
+        userAuth.authenticate();
         props.history.push("/");
       })
       .catch(error => {
         if (error.response.data) {
           setError(error.response.data);
         } else {
-          setError(error.message);
+          setError(error);
         }
       });
   };

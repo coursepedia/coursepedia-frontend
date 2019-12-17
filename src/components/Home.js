@@ -13,6 +13,7 @@ import AddIcon from "@material-ui/icons/Add";
 import axios from "axios";
 import ModalPage from "./Modal";
 import { UserContext } from "./UserContext";
+import { userAuth } from "../helpers/userAuth";
 // import AuthButton from "./AuthButton";
 
 function Home() {
@@ -24,7 +25,7 @@ function Home() {
   const [users, addUsers] = useContext(UserContext);
 
   const [listCourses, setListCourses] = useState([]);
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     axios
@@ -77,7 +78,7 @@ function Home() {
   }, [getScrollHeight]);
 
   const handleFab = () => {
-    if (isLogin) {
+    if (userAuth.isAuthenticated) {
       history.push("/add-course");
     } else {
       history.push("/login");
@@ -164,17 +165,23 @@ function Home() {
                 </a>
               </li>
             </ul>
-            {users ? (
+            {userAuth.isAuthenticated ? (
               // `Welcome, ${users.username} !`,
               <div>
-                <span>Welcome, {users.username} ! </span>
+                <span>
+                  <b>
+                    <i>Welcome {users.username} ! </i>
+                  </b>
+                </span>
                 <Button
                   variant="contained"
                   color="primary"
                   className={`nav-link ${color} js-scroll-trigger`}
-                  onClick={() => history.push("/login")}
+                  onClick={() => {
+                    userAuth.signout(() => history.push("/"));
+                  }}
                 >
-                  Logout
+                  logout
                 </Button>
               </div>
             ) : (
