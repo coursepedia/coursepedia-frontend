@@ -25,7 +25,7 @@ function Home() {
   const [users, addUsers] = useContext(UserContext);
 
   const [listCourses, setListCourses] = useState([]);
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     axios
@@ -78,7 +78,7 @@ function Home() {
   }, [getScrollHeight]);
 
   const handleFab = () => {
-    if (isLogin) {
+    if (userAuth.isAuthenticated) {
       history.push("/add-course");
     } else {
       history.push("/login");
@@ -136,7 +136,11 @@ function Home() {
             {userAuth.isAuthenticated ? (
               // `Welcome, ${users.username} !`,
               <div>
-                <span>Welcome {users.username} ! </span>
+                <span>
+                  <b>
+                    <i>Welcome {users.username} ! </i>
+                  </b>
+                </span>
                 <Button
                   variant="contained"
                   color="primary"

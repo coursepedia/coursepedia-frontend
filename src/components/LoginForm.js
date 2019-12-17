@@ -81,7 +81,7 @@ function SignIn(props) {
         if (error.response.data) {
           setError(error.response.data);
         } else {
-          setError(error.message);
+          setError(error);
         }
       });
   };
