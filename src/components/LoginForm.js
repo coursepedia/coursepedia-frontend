@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "./UserContext";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -54,8 +55,7 @@ function SignIn(props) {
 
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
- 
-
+  const [users, addUsers] = useContext(UserContext);
 
   const handleChange = event => {
     setUser({
@@ -69,8 +69,9 @@ function SignIn(props) {
     axios
       .post(`${API}/users/login`, user)
       .then(result => {
-        localStorage.setItem("token", result.data.token);
+        // localStorage.setItem("token", result.data.token);
         console.log(result);
+        addUsers(result.data.user);
         props.history.push("/");
       })
       .catch(error => {
@@ -82,6 +83,7 @@ function SignIn(props) {
       });
   };
 
+  console.log(users);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
