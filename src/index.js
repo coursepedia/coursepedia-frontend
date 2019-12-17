@@ -5,6 +5,9 @@ import "mdbreact/dist/css/mdb.css";
 import "./assets/css/agency.min.css";
 import "./index.css";
 
+//mdb
+import 'mdbreact/dist/css/mdb.css';
+
 import App from "./App";
 import { UserProvider } from "./components/UserContext";
 

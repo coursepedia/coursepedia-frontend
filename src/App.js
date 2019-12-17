@@ -8,8 +8,10 @@ import AddNewCourse from "./components/AddNewCourse";
 import PrivateRoute from "./components/PrivateRoute";
 import { userAuth } from "./helpers/userAuth";
 import { UserContext } from "./components/UserContext";
-
 import "./App.css";
+import AdultsCourses from "./components/Courses/AdultsCourses/AdultsCourses";
+import CourseLandingPage from "./components/Courses/CourseLandingPage";
+// import CommentBox from "./components/CommentBox";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -33,25 +35,28 @@ function App() {
   }
 
   return (
-    // routing ========================================================================================================================//
-    // <UserProvider>
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/register">
-          <SignUp />
-        </Route>
-        <Route path="/login">
-          <SignIn />
-        </Route>
-        <PrivateRoute path="/add-course">
-          <AddNewCourse />
-        </PrivateRoute>
-      </Switch>
-    </Router>
-    // </UserProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/register">
+            <SignUp />
+          </Route>
+          <Route path="/login">
+            <SignIn />
+          </Route>
+          <Route path="/courses">
+            <CourseLandingPage />
+          </Route>
+          <Route path="/adults">
+            <AdultsCourses />
+          </Route>
+          <PrivateRoute path="/add-course">
+            <AddNewCourse />
+          </PrivateRoute>
+        </Switch>
+      </Router>
   );
 }
 
