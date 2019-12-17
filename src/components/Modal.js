@@ -90,7 +90,7 @@ function ModalPage() {
               <MDBBtn color="secondary" onClick={handleClick}>
                 Close
               </MDBBtn>
-              <MDBBtn color="primary">Save changes</MDBBtn>
+              {/* <MDBBtn color="primary">Save changes</MDBBtn> */}
             </MDBModalFooter>
           </MDBModal>
         </MDBContainer>

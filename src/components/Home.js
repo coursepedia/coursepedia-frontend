@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState, useEffect } from "react";
+import React, { useLayoutEffect, useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 // import Rating from "@material-ui/lab/Rating";
 import Button from "@material-ui/core/Button";
@@ -12,6 +12,8 @@ import AddIcon from "@material-ui/icons/Add";
 // import NavigationIcon from '@material-ui/icons/Navigation';
 import axios from "axios";
 import ModalPage from "./Modal";
+import { UserContext } from "./UserContext";
+// import AuthButton from "./AuthButton";
 
 function Home() {
   let history = useHistory();
@@ -19,8 +21,10 @@ function Home() {
   const [bg, setBg] = useState("");
   const [color, setColor] = useState("");
   const [display, setDisplay] = useState("");
+  const [users, addUsers] = useContext(UserContext);
 
   const [listCourses, setListCourses] = useState([]);
+  const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     axios
@@ -72,10 +76,19 @@ function Home() {
     // });
   }, [getScrollHeight]);
 
+  const handleFab = () => {
+    if (isLogin) {
+      history.push("/add-course");
+    } else {
+      history.push("/login");
+    }
+  };
+
+  console.log(users);
   return (
     <div>
       {/* floating action button */}
-      <div>
+      <div onClick={handleFab}>
         <Fab style={floatButtonStyle} className={display} color="primary" aria-label="add">
           <span className="tooltiptext">Adding Recommendation Course</span>
           <AddIcon />
@@ -119,14 +132,24 @@ function Home() {
                 </a>
               </li>
             </ul>
-            <ButtonGroup>
-              <Button variant="outlined" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/register")}>
-                Sign Up
-              </Button>
-              <Button variant="contained" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/login")}>
-                login
-              </Button>
-            </ButtonGroup>
+            {users ? (
+              // `Welcome, ${users.username} !`,
+              <div>
+                <span>Welcome, {users.username} ! </span>
+                <Button variant="contained" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/login")}>
+                  logout
+                </Button>
+              </div>
+            ) : (
+              <ButtonGroup>
+                <Button variant="outlined" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/register")}>
+                  Sign Up
+                </Button>
+                <Button variant="contained" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/login")}>
+                  login
+                </Button>
+              </ButtonGroup>
+            )}
           </div>
         </div>
       </nav>
