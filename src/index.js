@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import "./index.css";
+import "mdbreact/dist/css/mdb.css";
 import "./assets/css/agency.min.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
 
 //mdb
 import 'mdbreact/dist/css/mdb.css';
