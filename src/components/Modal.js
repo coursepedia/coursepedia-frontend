@@ -10,6 +10,9 @@ import {
 } from "mdbreact";
 import axios from "axios";
 import Rating from "@material-ui/lab/Rating";
+// import { MDBInput } from "mdbreact";
+
+import CommentBox from "./CommentBox";
 
 function ModalPage() {
   const [toggle, setToggle] = useState(false);
@@ -20,9 +23,9 @@ function ModalPage() {
     axios
       .get("https://coursepediabackend.herokuapp.com/courses")
       .then(res => {
-        // console.log(res);
+        console.log(res);
         setListCourses(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch(error => console.log(error.message));
   }, []);
@@ -56,7 +59,7 @@ function ModalPage() {
               item.name === "Ohayo Drawing School" ||
               item.name === "Anak Air Swim School" ||
               item.name === "Engineering For Kids"
-            )
+            ) {
               return (
                 <div name="course" className="col-md-4 col-sm-6 portfolio-item">
                   <span class="portfolio-link" data-toggle="modal">
@@ -95,6 +98,7 @@ function ModalPage() {
                   </div>
                 </div>
               );
+            }
           })}
         </div>
         <div className="row">
@@ -152,20 +156,45 @@ function ModalPage() {
                     </span>
                   </li>
                   <li className="pb-2">
-                    <strong>Type : </strong>
-                    <span className="text-capitalize">
-                      {modalContent.fieldCategory}
-                    </span>
-                  </li>
-                  <li className="pb-2">
                     <strong>Price : </strong>
                     {new Intl.NumberFormat("id-ID", {
                       style: "currency",
                       currency: "idr"
                     }).format(modalContent.price)}
                   </li>
+                  <li className="pb-2">
+                    <strong>Type : </strong>
+                    <span className="text-capitalize">
+                      {modalContent.fieldCategory}
+                    </span>
+                  </li>
+                  {/* <li className="pb-2">
+                    <div className="input-group">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text" id="basic-addon">
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </span>
+                      </div>
+                      <textarea
+                        className="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows="5"
+                      ></textarea>
+                    </div>
+                     {modalContent.comments[0].users.username}
+                    {modalContent.comments[0].content}
+
+                  </li> */}
                   {/* <li className="pb-2"><strong>Telephone: </strong>{modalContent.comments}</li> */}
+                  {modalContent.comments &&
+                    modalContent.comments.map((el, i) => (
+                      <div key={i}>
+                        <p>{el.users.username}</p>
+                        <p>{el.content}</p>
+                      </div>
+                    ))}
                 </ul>
+                <CommentBox courseId={modalContent._id} />
                 {/* <p className="text-muted">{modalContent.comments[0].ref}</p> */}
               </div>
             </MDBModalBody>

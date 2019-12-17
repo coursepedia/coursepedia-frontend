@@ -9,6 +9,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import "./App.css";
 import AdultsCourses from "./components/Courses/AdultsCourses/AdultsCourses";
 import CourseLandingPage from "./components/Courses/CourseLandingPage";
+// import CommentBox from "./components/CommentBox";
 
 function App() {
   return (
@@ -25,11 +26,11 @@ function App() {
             <SignIn />
           </Route>
           <Route path="/courses">
-					<CourseLandingPage />
-				</Route>
-				<Route path="/adults">
-					<AdultsCourses />
-				</Route>
+            <CourseLandingPage />
+          </Route>
+          <Route path="/adults">
+            <AdultsCourses />
+          </Route>
           <PrivateRoute path="/add-course">
             <AddNewCourse />
           </PrivateRoute>
