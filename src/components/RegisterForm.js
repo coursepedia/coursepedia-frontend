@@ -15,7 +15,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const API = process.env.REACT_APP_BACKEND_URI;
+import { BACKEND_URI } from "../helpers/path.js";
 
 function Copyright() {
   return (
@@ -69,7 +69,7 @@ function SignUp() {
   const handleSubmit = event => {
     event.preventDefault();
     axios
-      .post(`${API}/users`, newUser) // +"/users/authentication/ harus sama dengan route yang di backend"
+      .post(`${BACKEND_URI}/users`, newUser) // +"/users/authentication/ harus sama dengan route yang di backend"
       .then(result => console.log(result))
       .catch(error => setError(error.response.data.message));
   };
@@ -79,9 +79,17 @@ function SignUp() {
       <CssBaseline />
       <div className={classes.paper}>
         {error && (
-          <div className="alert alert-danger text-center alert-dismissible fade show" role="alert">
+          <div
+            className="alert alert-danger text-center alert-dismissible fade show"
+            role="alert"
+          >
             {error}{" "}
-            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+            <button
+              type="button"
+              className="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -95,22 +103,65 @@ function SignUp() {
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField value={newUser.username} onChange={handleChange} autoComplete="fname" name="username" variant="outlined" required fullWidth id="username" label="Username" autoFocus />
+              <TextField
+                value={newUser.username}
+                onChange={handleChange}
+                autoComplete="fname"
+                name="username"
+                variant="outlined"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                autoFocus
+              />
             </Grid>
             {/* <Grid item xs={12} sm={6}>
               <TextField value={newUser.lastName} onChange={handleChange} variant="outlined" required fullWidth id="lastName" label="Last Name" name="lastName" autoComplete="lname" />
             </Grid> */}
             <Grid item xs={12}>
-              <TextField value={newUser.email} onChange={handleChange} variant="outlined" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" type="email" />
+              <TextField
+                value={newUser.email}
+                onChange={handleChange}
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                type="email"
+              />
             </Grid>
             <Grid item xs={12}>
-              <TextField value={newUser.password} onChange={handleChange} variant="outlined" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
+              <TextField
+                value={newUser.password}
+                onChange={handleChange}
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="I want to receive inspiration, marketing promotions and updates via email." />
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I want to receive inspiration, marketing promotions and updates via email."
+              />
             </Grid>
           </Grid>
-          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={handleSubmit}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={handleSubmit}
+          >
             Sign Up
           </Button>
           <Grid container justify="flex-end">

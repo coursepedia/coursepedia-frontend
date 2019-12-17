@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { userAuth } from "../helpers/userAuth";
 // import { makeStyles } from '@material-ui/core/styles';
 // import Fab from "@material-ui/core/Fab";
 // import AddIcon from "@material-ui/icons/Add";
@@ -103,7 +104,14 @@ function AddNewNavbar() {
               {/* <Button variant="outlined" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/register")}>
                 Sign Up
               </Button> */}
-              <Button variant="contained" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/login")}>
+              <Button
+                variant="contained"
+                color="primary"
+                className={`nav-link ${color} js-scroll-trigger`}
+                onClick={() => {
+                  userAuth.signout(() => history.push("/"));
+                }}
+              >
                 logout
               </Button>
             </ButtonGroup>

@@ -7,6 +7,7 @@ export const userAuth = {
   },
   signout(cb) {
     userAuth.isAuthenticated = false;
+    localStorage.removeItem("token");
     setTimeout(cb, 100);
   }
 };
