@@ -15,6 +15,7 @@ import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { withRouter } from "react-router";
 
+
 import { Link } from "react-router-dom";
 // import RegisterForm from "./RegisterForm";
 const API = process.env.REACT_APP_BACKEND_URI;
@@ -68,7 +69,7 @@ function SignIn(props) {
     axios
       .post(`${API}/users/login`, user)
       .then(result => {
-        localStorage.setItem("token", result.data.token);
+        // localStorage.setItem("token", result.data.token);
         console.log(result);
         addUsers(result.data.user);
         props.history.push("/");

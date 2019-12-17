@@ -6,12 +6,12 @@ import SignIn from "./components/LoginForm";
 import AddNewCourse from "./components/AddNewCourse";
 import { UserProvider } from "./components/UserContext";
 import PrivateRoute from "./components/PrivateRoute";
-
 import "./App.css";
+import AdultsCourses from "./components/Courses/AdultsCourses/AdultsCourses";
+import CourseLandingPage from "./components/Courses/CourseLandingPage";
 
 function App() {
   return (
-    // routing ========================================================================================================================//
     <UserProvider>
       <Router>
         <Switch>
@@ -24,6 +24,12 @@ function App() {
           <Route path="/login">
             <SignIn />
           </Route>
+          <Route path="/courses">
+					<CourseLandingPage />
+				</Route>
+				<Route path="/adults">
+					<AdultsCourses />
+				</Route>
           <PrivateRoute path="/add-course">
             <AddNewCourse />
           </PrivateRoute>
