@@ -49,7 +49,7 @@ function CommentBox({ courseId }) {
           return ( */}
       <h4 className="font-weight-light">Say something about the course : </h4>
       <div className="row">
-        <div className="col-4  pt-3 border-right">
+        <div className="col-12  mt-3">
           <h6>Say something about React</h6>
           {/* Comment Form Component */}
           <form onSubmit={addComment}>
@@ -62,9 +62,6 @@ function CommentBox({ courseId }) {
             ></textarea>
             <button>Add</button>
           </form>
-        </div>
-        <div className="col-8  pt-3 bg-white">
-          {/* Comment List Component */}
         </div>
       </div>
       {/* );

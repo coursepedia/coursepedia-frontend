@@ -25,9 +25,9 @@ function ModalPage() {
 
   useEffect(() => {
     axios
-      .get("https://coursepediabackend.herokuapp.com/courses")
+      .get(BACKEND_URI + "/courses")
       .then(res => {
-        console.log(res);
+        console.log(res, "coursseeeeeeeeeeeeeeeeeeE!!!!!!!!!!!!!!!!!!!!!");
         setListCourses(res.data);
         // console.log(res.data);
       })
@@ -35,9 +35,13 @@ function ModalPage() {
   }, []);
 
   const handleClick = data => {
-    setToggle(prevState => !prevState);
+    setToggle(prevState => true);
     console.log(data);
     setModalContent(data);
+  };
+
+  const closeModal = () => {
+    setToggle(prevState => !prevState);
   };
 
   return (
@@ -119,7 +123,7 @@ function ModalPage() {
 
       {/* Modal */}
       {Object.keys(modalContent).length !== 0 && (
-        <MDBContainer name="modal">
+        <MDBContainer>
           <MDBModal isOpen={toggle} size="lg" centered>
             <MDBModalBody>
               <>
@@ -172,75 +176,16 @@ function ModalPage() {
                       {modalContent.fieldCategory}
                     </span>
                   </li>
-                </ul>
-              </div>
-            </MDBModalBody>
-          </MDBModal>
-        </MDBContainer>
-      )}
-
-      {/* Modal */}
-      {Object.keys(modalContent).length !== 0 && (
-        <MDBContainer name="modal">
-          <MDBModal isOpen={toggle} size="lg" centered>
-            <MDBModalBody>
-              <>
-                <MDBModalHeader class="text-uppercase">
-                  {modalContent.name}
-                </MDBModalHeader>
-                <img
-                  className="img-fluid d-block mx-auto"
-                  src={modalContent.imageUrl}
-                  alt=""
-                />
-              </>
-              <div className="portofolio-caption">
-                <ul class="list-inline">
-                  <li>
-                    <h4 className="orange-text">
-                      {" "}
-                      <Rating
-                        name="read-only"
-                        value={modalContent.rating}
-                        readOnly
-                      />{" "}
-                      {modalContent.rating}
-                    </h4>
-                  </li>
-                  <li className="pb-2">
-                    <strong>Address: </strong>
-                    {modalContent.address}
-                  </li>
-                  <li className="pb-2">
-                    <strong>Telephone: </strong>
-                    {modalContent.phoneNumber}
-                  </li>
-                  <li className="pb-2">
-                    <strong>Age: </strong>
-                    <span className="text-capitalize">
-                      {modalContent.ageCategory}
-                    </span>
-                  </li>
-                  <li className="pb-2">
-                    <strong>Price : </strong>
-                    {new Intl.NumberFormat("id-ID", {
-                      style: "currency",
-                      currency: "idr"
-                    }).format(modalContent.price)}
-                  </li>
-                  <li className="pb-2">
-                    <strong>Type : </strong>
-                    <span className="text-capitalize">
-                      {modalContent.fieldCategory}
-                    </span>
-                  </li>
-                  {modalContent.comments &&
+                  {modalContent.comments ? (
+                    <div>Belum ada komentar tentang course ini</div>
+                  ) : (
                     modalContent.comments.map((el, i) => (
                       <div key={i}>
                         <p>{el.users.username}</p>
                         <p>{el.content}</p>
                       </div>
-                    ))}
+                    ))
+                  )}
                 </ul>
                 <CommentBox courseId={modalContent._id} />
               </div>
@@ -248,7 +193,7 @@ function ModalPage() {
             <MDBModalFooter>
               <MDBBtn color="primary">Direction</MDBBtn>
               <MDBBtn color="primary">Website</MDBBtn>
-              <MDBBtn color="secondary" onClick={handleClick}>
+              <MDBBtn color="secondary" onClick={closeModal}>
                 Close
               </MDBBtn>
             </MDBModalFooter>
