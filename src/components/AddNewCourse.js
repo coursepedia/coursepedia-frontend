@@ -6,9 +6,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import ReactFilestack from "filestack-react";
+import axios from "axios";
 
 import AddNewNavbar from "../components/AddNewNavbar";
 import AddNewFooter from "../components/AddNewFooter";
+import { BACKEND_URI } from "../helpers/path";
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -22,67 +24,58 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function AddNewCourse() {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [imageName, setImageName] = useState("");
+  const [newCourse, setNewCourse] = useState({
+    name: "",
+    address: "",
+    phoneNumber: "",
+    price: 0,
+    rating: 1,
+    ageCategory: "",
+    fieldCategory: "",
+    imageUrl: ""
+  });
+  const [selectValue, setselectValue] = useState({
+    adult: ["art", "tech", "softskill"],
+    kids: ["art", "sport", "math and science"]
+  });
+  const [error, setError] = useState("");
   const [options, setNewOptions] = useState({
     options: {
       radio: 1
     }
   });
 
-  const [selectValue, setselectValue] = useState({
-    adult: ["art", "tech", "softskill"],
-    kids: ["art", "sport", "math and science"]
-  });
-
-  // useEffect(() => {
-  //   axios
-  //     .get("https://coursepediabackend.herokuapp.com/courses")
-  //     .then(res => {
-  //       setselectValue(res.data);
-  //     })
-  //     .catch(error => console.log(error.message));
-  // }, []);
-
   const handleClick = number => {
     setNewOptions({
       radio: number
     });
+    setNewCourse({ ...newCourse, ageCategory: number === 1 ? "adults" : "kids" });
   };
 
-  const classes = useStyles();
-  const [field, setField] = useState("");
-  const [open, setOpen] = useState(false);
-  const [newCourse, setNewCourse] = useState({
-    name: "",
-    address: "",
-    phoneNumber: "",
-    price: "",
-    rating: null,
-    ageCategory: "",
-    fieldCategory: "",
-    imageUrl: ""
-  });
+  const handleSubmit = event => {
+    event.preventDefault();
+    axios
+      .post(BACKEND_URI + "/courses", newCourse) //harus sama dengan route yang di backend"
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => setError(error.response.data.message));
+  };
 
   const handleChangeField = event => {
-    setField(event.target.value);
-  };
-
-  const handleChangeRating = event => {
-    handleChangeCourse(event);
-    if (newCourse.rating < 1) {
-      alert("invalid rating number! Rating number should be above 1");
-      return setNewCourse({ rating: 1 });
-    } else if (newCourse.rating > 5) {
-      alert("invalid rating number! Rating number should be under 5");
-      return setNewCourse({ rating: 1 });
-    }
+    setNewCourse({ ...newCourse, fieldCategory: event.target.value });
   };
 
   const handleChangeCourse = event => {
-    setNewCourse({
-      ...newCourse,
-      [event.target.name]: event.target.value
-    });
+    setNewCourse({ ...newCourse, [event.target.name]: event.target.value });
   };
+
+  React.useEffect(() => {
+    console.log(newCourse);
+  }, [newCourse]);
 
   const handleClose = () => {
     setOpen(false);
@@ -95,8 +88,10 @@ function AddNewCourse() {
   const handleImage = data => {
     setNewCourse({
       ...newCourse,
-      imageUrl: data
+      imageUrl: data.url
     });
+
+    setImageName(data.filename);
   };
 
   return (
@@ -113,10 +108,10 @@ function AddNewCourse() {
                 <br />
                 <div className="grey-text">
                   <MDBInput label="Course Name" group type="text" validate error="wrong" success="right" name="name" value={newCourse.name} onChange={handleChangeCourse} />
-                  <MDBInput label="Course Adress" group type="email" validate error="wrong" success="right" name="email" value={newCourse.address} onChange={handleChangeCourse} />
+                  <MDBInput label="Course Address" group type="text" validate error="wrong" success="right" name="address" value={newCourse.address} onChange={handleChangeCourse} />
                   <MDBInput label="Course Phone Number" group type="text" validate error="wrong" success="right" name="phoneNumber" value={newCourse.phoneNumber} onChange={handleChangeCourse} />
                   <MDBInput label="Price" group type="text" validate error="wrong" success="right" name="price" value={newCourse.price} onChange={handleChangeCourse} />
-                  <MDBInput label="Rating (Please give rate 1 - 5)" group type="text" validate error="wrong" success="right" name="rating" value={newCourse.rating} onChange={handleChangeRating} />
+                  <MDBInput label="Rating (Please give rate 1 - 5)" group type="number" validate error="wrong" success="right" name="rating" value={newCourse.rating} onChange={handleChangeCourse} max="5" min="1" />
                   {/* <div> */}
                   <MDBFormInline name="ageCategory" value={newCourse.ageCategory} onChange={handleChangeCourse}>
                     <MDBInput onClick={() => handleClick(1)} checked={options.radio === 1 ? true : false} label="Adults" type="radio" id="radio" containerClass="mr-5" />
@@ -127,11 +122,11 @@ function AddNewCourse() {
                 </div>
                 <FormControl className={classes.formControl} name="fieldCategory" value={newCourse.fieldCategory} onChange={handleChangeCourse}>
                   <InputLabel id="demo-controlled-open-select-label"> Category </InputLabel>
-                  <Select labelId="demo-controlled-open-select-label" id="demo-controlled-open-select" open={open} onClose={handleClose} onOpen={handleOpen} value={field} onChange={handleChangeField}>
+                  <Select labelId="demo-controlled-open-select-label" id="demo-controlled-open-select" open={open} onClose={handleClose} onOpen={handleOpen} value={newCourse.fieldCategory} onChange={handleChangeField}>
                     <MenuItem value="">
-                      <em>None</em>
+                      <em>Others...</em>
                     </MenuItem>
-                    {options.radio === 1 ? selectValue.adult.map(item => <MenuItem value={10}>{item}</MenuItem>) : selectValue.kids.map(item => <MenuItem value={10}>{item}</MenuItem>)}
+                    {options.radio === 1 ? selectValue.adult && selectValue.adult.map(item => <MenuItem value={item}>{item}</MenuItem>) : selectValue.kids && selectValue.kids.map(item => <MenuItem value={item}>{item}</MenuItem>)}
                     {/* <MenuItem value={10}>Art</MenuItem>
                 <MenuItem value={20}>Sport</MenuItem>
                 <MenuItem value={30}>Math and Science</MenuItem> */}
@@ -141,23 +136,13 @@ function AddNewCourse() {
                 <br />
                 <br />
                 <div className="input-group">
-                  <ReactFilestack apikey={process.env.REACT_APP_FILESTACK_API_KEY} onSuccess={res => handleImage(res.filesUploaded[0].url)} />
-                  {/* <div className="input-group-prepend">
-                    <span className="input-group-text" id="inputGroupFileAddon01">
-                      Upload
-                    </span>
-                  </div>
-                  <div className="custom-file">
-                    <input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
-                    <label className="custom-file-label" htmlFor="inputGroupFile01">
-                      Choose file
-                    </label>
-                  </div> */}
+                  <ReactFilestack apikey={process.env.REACT_APP_FILESTACK_API_KEY} onSuccess={res => handleImage(res.filesUploaded[0])} />
+                  <span> {imageName} </span> {/*munculin nama file yg diupload*/}
                 </div>
                 <br />
                 <br />
                 <div className="text-center">
-                  <MDBBtn outline color="secondary">
+                  <MDBBtn outline color="secondary" onClick={handleSubmit}>
                     Send
                     {/* <MDBIcon far icon="paper-plane" className="ml-1" /> */}
                   </MDBBtn>

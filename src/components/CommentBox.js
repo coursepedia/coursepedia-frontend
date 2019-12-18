@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { UserContext } from "./UserContext";
 
+import { UserContext } from "./UserContext";
 import { BACKEND_URI } from "../helpers/path";
 
 function CommentBox({ courseId }) {
@@ -49,26 +49,24 @@ function CommentBox({ courseId }) {
           return ( */}
       <h4 className="font-weight-light">Say something about the course : </h4>
       <div className="row">
-        {/* Comment Form Component */}
-        <div className="input-group">
-          <div className="input-group-prepend">
-            <span
-              style={{ cursor: "pointer" }}
-              className="input-group-text"
-              onClick={addComment}
-              id="basic-addon"
-            >
-              <i className="fa fa-comment"></i>
-            </span>
-          </div>
-          <textarea
-            className="form-control"
-            id="exampleFormControlTextarea1"
-            rows="5"
-            onChange={handleChange}
-          ></textarea>
+        <div className="col-4  pt-3 border-right">
+          <h6>Say something about React</h6>
+          {/* Comment Form Component */}
+          <form onSubmit={addComment}>
+            <label htmlFor="comment">Ada komentar</label>
+            <textarea
+              name="content"
+              cols="30"
+              rows="10"
+              onChange={handleChange}
+            ></textarea>
+            <button>Add</button>
+          </form>
         </div>
-      </div>{" "}
+        <div className="col-8  pt-3 bg-white">
+          {/* Comment List Component */}
+        </div>
+      </div>
       {/* );
         })} */}
     </div>

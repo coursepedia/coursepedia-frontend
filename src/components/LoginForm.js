@@ -73,16 +73,17 @@ function SignIn(props) {
       .post(`${BACKEND_URI}/users/login`, user)
       .then(result => {
         localStorage.setItem("token", result.data.token);
-        // console.log(result);
         addUsers(result.data.user);
         userAuth.authenticate();
-        // props.history.push("/");
+        props.history.push("/");
       })
       .catch(error => {
-        if (error.response.data) {
-          setError(error.response.data);
+        if (error) {
+          if (error.response) {
+            setError(error.response.data.message);
+          }
         } else {
-          setError(error);
+          setError(error.message);
         }
       });
   };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 import {
   MDBContainer,
@@ -17,25 +18,26 @@ import CommentBox from "./CommentBox";
 import { BACKEND_URI } from "../helpers/path";
 
 function ModalPage() {
+  let history = useHistory();
   const [toggle, setToggle] = useState(false);
   const [listCourses, setListCourses] = useState([]);
   const [modalContent, setModalContent] = useState({});
 
   useEffect(() => {
     axios
-      .get(BACKEND_URI + "/courses")
+      .get("https://coursepediabackend.herokuapp.com/courses")
       .then(res => {
+        console.log(res);
         setListCourses(res.data);
+        // console.log(res.data);
       })
       .catch(error => console.log(error.message));
   }, []);
 
   const handleClick = data => {
-    setModalContent(data);
-  };
-
-  const closeModal = () => {
     setToggle(prevState => !prevState);
+    console.log(data);
+    setModalContent(data);
   };
 
   return (
@@ -107,7 +109,7 @@ function ModalPage() {
           <div className="col-lg-12 text-center">
             <a
               className="btn btn-primary btn-xl js-scroll-trigger"
-              href="#services"
+              onClick={() => history.push("/courses")}
             >
               View More
             </a>
@@ -125,7 +127,7 @@ function ModalPage() {
                   {modalContent.name}
                 </MDBModalHeader>
                 <img
-                  className="img-fluid-modal d-block mx-auto"
+                  className="img-fluid d-block mx-auto"
                   src={modalContent.imageUrl}
                   alt=""
                 />
@@ -170,44 +172,83 @@ function ModalPage() {
                       {modalContent.fieldCategory}
                     </span>
                   </li>
-                  <br />
-                  {/* <li className="pb-2">
-                    <div className="input-group">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text" id="basic-addon">
-                          <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </span>
-                      </div>
-                      <textarea
-                        className="form-control"
-                        id="exampleFormControlTextarea1"
-                        rows="5"
-                      ></textarea>
-                    </div>
-                     {modalContent.comments[0].users.username}
-                    {modalContent.comments[0].content}
+                </ul>
+              </div>
+            </MDBModalBody>
+          </MDBModal>
+        </MDBContainer>
+      )}
 
-                  </li> */}
-                  {/* <li className="pb-2"><strong>Telephone: </strong>{modalContent.comments}</li> */}
-                  <CommentBox courseId={modalContent._id} />
+      {/* Modal */}
+      {Object.keys(modalContent).length !== 0 && (
+        <MDBContainer name="modal">
+          <MDBModal isOpen={toggle} size="lg" centered>
+            <MDBModalBody>
+              <>
+                <MDBModalHeader class="text-uppercase">
+                  {modalContent.name}
+                </MDBModalHeader>
+                <img
+                  className="img-fluid d-block mx-auto"
+                  src={modalContent.imageUrl}
+                  alt=""
+                />
+              </>
+              <div className="portofolio-caption">
+                <ul class="list-inline">
+                  <li>
+                    <h4 className="orange-text">
+                      {" "}
+                      <Rating
+                        name="read-only"
+                        value={modalContent.rating}
+                        readOnly
+                      />{" "}
+                      {modalContent.rating}
+                    </h4>
+                  </li>
+                  <li className="pb-2">
+                    <strong>Address: </strong>
+                    {modalContent.address}
+                  </li>
+                  <li className="pb-2">
+                    <strong>Telephone: </strong>
+                    {modalContent.phoneNumber}
+                  </li>
+                  <li className="pb-2">
+                    <strong>Age: </strong>
+                    <span className="text-capitalize">
+                      {modalContent.ageCategory}
+                    </span>
+                  </li>
+                  <li className="pb-2">
+                    <strong>Price : </strong>
+                    {new Intl.NumberFormat("id-ID", {
+                      style: "currency",
+                      currency: "idr"
+                    }).format(modalContent.price)}
+                  </li>
+                  <li className="pb-2">
+                    <strong>Type : </strong>
+                    <span className="text-capitalize">
+                      {modalContent.fieldCategory}
+                    </span>
+                  </li>
                   {modalContent.comments &&
                     modalContent.comments.map((el, i) => (
                       <div key={i}>
-                        <p>
-                          <strong>{el.users.username}</strong>
-                        </p>
-                        <img className="avatar" src={avatar} alt="" />
+                        <p>{el.users.username}</p>
                         <p>{el.content}</p>
                       </div>
                     ))}
                 </ul>
-                {/* <p className="text-muted">{modalContent.comments[0].ref}</p> */}
+                <CommentBox courseId={modalContent._id} />
               </div>
             </MDBModalBody>
             <MDBModalFooter>
               <MDBBtn color="primary">Direction</MDBBtn>
               <MDBBtn color="primary">Website</MDBBtn>
-              <MDBBtn color="secondary" onClick={closeModal}>
+              <MDBBtn color="secondary" onClick={handleClick}>
                 Close
               </MDBBtn>
             </MDBModalFooter>
