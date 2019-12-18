@@ -72,11 +72,11 @@ function SignIn(props) {
     axios
       .post(`${BACKEND_URI}/users/login`, user)
       .then(result => {
-        // localStorage.setItem("token", result.data.token);
-        console.log(result);
+        localStorage.setItem("token", result.data.token);
+        // console.log(result);
         addUsers(result.data.user);
         userAuth.authenticate();
-        props.history.push("/");
+        // props.history.push("/");
       })
       .catch(error => {
         if (error.response.data) {

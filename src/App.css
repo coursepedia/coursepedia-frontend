@@ -83,6 +83,11 @@ nav {
   text-align: center;
 }
 
+.img-fluid-modal {
+  max-width: 100%;
+  height: auto;
+}
+
 .img-fluid {
   height: 350px;
   width: 1000px;
@@ -90,6 +95,14 @@ nav {
 
 .card-body {
   height: 250px;
+}
+
+.avatar {
+  margin-bottom: 10px;
+  margin-right: 10px;
+  max-width: 10%;
+  max-height: 10%;
+  background-color: rgb(300, 300, 300);
 }
 
 /* Tooltip text */

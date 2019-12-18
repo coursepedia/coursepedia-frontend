@@ -17,15 +17,15 @@ function CommentBox({ courseId }) {
     });
   };
 
-  //   useEffect(() => {
-  //     axios
-  //       .get("https://coursepediabackend.herokuapp.com/courses")
-  //       .then(res => {
-  //         // console.log(res);
-  //         setContent(res.data);
-  //       })
-  //       .catch(error => console.log(error.message));
-  //   }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://coursepediabackend.herokuapp.com/courses")
+  //     .then(res => {
+  //       // console.log(res);
+  //       setContent(res.data);
+  //     })
+  //     .catch(error => console.log(error.message));
+  // }, []);
 
   const addComment = event => {
     event.preventDefault();

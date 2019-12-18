@@ -10,9 +10,11 @@ import {
 } from "mdbreact";
 import axios from "axios";
 import Rating from "@material-ui/lab/Rating";
-// import { MDBInput } from "mdbreact";
 
+import avatar from "../assets/images/dummy-avatar.png";
+// import { MDBInput } from "mdbreact";
 import CommentBox from "./CommentBox";
+import { BACKEND_URI } from "../helpers/path";
 
 function ModalPage() {
   const [toggle, setToggle] = useState(false);
@@ -21,19 +23,19 @@ function ModalPage() {
 
   useEffect(() => {
     axios
-      .get("https://coursepediabackend.herokuapp.com/courses")
+      .get(BACKEND_URI + "/courses")
       .then(res => {
-        console.log(res);
         setListCourses(res.data);
-        // console.log(res.data);
       })
       .catch(error => console.log(error.message));
   }, []);
 
   const handleClick = data => {
-    setToggle(prevState => !prevState);
-    console.log(data);
     setModalContent(data);
+  };
+
+  const closeModal = () => {
+    setToggle(prevState => !prevState);
   };
 
   return (
@@ -123,7 +125,7 @@ function ModalPage() {
                   {modalContent.name}
                 </MDBModalHeader>
                 <img
-                  className="img-fluid d-block mx-auto"
+                  className="img-fluid-modal d-block mx-auto"
                   src={modalContent.imageUrl}
                   alt=""
                 />
@@ -191,7 +193,10 @@ function ModalPage() {
                   {modalContent.comments &&
                     modalContent.comments.map((el, i) => (
                       <div key={i}>
-                        <p>{el.users.username}</p>
+                        {/* <p>
+                          <strong>{el.users.username}</strong>
+                        </p> */}
+                        <img className="avatar" src={avatar} alt="" />
                         <p>{el.content}</p>
                       </div>
                     ))}
@@ -202,7 +207,7 @@ function ModalPage() {
             <MDBModalFooter>
               <MDBBtn color="primary">Direction</MDBBtn>
               <MDBBtn color="primary">Website</MDBBtn>
-              <MDBBtn color="secondary" onClick={handleClick}>
+              <MDBBtn color="secondary" onClick={closeModal}>
                 Close
               </MDBBtn>
             </MDBModalFooter>
