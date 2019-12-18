@@ -193,9 +193,9 @@ function ModalPage() {
                   {modalContent.comments &&
                     modalContent.comments.map((el, i) => (
                       <div key={i}>
-                        {/* <p>
+                        <p>
                           <strong>{el.users.username}</strong>
-                        </p> */}
+                        </p>
                         <img className="avatar" src={avatar} alt="" />
                         <p>{el.content}</p>
                       </div>
