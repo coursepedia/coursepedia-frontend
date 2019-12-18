@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { UserContext } from "./UserContext";
 
+import { UserContext } from "./UserContext";
 import { BACKEND_URI } from "../helpers/path";
 
 function CommentBox({ courseId }) {
@@ -53,18 +53,11 @@ function CommentBox({ courseId }) {
           {/* Comment Form Component */}
           <form onSubmit={addComment}>
             <label htmlFor="comment">Ada komentar</label>
-            <textarea
-              name="content"
-              cols="30"
-              rows="10"
-              onChange={handleChange}
-            ></textarea>
+            <textarea name="content" cols="30" rows="10" onChange={handleChange}></textarea>
             <button>Add</button>
           </form>
         </div>
-        <div className="col-8  pt-3 bg-white">
-          {/* Comment List Component */}
-        </div>
+        <div className="col-8  pt-3 bg-white">{/* Comment List Component */}</div>
       </div>
       {/* );
         })} */}

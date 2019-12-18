@@ -23,158 +23,111 @@ import { userAuth } from "../helpers/userAuth";
 import { BACKEND_URI } from "../helpers/path.js";
 
 function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link to="https://material-ui.com/">Your Website</Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
+	return (
+		<Typography variant="body2" color="textSecondary" align="center">
+			{"Copyright © "}
+			<Link to="https://material-ui.com/">Your Website</Link> {new Date().getFullYear()}
+			{"."}
+		</Typography>
+	);
 }
 
 const useStyles = makeStyles(theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+	paper: {
+		marginTop: theme.spacing(8),
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center"
+	},
+	avatar: {
+		margin: theme.spacing(1),
+		backgroundColor: theme.palette.secondary.main
+	},
+	form: {
+		width: "100%", // Fix IE 11 issue.
+		marginTop: theme.spacing(1)
+	},
+	submit: {
+		margin: theme.spacing(3, 0, 2)
+	}
 }));
 
 function SignIn(props) {
-  const classes = useStyles();
+	const classes = useStyles();
 
-  const [user, setUser] = useState({ email: "", password: "" });
-  const [error, setError] = useState(null);
-  const [users, addUsers] = useContext(UserContext);
+	const [user, setUser] = useState({ email: "", password: "" });
+	const [error, setError] = useState(null);
+	const [users, addUsers] = useContext(UserContext);
 
-  const handleChange = event => {
-    setUser({
-      ...user,
-      [event.target.name]: event.target.value
-    });
-  };
+	const handleChange = event => {
+		setUser({
+			...user,
+			[event.target.name]: event.target.value
+		});
+	};
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    axios
-      .post(`${BACKEND_URI}/users/login`, user)
-      .then(result => {
-        // localStorage.setItem("token", result.data.token);
-        console.log(result);
-        // addUsers(result.data.user);
-        // userAuth.authenticate();
-        // props.history.push("/");
-      })
-      .catch(error => {
-        if (error) {
-if(error.response){
+	const handleSubmit = event => {
+		event.preventDefault();
+		axios.post(`${BACKEND_URI}/users/login`, user)
+			.then(result => {
+				localStorage.setItem("token", result.data.token);
+				addUsers(result.data.user);
+				userAuth.authenticate();
+				props.history.push("/");
+			})
+			.catch(error => {
+				if (error) {
+					if (error.response) {
+						setError(error.response.data.message);
+					}
+				} else {
+					setError(error.message);
+				}
+			});
+	};
 
-  setError(error.response.data);
-}
-        } else {
-          setError(error.message);
-        }
-        console.log(error)
-      });
-  };
+	console.log(users);
+	return (
+		<Container component="main" maxWidth="xs">
+			<CssBaseline />
+			<div className={classes.paper}>
+				{error && (
+					<div className="alert alert-danger text-center alert-dismissible fade show" role="alert">
+						{error}{" "}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				)}
+				<Avatar className={classes.avatar}>
+					<LockOutlinedIcon />
+				</Avatar>
+				<Typography component="h1" variant="h5">
+					Sign in
+				</Typography>
+				<form className={classes.form} noValidate>
+					<TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" onChange={handleChange} value={user.email} autoComplete="email" autoFocus />
+					<TextField variant="outlined" margin="normal" required fullWidth name="password" onChange={handleChange} value={user.password} label="Password" type="password" id="password" autoComplete="current-password" />
+					<FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={handleSubmit}>
+						Sign In
+					</Button>
+					<Grid container>
+						<Grid item xs>
+							<Link href="#" variant="body2">
+								Forgot password?
+							</Link>
+						</Grid>
 
-  console.log(users);
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        {error && (
-          <div
-            className="alert alert-danger text-center alert-dismissible fade show"
-            role="alert"
-          >
-            {error}{" "}
-            <button
-              type="button"
-              class="close"
-              data-dismiss="alert"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        )}
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            onChange={handleChange}
-            value={user.email}
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            onChange={handleChange}
-            value={user.password}
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={handleSubmit}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-
-            <Link to="/register">Don't have an account? Sign Up</Link>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
-  );
+						<Link to="/register">Don't have an account? Sign Up</Link>
+					</Grid>
+				</form>
+			</div>
+			<Box mt={8}>
+				<Copyright />
+			</Box>
+		</Container>
+	);
 }
 
 export default withRouter(SignIn);
