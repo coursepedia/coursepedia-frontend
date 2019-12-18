@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
 
 import CourseCategory from "../CourseCategory";
+import { BACKEND_URI } from "../../../helpers/path";
 
 class AdultsCourses extends Component {
   constructor() {
@@ -15,7 +16,7 @@ class AdultsCourses extends Component {
 
   getAdultsData = () => {
     // if (this.state.allAdultsData.length > 0) return;
-    axios.get(`http://coursepediabackend.herokuapp.com/courses/`).then(result => {
+    axios.get(`${BACKEND_URI}/courses`).then(result => {
       result.data.map(item => {
         if (item.ageCategory === "adult") {
           this.setState({
@@ -50,7 +51,9 @@ class AdultsCourses extends Component {
                       <b>Adult's Courses</b>
                     </h3>
                   </h2>
-                  <h3 className="section-subheading text-muted">Find more courses only for adult</h3>
+                  <h3 className="section-subheading text-muted">
+                    Find more courses only for adult
+                  </h3>
                 </div>
               </div>
             </div>
@@ -76,7 +79,9 @@ class AdultsCourses extends Component {
               </Link>
             </MDBCol>
             <MDBCol size="3">
-              <Link to={`${url}/showall?ageCategory=adult&fieldCategory=softskill`}>
+              <Link
+                to={`${url}/showall?ageCategory=adult&fieldCategory=softskill`}
+              >
                 <MDBBtn color="light-blue">Soft Skill</MDBBtn>
               </Link>
             </MDBCol>
@@ -85,7 +90,10 @@ class AdultsCourses extends Component {
           <br />
         </MDBContainer>
 
-        <CourseCategory fieldCategory={query.get("fieldCategory")} data={this.state.allAdultsData} />
+        <CourseCategory
+          fieldCategory={query.get("fieldCategory")}
+          data={this.state.allAdultsData}
+        />
       </div>
     );
   }

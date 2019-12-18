@@ -19,10 +19,8 @@ function App() {
 
   try {
     if (token) {
-      console.log("hallo");
       const decodedToken = jwt.decode(token, { complete: true });
       const dateNow = new Date();
-      console.log(decodedToken);
 
       if (!decodedToken.exp < dateNow) {
         userAuth.authenticate();
@@ -35,28 +33,28 @@ function App() {
   }
 
   return (
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/register">
-            <SignUp />
-          </Route>
-          <Route path="/login">
-            <SignIn />
-          </Route>
-          <Route path="/courses">
-            <CourseLandingPage />
-          </Route>
-          <Route path="/adults">
-            <AdultsCourses />
-          </Route>
-          <PrivateRoute path="/add-course">
-            <AddNewCourse />
-          </PrivateRoute>
-        </Switch>
-      </Router>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/register">
+          <SignUp />
+        </Route>
+        <Route path="/login">
+          <SignIn />
+        </Route>
+        <Route path="/courses">
+          <CourseLandingPage />
+        </Route>
+        <Route path="/adults">
+          <AdultsCourses />
+        </Route>
+        <PrivateRoute path="/add-course">
+          <AddNewCourse />
+        </PrivateRoute>
+      </Switch>
+    </Router>
   );
 }
 
