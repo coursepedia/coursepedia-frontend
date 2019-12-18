@@ -73,24 +73,23 @@ nav {
   }
 }
 
-.courses{
+.courses {
   height: 100vh;
 }
 
 .row > div {
   padding: 1rem;
   /* background-color: #33b5e5; */
-  border: 2px solid #fff;
   text-align: center;
 }
 
-.img-fluid{
-  height:350px;
-  width:1000px;
+.img-fluid {
+  height: 350px;
+  width: 1000px;
 }
 
-.card-body{
-   height:250px;
+.card-body {
+  height: 250px;
 }
 
 /* Tooltip text */
@@ -132,4 +131,13 @@ nav {
 .floatbutton-show:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+.input-group-text:hover {
+  background-color: #03a9f4;
+  transition: 1s ease;
+}
+
+.input-group-text {
+  transition: 1s ease;
 }

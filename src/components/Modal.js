@@ -168,6 +168,7 @@ function ModalPage() {
                       {modalContent.fieldCategory}
                     </span>
                   </li>
+                  <br />
                   {/* <li className="pb-2">
                     <div className="input-group">
                       <div className="input-group-prepend">
@@ -186,6 +187,7 @@ function ModalPage() {
 
                   </li> */}
                   {/* <li className="pb-2"><strong>Telephone: </strong>{modalContent.comments}</li> */}
+                  <CommentBox courseId={modalContent._id} />
                   {modalContent.comments &&
                     modalContent.comments.map((el, i) => (
                       <div key={i}>
@@ -194,7 +196,6 @@ function ModalPage() {
                       </div>
                     ))}
                 </ul>
-                <CommentBox courseId={modalContent._id} />
                 {/* <p className="text-muted">{modalContent.comments[0].ref}</p> */}
               </div>
             </MDBModalBody>

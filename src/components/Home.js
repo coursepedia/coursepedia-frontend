@@ -14,6 +14,9 @@ import axios from "axios";
 import ModalPage from "./Modal";
 import { UserContext } from "./UserContext";
 import { userAuth } from "../helpers/userAuth";
+import student1 from "../assets/images/students/students-1.jpg";
+import student2 from "../assets/images/students/students-2.jpg";
+import student3 from "../assets/images/students/students-3.jpg";
 // import AuthButton from "./AuthButton";
 
 function Home() {
@@ -375,7 +378,6 @@ function Home() {
                     </div>
                   </div>
                 </li>{" "}
-                */}
                 <li className="timeline-inverted">
                   <div className="timeline-image">
                     <h4>
@@ -408,87 +410,26 @@ function Home() {
           <div className="row">
             <div className="col-sm-4">
               <div className="team-member">
-                <img
-                  className="mx-auto rounded-circle"
-                  src="img/team/1.jpg"
-                  alt=""
-                />
+                <img className="mx-auto rounded" src={student1} alt="" />
+              </div>
+              <div>
                 <h4>Kay Garland</h4>
                 <p className="text-muted">Lead Designer</p>
-                <ul className="list-inline social-buttons">
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-facebook-f"></i>
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-linkedin-in"></i>
-                    </a>
-                  </li>
-                </ul>
               </div>
             </div>
             <div className="col-sm-4">
               <div className="team-member">
-                <img
-                  className="mx-auto rounded-circle"
-                  src="img/team/2.jpg"
-                  alt=""
-                />
-                <h4>Larry Parker</h4>
-                <p className="text-muted">Lead Marketer</p>
-                <ul className="list-inline social-buttons">
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-facebook-f"></i>
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-linkedin-in"></i>
-                    </a>
-                  </li>
-                </ul>
+                <img className="mx-auto rounded" src={student2} alt="" />
               </div>
+              <h4>Larry Parker</h4>
+              <p className="text-muted">Lead Marketer</p>
             </div>
             <div className="col-sm-4">
               <div className="team-member">
-                <img
-                  className="mx-auto rounded-circle"
-                  src="img/team/3.jpg"
-                  alt=""
-                />
-                <h4>Diana Pertersen</h4>
-                <p className="text-muted">Lead Developer</p>
-                <ul className="list-inline social-buttons">
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-facebook-f"></i>
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-linkedin-in"></i>
-                    </a>
-                  </li>
-                </ul>
+                <img className="mx-auto rounded" src={student3} alt="" />
               </div>
+              <h4>Larry Parker</h4>
+              <p className="text-muted">Lead Marketer</p>
             </div>
           </div>
           <div className="row">
@@ -503,7 +444,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="py-5">
+      {/* <section className="py-5">
         <div className="container">
           <div className="row">
             <div className="col-md-3 col-sm-6">
@@ -544,7 +485,7 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="page-section" id="contact">
         <div className="container">
