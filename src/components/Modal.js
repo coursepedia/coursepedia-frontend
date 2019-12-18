@@ -27,7 +27,7 @@ function ModalPage() {
     axios
       .get(BACKEND_URI + "/courses")
       .then(res => {
-        console.log(res, "coursseeeeeeeeeeeeeeeeeeE!!!!!!!!!!!!!!!!!!!!!");
+        console.log(res.data);
         setListCourses(res.data);
         // console.log(res.data);
       })
@@ -131,7 +131,7 @@ function ModalPage() {
                   {modalContent.name}
                 </MDBModalHeader>
                 <img
-                  className="img-fluid d-block mx-auto"
+                  className="img-fluid-modal d-block mx-auto"
                   src={modalContent.imageUrl}
                   alt=""
                 />
@@ -192,7 +192,6 @@ function ModalPage() {
             </MDBModalBody>
             <MDBModalFooter>
               <MDBBtn color="primary">Direction</MDBBtn>
-              <MDBBtn color="primary">Website</MDBBtn>
               <MDBBtn color="secondary" onClick={closeModal}>
                 Close
               </MDBBtn>
