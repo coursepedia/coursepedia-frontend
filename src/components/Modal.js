@@ -27,7 +27,7 @@ function ModalPage() {
     axios
       .get(BACKEND_URI + "/courses")
       .then(res => {
-        console.log(res, "coursseeeeeeeeeeeeeeeeeeE!!!!!!!!!!!!!!!!!!!!!");
+        console.log(res.data);
         setListCourses(res.data);
         // console.log(res.data);
       })
