@@ -80,7 +80,7 @@ nav {
 .row > div {
   padding: 1rem;
   /* background-color: #33b5e5; */
-  border: 2px solid #fff;
+  /* border: 2px solid #fff; */
   text-align: center;
 }
 
@@ -89,9 +89,9 @@ nav {
   width:1000px;
 }
 
-.card-body{
+/* .card-body{
    height:250px;
-}
+} */
 
 /* Tooltip text */
 .floatbutton-show .tooltiptext {

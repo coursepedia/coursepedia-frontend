@@ -74,16 +74,20 @@ function SignIn(props) {
       .then(result => {
         // localStorage.setItem("token", result.data.token);
         console.log(result);
-        addUsers(result.data.user);
-        userAuth.authenticate();
-        props.history.push("/");
+        // addUsers(result.data.user);
+        // userAuth.authenticate();
+        // props.history.push("/");
       })
       .catch(error => {
-        if (error.response.data) {
-          setError(error.response.data);
+        if (error) {
+if(error.response){
+
+  setError(error.response.data);
+}
         } else {
-          setError(error);
+          setError(error.message);
         }
+        console.log(error)
       });
   };
 
