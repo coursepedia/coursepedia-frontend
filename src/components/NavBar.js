@@ -100,21 +100,30 @@ function NavBar() {
                 </a>
               </li>
             </ul>
-            <ButtonGroup>
-              {/* <Button variant="outlined" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/register")}>
-                Sign Up
-              </Button> */}
-              <Button
-                variant="contained"
-                color="primary"
-                className={`nav-link ${color} js-scroll-trigger`}
-                onClick={() => {
-                  userAuth.signout(() => history.push("/"));
-                }}
-              >
-                logout
-              </Button>
-            </ButtonGroup>
+            {userAuth.isAuthenticated ? (
+              // `Welcome, ${users.username} !`,
+              <div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={`nav-link ${color} js-scroll-trigger`}
+                  onClick={() => {
+                    userAuth.signout(() => history.push("/"));
+                  }}
+                >
+                  logout
+                </Button>
+              </div>
+            ) : (
+              <ButtonGroup>
+                <Button variant="outlined" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/register")}>
+                  Sign Up
+                </Button>
+                <Button variant="contained" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/login")}>
+                  Login
+                </Button>
+              </ButtonGroup>
+            )}
           </div>
         </div>
       </nav>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { MDBContainer, MDBRow, MDBBtn, MDBCol } from "mdbreact";
 import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
+import { BACKEND_URI } from "../../../helpers/path";
 
 import CourseCategory from "../CourseCategory";
 class KidsCourses extends Component {
@@ -13,7 +14,7 @@ class KidsCourses extends Component {
   }
 
   getKidsData = () => {
-    axios.get(`http://coursepediabackend.herokuapp.com/courses/`).then(result => {
+    axios.get(BACKEND_URI + "/courses").then(result => {
       result.data.map(item => {
         if (item.ageCategory === "kids") {
           this.setState({

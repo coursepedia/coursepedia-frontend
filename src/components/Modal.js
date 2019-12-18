@@ -4,6 +4,7 @@ import Box from "@material-ui/core/Box";
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
 import axios from "axios";
 import Rating from "@material-ui/lab/Rating";
+import { BACKEND_URI } from "../helpers/path";
 // import { MDBInput } from "mdbreact";
 
 import CommentBox from "./CommentBox";
@@ -17,7 +18,7 @@ function ModalPage() {
 
   useEffect(() => {
     axios
-      .get("https://coursepediabackend.herokuapp.com/courses")
+      .get(BACKEND_URI + "/courses")
       .then(res => {
         console.log(res);
         setListCourses(res.data);

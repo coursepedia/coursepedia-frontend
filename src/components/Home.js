@@ -14,6 +14,7 @@ import axios from "axios";
 import ModalPage from "./Modal";
 import { UserContext } from "./UserContext";
 import { userAuth } from "../helpers/userAuth";
+import { BACKEND_URI } from "../helpers/path";
 // import AuthButton from "./AuthButton";
 
 function Home() {
@@ -29,7 +30,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("https://coursepediabackend.herokuapp.com/courses")
+      .get(BACKEND_URI + "/courses")
       .then(res => {
         // console.log(res);
         setListCourses(res.data);
