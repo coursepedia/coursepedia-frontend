@@ -22,6 +22,7 @@ function ModalPage() {
   const [toggle, setToggle] = useState(false);
   const [listCourses, setListCourses] = useState([]);
   const [modalContent, setModalContent] = useState({});
+  const [direction, setDirection] = useState("");
 
   useEffect(() => {
     axios
@@ -39,6 +40,18 @@ function ModalPage() {
     console.log(data);
     setModalContent(data);
   };
+
+
+  const handleClickDirection = data => {
+    console.log(data);
+    let encodedAlamat = encodeURI(data);
+    console.log(encodedAlamat);
+    window.open(
+      `https://www.google.com/maps/dir/?api=1&destination=${encodedAlamat}&travelmode=walking
+
+    `,
+      "_blank"
+    );
 
   const closeModal = () => {
     setToggle(prevState => !prevState);
@@ -191,8 +204,11 @@ function ModalPage() {
               </div>
             </MDBModalBody>
             <MDBModalFooter>
-              <MDBBtn color="primary">Direction</MDBBtn>
+              <MDBBtn color="primary" onClick={() => handleClickDirection(modalContent.address)}>
+                Direction
+              </MDBBtn>
               <MDBBtn color="secondary" onClick={closeModal}>
+
                 Close
               </MDBBtn>
             </MDBModalFooter>
