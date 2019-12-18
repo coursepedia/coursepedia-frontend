@@ -301,7 +301,7 @@ function Home() {
                 <li>
                   <div className="timeline-image">
                     <img
-                      className="rounded-circle img-fluid"
+                      className="rounded-circle img-fluid-modal"
                       src="img/about/1.jpg"
                       alt=""
                     />
@@ -317,77 +317,7 @@ function Home() {
                 <li className="timeline-inverted">
                   <div className="timeline-image">
                     <img
-                      className="rounded-circle img-fluid"
-                      src="img/about/2.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div className="timeline-panel">
-                    <div className="timeline-heading">
-                      <h4>January 2020</h4>
-                      <h4 className="subheading">Planning The Future Ahead</h4>
-                    </div>
-                    <div className="timeline-body">
-                      <p className="text-muted">
-                        New year, new challenge. We have many plan for the
-                        future ahead. Stay tune!
-                      </p>
-                    </div>
-                  </div>
-                </li>{" "}
-                */}
-                <li className="timeline-inverted">
-                  <div className="timeline-image">
-                    <h4>
-                      Be Part
-                      <br />
-                      Of Our
-                      <br />
-                      Story!
-                    </h4>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="page-section" id="about">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12 text-center">
-              <h2 className="section-heading text-uppercase">
-                <b>About Us</b>
-              </h2>
-              <h3 className="section-subheading text-muted">
-                Timeline of Coursepedia creation
-              </h3>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-12">
-              <ul className="timeline">
-                <li>
-                  <div className="timeline-image">
-                    <img
-                      className="rounded-circle img-fluid"
-                      src="img/about/1.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div className="timeline-panel">
-                    <div className="timeline-heading">
-                      <h4>December 2019</h4>
-                      <h4 className="subheading">Our Humble Beginnings</h4>
-                    </div>
-                    <div className="timeline-body"></div>
-                  </div>
-                </li>
-                <li className="timeline-inverted">
-                  <div className="timeline-image">
-                    <img
-                      className="rounded-circle img-fluid"
+                      className="rounded-circle img-fluid-modal"
                       src="img/about/2.jpg"
                       alt=""
                     />
@@ -455,26 +385,7 @@ function Home() {
                 />
                 <h4>Larry Parker</h4>
                 <p className="text-muted">Lead Marketer</p>
-                <ul className="list-inline social-buttons">
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-facebook-f"></i>
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-linkedin-in"></i>
-                    </a>
-                  </li>
-                </ul>
               </div>
-              <h4>Larry Parker</h4>
-              <p className="text-muted">Lead Marketer</p>
             </div>
             <div className="col-sm-4">
               <div className="team-member">
@@ -485,26 +396,7 @@ function Home() {
                 />
                 <h4>Diana Pertersen</h4>
                 <p className="text-muted">Lead Developer</p>
-                <ul className="list-inline social-buttons">
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-facebook-f"></i>
-                    </a>
-                  </li>
-                  <li className="list-inline-item">
-                    <a href="#">
-                      <i className="fa fa-linkedin-in"></i>
-                    </a>
-                  </li>
-                </ul>
               </div>
-              <h4>Larry Parker</h4>
-              <p className="text-muted">Lead Marketer</p>
             </div>
           </div>
           <div className="row">
@@ -519,36 +411,7 @@ function Home() {
         </div>
       </section>
 
-      {/* <section className="py-5">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-3 col-sm-6">
-              <a href="#">
-                <img className="img-fluid d-block mx-auto" src="img/logos/envato.jpg" alt="" />
-              </a>
-            </div>
-            <div className="col-md-3 col-sm-6">
-              <a href="#">
-                <img className="img-fluid d-block mx-auto" src="img/logos/designmodo.jpg" alt="" />
-              </a>
-            </div>
-            <div className="col-md-3 col-sm-6">
-              <a href="#">
-                <img className="img-fluid d-block mx-auto" src="img/logos/themeforest.jpg" alt="" />
-              </a>
-            </div>
-            <div className="col-md-3 col-sm-6">
-              <a href="#">
-                <img className="img-fluid d-block mx-auto" src="img/logos/creative-market.jpg" alt="" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
-<ContactUs/>
-
-      {/* <section className="page-section" id="contact">
+      <section className="page-section" id="contact">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">

@@ -88,6 +88,11 @@ nav {
   width: 1000px;
 }
 
+.img-fluid-modal {
+  max-width: 100%;
+  height: auto;
+}
+
 .card-body {
   height: 250px;
 }
