@@ -546,7 +546,9 @@ function Home() {
         </div>
       </section> */}
 
-      <section className="page-section" id="contact">
+<ContactUs/>
+
+      {/* <section className="page-section" id="contact">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">
@@ -623,7 +625,7 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <footer className="footer">
         <div className="container">
