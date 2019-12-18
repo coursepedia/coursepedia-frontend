@@ -17,15 +17,15 @@ function CommentBox({ courseId }) {
     });
   };
 
-  //   useEffect(() => {
-  //     axios
-  //       .get("https://coursepediabackend.herokuapp.com/courses")
-  //       .then(res => {
-  //         // console.log(res);
-  //         setContent(res.data);
-  //       })
-  //       .catch(error => console.log(error.message));
-  //   }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://coursepediabackend.herokuapp.com/courses")
+  //     .then(res => {
+  //       // console.log(res);
+  //       setContent(res.data);
+  //     })
+  //     .catch(error => console.log(error.message));
+  // }, []);
 
   const addComment = event => {
     event.preventDefault();
@@ -47,20 +47,25 @@ function CommentBox({ courseId }) {
       {/* {content &&
         content.map((data, index) => {
           return ( */}
-      <div className="row">
-        <div className="col-4  pt-3 border-right">
-          <h6>Say something about React</h6>
-          {/* Comment Form Component */}
-          <form onSubmit={addComment}>
-            <label htmlFor="comment">Ada komentar</label>
-            <textarea name="content" cols="30" rows="10" onChange={handleChange}></textarea>
-            <button>Add</button>
-          </form>
+
+      <h4 className="font-weight-light">Say something about the course : </h4>
+      <div className="input-group">
+        <div className="input-group-prepend">
+          <span
+            onClick={addComment}
+            className="input-group-text"
+            id="basic-addon"
+          >
+            <i className="fa fa-paper-plane-o"></i>
+          </span>
         </div>
-        <div className="col-8  pt-3 bg-white">{/* Comment List Component */}</div>
+        <textarea
+          className="form-control"
+          id="exampleFormControlTextarea1"
+          rows="5"
+          onChange={handleChange}
+        ></textarea>
       </div>
-      {/* );
-        })} */}
     </div>
   );
 }

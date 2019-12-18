@@ -88,6 +88,11 @@ nav {
   width: 1000px;
 }
 
+.img-fluid-modal {
+  max-width: 100%;
+  height: auto;
+}
+
 .card-body {
   height: 250px;
 }
@@ -131,4 +136,13 @@ nav {
 .floatbutton-show:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+.input-group-text:hover {
+  background-color: #03a9f4;
+  transition: 1s ease;
+}
+
+.input-group-text {
+  transition: 1s ease;
 }
