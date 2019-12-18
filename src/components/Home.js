@@ -488,7 +488,7 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <footer className="footer">
         <div className="container">
