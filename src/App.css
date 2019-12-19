@@ -4,6 +4,9 @@ html {
 nav {
   transition: background-color 5s ease;
 }
+#welcome-message {
+  font-style: normal;
+}
 .navdark-bg {
   background-color: black !important;
   transition: background-color 0.5s ease-in !important;

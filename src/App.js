@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import jwt from "jsonwebtoken";
 import Home from "./components/Home";
@@ -17,7 +17,7 @@ function App() {
   const token = localStorage.getItem("token");
   const [users, addUsers] = useContext(UserContext);
 
-  try {
+  useEffect(() => {
     if (token) {
       const decodedToken = jwt.decode(token, { complete: true });
       const dateNow = new Date();
@@ -27,10 +27,7 @@ function App() {
         addUsers(decodedToken.payload.data);
       }
     }
-  } catch (ex) {
-    // if invalid token
-    console.log("error geting token");
-  }
+  }, []);
 
   return (
     <Router>

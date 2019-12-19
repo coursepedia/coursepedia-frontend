@@ -25,7 +25,6 @@ export default class ContactUs extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
     axios
       .post(BACKEND_URI + "/users/send-email-to-user", this.state)
       .then(result => {

@@ -25,21 +25,19 @@ function Home() {
   const [bg, setBg] = useState("");
   const [color, setColor] = useState("");
   const [display, setDisplay] = useState("");
-  const [users, addUsers] = useContext(UserContext);
+  const [users] = useContext(UserContext);
 
-  const [listCourses, setListCourses] = useState([]);
+  // const [listCourses, setListCourses] = useState([]);
   // const [isLogin, setIsLogin] = useState(false);
 
-  useEffect(() => {
-    axios
-      .get(BACKEND_URI + "/courses")
-      .then(res => {
-        // console.log(res);
-        setListCourses(res.data);
-        console.log(res.data);
-      })
-      .catch(error => console.log(error.message));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(BACKEND_URI + "/courses")
+  //     .then(res => {
+  //       setListCourses(res.data);
+  //     })
+  //     .catch(error => console.log(error.message));
+  // }, []);
 
   const floatButtonStyle = {
     display: "none",
@@ -52,20 +50,20 @@ function Home() {
     transition: "display 2s ease"
   };
 
-  function getScrollHeight() {
-    setScrollY(window.pageYOffset);
-    if (scrollY >= 400) {
-      setBg("navdark-bg");
-      setColor("textcolor-change");
-      setDisplay("floatbutton-show");
-    } else {
-      setBg("");
-      setColor("");
-      setDisplay("");
-    }
-  }
-
   useLayoutEffect(() => {
+    function getScrollHeight() {
+      setScrollY(window.pageYOffset);
+      if (scrollY >= 400) {
+        setBg("navdark-bg");
+        setColor("textcolor-change");
+        setDisplay("floatbutton-show");
+      } else {
+        setBg("");
+        setColor("");
+        setDisplay("");
+      }
+    }
+
     function watchScroll() {
       window.addEventListener("scroll", getScrollHeight);
     }
@@ -78,7 +76,7 @@ function Home() {
     // (window).scroll(function(){
     //   ('nav').toggleClass('scroll', (this).scrollTop() > 50);
     // });
-  }, [getScrollHeight]);
+  }, [scrollY]);
 
   const handleFab = () => {
     if (userAuth.isAuthenticated) {
@@ -88,7 +86,6 @@ function Home() {
     }
   };
 
-  // console.log(users);
   return (
     <div>
       {/* floating action button */}
@@ -103,7 +100,6 @@ function Home() {
           <AddIcon />
         </Fab>
       </div>
-
       <nav
         style={{ transition: "0.75s ease" }}
         className={`navbar navbar-expand-lg ${bg} fixed-top`}
@@ -173,7 +169,12 @@ function Home() {
               <div>
                 <span>
                   <b>
-                    <i>Welcome {users.username} ! </i>
+                    <i
+                      className={`${color} js-scroll-trigger text-capitalize`}
+                      id="welcome-message"
+                    >
+                      Welcome {users.username} !{" "}
+                    </i>
                   </b>
                 </span>
                 <Button
@@ -210,7 +211,6 @@ function Home() {
           </div>
         </div>
       </nav>
-
       <header className="masthead">
         <div className="container">
           <div className="intro-text">
@@ -228,7 +228,6 @@ function Home() {
           </div>
         </div>
       </header>
-
       <section className="page-section" id="services">
         <div className="container">
           <div className="row">
@@ -279,9 +278,7 @@ function Home() {
           </div>
         </div>
       </section>
-
       <ModalPage />
-
       <section className="page-section" id="about">
         <div className="container">
           <div className="row">
@@ -368,30 +365,26 @@ function Home() {
             <div className="col-md-4">
               <ul className="list-inline social-buttons">
                 <li className="list-inline-item">
-                  <a href="#">
+                  <a href="https://www.twitter.com">
                     <i className="fa fa-twitter"></i>
                   </a>
                 </li>
                 <li className="list-inline-item">
-                  <a href="#">
+                  <a href="https://www.facebook.com">
                     <i className="fa fa-facebook-f"></i>
                   </a>
                 </li>
-                <li className="list-inline-item">
-                  <a href="#">
+                {/* <li className="list-inline-item">
+                  <a href="https://www.linkedin.com">
                     <i className="fa fa-linkedin-in"></i>
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="col-md-4">
               <ul className="list-inline quicklinks">
-                <li className="list-inline-item">
-                  <a href="#">Privacy Policy</a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="#">Terms of Use</a>
-                </li>
+                <li className="list-inline-item">Privacy Policy</li>
+                <li className="list-inline-item">Terms of Use</li>
               </ul>
             </div>
           </div>

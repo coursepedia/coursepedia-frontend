@@ -18,132 +18,132 @@ import { Link } from "react-router-dom";
 import { BACKEND_URI } from "../helpers/path.js";
 
 function Copyright() {
-	return (
-		<Typography variant="body2" color="textSecondary" align="center">
-			{"Copyright © "}
-			<Link to="https://material-ui.com/">Coursepedia</Link> {new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link to="https://material-ui.com/">Coursepedia</Link> {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
 }
 
 const useStyles = makeStyles(theme => ({
-	paper: {
-		marginTop: theme.spacing(8),
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center"
-	},
-	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main
-	},
-	form: {
-		width: "100%", // Fix IE 11 issue.
-		marginTop: theme.spacing(3)
-	},
-	submit: {
-		margin: theme.spacing(3, 0, 2)
-	}
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3)
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2)
+  }
 }));
 
 function SignUp() {
-	const classes = useStyles();
-	// setting data harus sama dengan data di backend
-	const [newUser, setNewUser] = useState({
-		username: "",
-		email: "",
-		password: ""
-	});
+  const classes = useStyles();
+  // setting data harus sama dengan data di backend
+  const [newUser, setNewUser] = useState({
+    username: "",
+    email: "",
+    password: ""
+  });
 
-	const [userStatus, setUserStatus] = useState("");
+  const [userStatus, setUserStatus] = useState("");
 
-	const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
 
-	const handleChange = event => {
-		setNewUser({
-			...newUser,
-			[event.target.name]: event.target.value
-		});
-	};
+  const handleChange = event => {
+    setNewUser({
+      ...newUser,
+      [event.target.name]: event.target.value
+    });
+  };
 
-	const handleSubmit = event => {
-		event.preventDefault();
-		axios.post(`${BACKEND_URI}/users`, newUser) // +"/users/authentication/ harus sama dengan route yang di backend"
-			.then(result => {
-				setUserStatus(result.data.message);
-			})
-			.catch(error => {
-				if (error) {
-          console.log(error.response)
-					if (error.response) {
-						setError(error.response.data.message);
-					}
-				} else {
-					setError(error.message);
-				}
-			});
-	};
+  const handleSubmit = event => {
+    event.preventDefault();
+    axios
+      .post(`${BACKEND_URI}/users`, newUser) // +"/users/authentication/ harus sama dengan route yang di backend"
+      .then(result => {
+        setUserStatus(result.data.message);
+      })
+      .catch(error => {
+        if (error) {
+          if (error.response) {
+            setError(error.response.data.message);
+          }
+        } else {
+          setError(error.message);
+        }
+      });
+  };
 
-	return (
-		<Container component="main" maxWidth="xs">
-			<CssBaseline />
-			<div className={classes.paper}>
-				{error && (
-					<div className="alert alert-danger text-center alert-dismissible fade show" role="alert">
-						{error}{" "}
-						<button type="button" className="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				)}
-				{userStatus && (
-					<div className="alert alert-success text-center alert-dismissible fade show" role="alert">
-						{userStatus}{" "}
-						<button type="button" className="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				)}
-				<Avatar className={classes.avatar}>
-					<LockOutlinedIcon />
-				</Avatar>
-				<Typography component="h1" variant="h5">
-					Please Register Your Account
-				</Typography>
-				<form className={classes.form} noValidate>
-					<Grid container spacing={2}>
-						<Grid item xs={12}>
-							<TextField value={newUser.username} onChange={handleChange} autoComplete="fname" name="username" variant="outlined" required fullWidth id="username" label="Username" autoFocus />
-						</Grid>
-						{/* <Grid item xs={12} sm={6}>
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        {error && (
+          <div className="alert alert-danger text-center alert-dismissible fade show" role="alert">
+            {error}{" "}
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        )}
+        {userStatus && (
+          <div className="alert alert-success text-center alert-dismissible fade show" role="alert">
+            {userStatus}{" "}
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        )}
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Please Register Your Account
+        </Typography>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField value={newUser.username} onChange={handleChange} autoComplete="fname" name="username" variant="outlined" required fullWidth id="username" label="Username" autoFocus />
+            </Grid>
+            {/* <Grid item xs={12} sm={6}>
               <TextField value={newUser.lastName} onChange={handleChange} variant="outlined" required fullWidth id="lastName" label="Last Name" name="lastName" autoComplete="lname" />
             </Grid> */}
-						<Grid item xs={12}>
-							<TextField value={newUser.email} onChange={handleChange} variant="outlined" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" type="email" />
-						</Grid>
-						<Grid item xs={12}>
-							<TextField value={newUser.password} onChange={handleChange} variant="outlined" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
-						</Grid>
-						<Grid item xs={12}>
-							<FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="I want to receive inspiration, marketing promotions and updates via email." />
-						</Grid>
-					</Grid>
-					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={handleSubmit}>
-						Sign Up
-					</Button>
-					<Grid container justify="flex-end">
-						<Grid item>
-							<Link to="/login">Already have an account? Sign in</Link>
-						</Grid>
-					</Grid>
-				</form>
-			</div>
-			<Box mt={5}>
-				<Copyright />
-			</Box>
-		</Container>
-	);
+            <Grid item xs={12}>
+              <TextField value={newUser.email} onChange={handleChange} variant="outlined" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" type="email" />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField value={newUser.password} onChange={handleChange} variant="outlined" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel control={<Checkbox value="allowExtraEmails" color="primary" />} label="I want to receive inspiration, marketing promotions and updates via email." />
+            </Grid>
+          </Grid>
+          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={handleSubmit}>
+            Sign Up
+          </Button>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Link to="/login">Already have an account? Sign in</Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
 }
 
 export default SignUp;
