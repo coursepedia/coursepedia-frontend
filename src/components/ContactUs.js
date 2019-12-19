@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 
 import { BACKEND_URI } from "../helpers/path";
+import { white } from "ansi-colors";
 
 export default class ContactUs extends Component {
   constructor() {
@@ -19,18 +20,35 @@ export default class ContactUs extends Component {
       name: "",
       email: "",
       subject: "",
-      message: ""
+      message: "",
+      error: "",
+      status: ""
     };
   }
 
   handleSubmit = event => {
     event.preventDefault();
+    const { error, status, ...bodyMessage } = this.state;
     axios
-      .post(BACKEND_URI + "/users/send-email-to-user", this.state)
+      .post(BACKEND_URI + "/users/send-email-to-user", bodyMessage)
       .then(result => {
-        console.log(result);
+        this.setState({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          success: result.data.message
+        });
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        if (error) {
+          if (error.response) {
+            this.setState({ ...this.state, error: error.response.data.message });
+          } else {
+            this.setState({ ...this.state, error: error.message });
+          }
+        }
+      });
   };
 
   resetForm() {
@@ -53,12 +71,11 @@ export default class ContactUs extends Component {
             <div className="row">
               <div className="col-lg-12 text-center">
                 <h2 className="section-heading text-uppercase">Contact Us</h2>
-                <h3 className="section-subheading text-muted">
-                  Please fill in the form below, we'll get in touch with you as
-                  soon as possible
-                </h3>
+                <h3 className="section-subheading text-muted">For criticism and suggestions about this web, please contact us directly via form below. </h3>
               </div>
             </div>
+            {this.state.success && <h1 style={{ color: "white", textAlign: "center" }}>{this.state.success}</h1>}
+            {this.state.error && <h1 style={{ color: "red", textAlign: "center" }}>{this.state.error}</h1>}
             <div className="row">
               <div className="col-lg-12">
                 <form

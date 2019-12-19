@@ -351,7 +351,6 @@ function Home() {
       {/* <CarouselTestimonial /> */}
       <CarouselTestimonial />
 
-      {/* Contact Us */}
       <ContactUs />
 
       <footer className="footer">
