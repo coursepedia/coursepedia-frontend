@@ -10,13 +10,13 @@ import { userAuth } from "../../helpers/userAuth";
 
 export default function CourseLandingPage() {
   let history = useHistory();
-  const [state, setstate] = useState("");
+  // const [state, setstate] = useState("");
   const [scrollY, setScrollY] = useState(0);
   const [display, setDisplay] = useState("");
 
-  const handleClick = ageCategory => {
-    setstate(ageCategory);
-  };
+  // const handleClick = ageCategory => {
+  //   setstate(ageCategory);
+  // };
 
   const floatButtonStyle = {
     display: "none",
@@ -29,16 +29,16 @@ export default function CourseLandingPage() {
     transition: "display 2s ease"
   };
 
-  function getScrollHeight() {
-    setScrollY(window.pageYOffset);
-    if (scrollY >= 400) {
-      setDisplay("floatbutton-show");
-    } else {
-      setDisplay("");
-    }
-  }
-
   useLayoutEffect(() => {
+    function getScrollHeight() {
+      setScrollY(window.pageYOffset);
+      if (scrollY >= 400) {
+        setDisplay("floatbutton-show");
+      } else {
+        setDisplay("");
+      }
+    }
+
     function watchScroll() {
       window.addEventListener("scroll", getScrollHeight);
     }
@@ -51,7 +51,7 @@ export default function CourseLandingPage() {
     // (window).scroll(function(){
     //   ('nav').toggleClass('scroll', (this).scrollTop() > 50);
     // });
-  }, [getScrollHeight]);
+  }, [scrollY]);
 
   const handleFab = () => {
     if (userAuth.isAuthenticated) {

@@ -26,20 +26,19 @@ function NavBar() {
   //   transition: "display 2s ease"
   // };
 
-  function getScrollHeight() {
-    setScrollY(window.pageYOffset);
-    if (scrollY >= 400) {
-      setBg("navdark-bg");
-      setColor("textcolor-change");
-      setDisplay("floatbutton-show");
-    } else {
-      setBg("");
-      setColor("");
-      setDisplay("");
-    }
-  }
-
   useLayoutEffect(() => {
+    function getScrollHeight() {
+      setScrollY(window.pageYOffset);
+      if (scrollY >= 400) {
+        setBg("navdark-bg");
+        setColor("textcolor-change");
+        setDisplay("floatbutton-show");
+      } else {
+        setBg("");
+        setColor("");
+        setDisplay("");
+      }
+    }
     function watchScroll() {
       window.addEventListener("scroll", getScrollHeight);
     }
@@ -52,7 +51,7 @@ function NavBar() {
     // (window).scroll(function(){
     //   ('nav').toggleClass('scroll', (this).scrollTop() > 50);
     // });
-  }, [getScrollHeight]);
+  }, [scrollY]);
 
   return (
     <div>

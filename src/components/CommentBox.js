@@ -1,45 +1,45 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 import { UserContext } from "./UserContext";
 import { BACKEND_URI } from "../helpers/path";
 
-function CommentBox({ courseId }) {
+function CommentBox({ courseId, modalContent, setModalContent }) {
   const [users] = useContext(UserContext);
 
   const [content, setContent] = useState("");
-  const [userPost, setUserPost] = useState([]);
+  const [error, setError] = useState("");
 
   const handleChange = event => {
-    setContent({
-      ...content,
-      [event.target.name]: event.target.value
-    });
+    setContent(event.target.value);
+    console.log(users);
   };
-
-  // useEffect(() => {
-  //   axios
-  //     .get("https://coursepediabackend.herokuapp.com/courses")
-  //     .then(res => {
-  //       // console.log(res);
-  //       setContent(res.data);
-  //     })
-  //     .catch(error => console.log(error.message));
-  // }, []);
 
   const addComment = event => {
     event.preventDefault();
+    setModalContent({
+      ...modalContent,
+      comments: [...modalContent.comments, { content: content, users: { username: users.username } }]
+    });
+
     axios
       .post(BACKEND_URI + "/users-comments", {
-        ...content,
+        content,
         users: users._id,
         courseId
       })
       .then(res => {
         console.log(res);
-        // setUserPost(res.data);
       })
-      .catch(error => console.log(error.message));
+      .catch(error => {
+        if (error) {
+          if (error.response) {
+            setError(error.response.data.message);
+          } else {
+            setError(error.message);
+          }
+        }
+      });
   };
 
   return (
@@ -48,23 +48,14 @@ function CommentBox({ courseId }) {
         content.map((data, index) => {
           return ( */}
 
-      <h4 className="font-weight-light">Say something about the course : </h4>
+      <h4 className="font-weight-light">Write your comment here : </h4>
       <div className="input-group">
         <div className="input-group-prepend">
-          <span
-            onClick={addComment}
-            className="input-group-text"
-            id="basic-addon"
-          >
+          <span onClick={addComment} className="input-group-text" id="basic-addon">
             <i className="fa fa-paper-plane-o"></i>
           </span>
         </div>
-        <textarea
-          className="form-control"
-          id="exampleFormControlTextarea1"
-          rows="5"
-          onChange={handleChange}
-        ></textarea>
+        <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" name="content" onChange={handleChange} value={content}></textarea>
       </div>
     </div>
   );

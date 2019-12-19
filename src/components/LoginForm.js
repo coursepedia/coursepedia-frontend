@@ -26,8 +26,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link to="https://material-ui.com/">Your Website</Link>{" "}
-      {new Date().getFullYear()}
+      <Link to="https://material-ui.com/">Your Website</Link> {new Date().getFullYear()}
       {"."}
     </Typography>
   );
@@ -88,23 +87,14 @@ function SignIn(props) {
       });
   };
 
-  console.log(users);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         {error && (
-          <div
-            className="alert alert-danger text-center alert-dismissible fade show"
-            role="alert"
-          >
+          <div className="alert alert-danger text-center alert-dismissible fade show" role="alert">
             {error}{" "}
-            <button
-              type="button"
-              class="close"
-              data-dismiss="alert"
-              aria-label="Close"
-            >
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -116,44 +106,10 @@ function SignIn(props) {
           Sign in
         </Typography>
         <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            onChange={handleChange}
-            value={user.email}
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            onChange={handleChange}
-            value={user.password}
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={handleSubmit}
-          >
+          <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" onChange={handleChange} value={user.email} autoComplete="email" autoFocus />
+          <TextField variant="outlined" margin="normal" required fullWidth name="password" onChange={handleChange} value={user.password} label="Password" type="password" id="password" autoComplete="current-password" />
+          <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} onClick={handleSubmit}>
             Sign In
           </Button>
           <Grid container>

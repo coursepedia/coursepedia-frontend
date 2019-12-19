@@ -1,19 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardText,
-  MDBCardTitle,
-  MDBBtn,
-  MDBModal,
-  MDBModalBody,
-  MDBModalHeader,
-  MDBModalFooter
-} from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
 import CommentBox from "../CommentBox";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
@@ -22,8 +8,6 @@ import axios from "axios";
 import { BACKEND_URI } from "../../helpers/path";
 
 export default function CourseCategory({ fieldCategory, data }) {
-  console.log(data, "ini nihhhhhhhhh");
-  console.log(fieldCategory);
   const [toggle, setToggle] = useState(false);
   const [modalContent, setModalContent] = useState({});
 
@@ -33,7 +17,6 @@ export default function CourseCategory({ fieldCategory, data }) {
       .then(res => {
         console.log(res);
         // setModalContent(res.data);
-        // console.log(res.data);
       })
       .catch(error => console.log(error.message));
   }, []);
@@ -41,7 +24,18 @@ export default function CourseCategory({ fieldCategory, data }) {
   const handleClick = data => {
     setToggle(prevState => !prevState);
     setModalContent(data);
-    // console.log(modalContent, 'ooooooooooooooooooooooooooooo');
+  };
+
+  const handleClickDirection = data => {
+    console.log(data);
+    let encodedAlamat = encodeURI(data);
+    console.log(encodedAlamat);
+    window.open(
+      `https://www.google.com/maps/dir/?api=1&destination=${encodedAlamat}&travelmode=walking
+
+    `,
+      "_blank"
+    );
   };
 
   return (
@@ -54,26 +48,14 @@ export default function CourseCategory({ fieldCategory, data }) {
                 data.fieldCategory === fieldCategory ? (
                   <MDBCol size="6" key={index}>
                     <MDBCard>
-                      <MDBCardImage
-                        className="img-fluid"
-                        src={data.imageUrl}
-                        waves
-                      />
+                      <MDBCardImage className="img-fluid" src={data.imageUrl} waves />
                       <MDBCardBody className="card-body">
                         <MDBCardTitle>{data.name}</MDBCardTitle>
                         {/* <MDBCardText>{data.address}</MDBCardText>
 												<MDBCardText>Rp {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},00</MDBCardText> */}
                         <MDBCardText>
-                          <Box
-                            component="fieldset"
-                            mb={3}
-                            borderColor="transparent"
-                          >
-                            <Rating
-                              name="read-only"
-                              value={data.rating}
-                              readOnly
-                            />
+                          <Box component="fieldset" mb={3} borderColor="transparent">
+                            <Rating name="read-only" value={data.rating} readOnly />
                           </Box>
                         </MDBCardText>
                         {/* modal input */}
@@ -87,26 +69,14 @@ export default function CourseCategory({ fieldCategory, data }) {
               ) : (
                 <MDBCol size="6" key={index}>
                   <MDBCard>
-                    <MDBCardImage
-                      className="img-fluid"
-                      src={data.imageUrl}
-                      waves
-                    />
+                    <MDBCardImage className="img-fluid" src={data.imageUrl} waves />
                     <MDBCardBody className="card-body">
                       <MDBCardTitle>{data.name}</MDBCardTitle>
                       {/* <MDBCardText>{data.address}</MDBCardText>
 											<MDBCardText>Rp {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},00</MDBCardText> */}
                       <MDBCardText>
-                        <Box
-                          component="fieldset"
-                          mb={3}
-                          borderColor="transparent"
-                        >
-                          <Rating
-                            name="read-only"
-                            value={data.rating}
-                            readOnly
-                          />
+                        <Box component="fieldset" mb={3} borderColor="transparent">
+                          <Rating name="read-only" value={data.rating} readOnly />
                         </Box>
                       </MDBCardText>
                       <MDBBtn key={index} onClick={() => handleClick(data)}>
@@ -126,26 +96,15 @@ export default function CourseCategory({ fieldCategory, data }) {
             <MDBModal isOpen={toggle} size="lg" centered>
               <MDBModalBody>
                 <>
-                  <MDBModalHeader class="text-uppercase">
-                    {modalContent.name}
-                  </MDBModalHeader>
-                  <img
-                    className="img-fluid d-block mx-auto"
-                    src={modalContent.imageUrl}
-                    alt=""
-                  />
+                  <MDBModalHeader className="text-uppercase">{modalContent.name}</MDBModalHeader>
+                  <img className="img-fluid d-block mx-auto" src={modalContent.imageUrl} alt="" />
                 </>
                 <div className="portofolio-caption">
-                  <ul class="list-inline">
+                  <ul className="list-inline">
                     <li>
                       <h4 className="orange-text">
                         {" "}
-                        <Rating
-                          name="read-only"
-                          value={modalContent.rating}
-                          readOnly
-                        />{" "}
-                        {modalContent.rating}
+                        <Rating name="read-only" value={modalContent.rating} readOnly /> {modalContent.rating}
                       </h4>
                     </li>
                     <li className="pb-2">
@@ -156,12 +115,10 @@ export default function CourseCategory({ fieldCategory, data }) {
                       <strong>Telephone: </strong>
                       {modalContent.phoneNumber}
                     </li>
-                    <li className="pb-2">
+                    {/* <li className="pb-2">
                       <strong>Age: </strong>
-                      <span className="text-capitalize">
-                        {modalContent.ageCategory}
-                      </span>
-                    </li>
+                      <span className="text-capitalize">{modalContent.ageCategory}</span>
+                    </li> */}
                     <li className="pb-2">
                       <strong>Price : </strong>
                       {new Intl.NumberFormat("id-ID", {
@@ -171,9 +128,7 @@ export default function CourseCategory({ fieldCategory, data }) {
                     </li>
                     <li className="pb-2">
                       <strong>Type : </strong>
-                      <span className="text-capitalize">
-                        {modalContent.fieldCategory}
-                      </span>
+                      <span className="text-capitalize">{modalContent.fieldCategory}</span>
                     </li>
                     {modalContent.comments &&
                       modalContent.comments.map((el, i) => (
@@ -189,8 +144,9 @@ export default function CourseCategory({ fieldCategory, data }) {
                 </div>
               </MDBModalBody>
               <MDBModalFooter>
-                <MDBBtn color="primary">Direction</MDBBtn>
-                <MDBBtn color="primary">Website</MDBBtn>
+                <MDBBtn color="primary" onClick={() => handleClickDirection(modalContent.address)}>
+                  Direction
+                </MDBBtn>
                 <MDBBtn color="secondary" onClick={handleClick}>
                   Close
                 </MDBBtn>
