@@ -1,9 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from "mdbreact";
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCardText,
+  MDBCardTitle,
+  MDBBtn,
+  MDBModal,
+  MDBModalBody,
+  MDBModalHeader,
+  MDBModalFooter
+} from "mdbreact";
 import CommentBox from "../CommentBox";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
+import { userAuth } from "../../helpers/userAuth";
+import avatar from "../../assets/images/dummy-avatar.png";
 
 import { BACKEND_URI } from "../../helpers/path";
 
@@ -48,14 +64,26 @@ export default function CourseCategory({ fieldCategory, data }) {
                 data.fieldCategory === fieldCategory ? (
                   <MDBCol size="6" key={index}>
                     <MDBCard>
-                      <MDBCardImage className="img-fluid" src={data.imageUrl} waves />
+                      <MDBCardImage
+                        className="img-fluid"
+                        src={data.imageUrl}
+                        waves
+                      />
                       <MDBCardBody className="card-body">
                         <MDBCardTitle>{data.name}</MDBCardTitle>
                         {/* <MDBCardText>{data.address}</MDBCardText>
 												<MDBCardText>Rp {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},00</MDBCardText> */}
                         <MDBCardText>
-                          <Box component="fieldset" mb={3} borderColor="transparent">
-                            <Rating name="read-only" value={data.rating} readOnly />
+                          <Box
+                            component="fieldset"
+                            mb={3}
+                            borderColor="transparent"
+                          >
+                            <Rating
+                              name="read-only"
+                              value={data.rating}
+                              readOnly
+                            />
                           </Box>
                         </MDBCardText>
                         {/* modal input */}
@@ -69,14 +97,26 @@ export default function CourseCategory({ fieldCategory, data }) {
               ) : (
                 <MDBCol size="6" key={index}>
                   <MDBCard>
-                    <MDBCardImage className="img-fluid" src={data.imageUrl} waves />
+                    <MDBCardImage
+                      className="img-fluid"
+                      src={data.imageUrl}
+                      waves
+                    />
                     <MDBCardBody className="card-body">
                       <MDBCardTitle>{data.name}</MDBCardTitle>
                       {/* <MDBCardText>{data.address}</MDBCardText>
 											<MDBCardText>Rp {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")},00</MDBCardText> */}
                       <MDBCardText>
-                        <Box component="fieldset" mb={3} borderColor="transparent">
-                          <Rating name="read-only" value={data.rating} readOnly />
+                        <Box
+                          component="fieldset"
+                          mb={3}
+                          borderColor="transparent"
+                        >
+                          <Rating
+                            name="read-only"
+                            value={data.rating}
+                            readOnly
+                          />
                         </Box>
                       </MDBCardText>
                       <MDBBtn key={index} onClick={() => handleClick(data)}>
@@ -96,15 +136,26 @@ export default function CourseCategory({ fieldCategory, data }) {
             <MDBModal isOpen={toggle} size="lg" centered>
               <MDBModalBody>
                 <>
-                  <MDBModalHeader className="text-uppercase">{modalContent.name}</MDBModalHeader>
-                  <img className="img-fluid d-block mx-auto" src={modalContent.imageUrl} alt="" />
+                  <MDBModalHeader className="text-uppercase">
+                    {modalContent.name}
+                  </MDBModalHeader>
+                  <img
+                    className="img-fluid d-block mx-auto"
+                    src={modalContent.imageUrl}
+                    alt=""
+                  />
                 </>
                 <div className="portofolio-caption">
                   <ul className="list-inline">
                     <li>
                       <h4 className="orange-text">
                         {" "}
-                        <Rating name="read-only" value={modalContent.rating} readOnly /> {modalContent.rating}
+                        <Rating
+                          name="read-only"
+                          value={modalContent.rating}
+                          readOnly
+                        />{" "}
+                        {modalContent.rating}
                       </h4>
                     </li>
                     <li className="pb-2">
@@ -128,15 +179,20 @@ export default function CourseCategory({ fieldCategory, data }) {
                     </li>
                     <li className="pb-2">
                       <strong>Type : </strong>
-                      <span className="text-capitalize">{modalContent.fieldCategory}</span>
+                      <span className="text-capitalize">
+                        {modalContent.fieldCategory}
+                      </span>
                     </li>
                     {modalContent.comments &&
                       modalContent.comments.map((el, i) => (
-                        <div key={i}>
-                          <p>
-                            <strong>{el.users.username}</strong>
-                          </p>
-                          <p>{el.content}</p>
+                        <div className="comments-section" key={i}>
+                          <img className="avatar" src={avatar} />
+                          <div className="comments-content">
+                            <p className="comments-padding text-capitalize">
+                              <strong>{el.users.username}</strong>
+                            </p>
+                            <p className="comments-padding">{el.content}</p>
+                          </div>
                         </div>
                       ))}
                   </ul>
@@ -144,7 +200,10 @@ export default function CourseCategory({ fieldCategory, data }) {
                 </div>
               </MDBModalBody>
               <MDBModalFooter>
-                <MDBBtn color="primary" onClick={() => handleClickDirection(modalContent.address)}>
+                <MDBBtn
+                  color="primary"
+                  onClick={() => handleClickDirection(modalContent.address)}
+                >
                   Direction
                 </MDBBtn>
                 <MDBBtn color="secondary" onClick={handleClick}>

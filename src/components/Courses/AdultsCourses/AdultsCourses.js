@@ -36,7 +36,7 @@ class AdultsCourses extends Component {
     let query = new URLSearchParams(this.props.location.search);
 
     return (
-      <div>
+      <>
         {/* header */}
         <MDBContainer>
           <section className="page-section-courses" id="adult">
@@ -48,7 +48,9 @@ class AdultsCourses extends Component {
                       <b>Adult's Courses</b>
                     </h3>
                   </h2>
-                  <h3 className="section-subheading text-muted">Find more courses only for adult</h3>
+                  <h3 className="section-subheading text-muted">
+                    Find more courses only for adult
+                  </h3>
                 </div>
               </div>
             </div>
@@ -74,7 +76,9 @@ class AdultsCourses extends Component {
               </Link>
             </MDBCol>
             <MDBCol size="3">
-              <Link to={`${url}/showall?ageCategory=adult&fieldCategory=softskill`}>
+              <Link
+                to={`${url}/showall?ageCategory=adult&fieldCategory=softskill`}
+              >
                 <MDBBtn color="light-blue">Soft Skill</MDBBtn>
               </Link>
             </MDBCol>
@@ -83,8 +87,11 @@ class AdultsCourses extends Component {
           <br />
         </MDBContainer>
 
-        <CourseCategory fieldCategory={query.get("fieldCategory")} data={this.state.allAdultsData} />
-      </div>
+        <CourseCategory
+          fieldCategory={query.get("fieldCategory")}
+          data={this.state.allAdultsData}
+        />
+      </>
     );
   }
 }

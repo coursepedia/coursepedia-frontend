@@ -32,8 +32,9 @@ function CarouselTestimonial() {
             length={3}
             showControls={true}
             showIndicators={true}
-            className="z-depth-2"
+            className="z-depth-1"
             style={{ backgroundColor: "white" }}
+            slide
           >
             <MDBCarouselInner>
               <MDBCarouselItem itemId="1">
@@ -43,14 +44,14 @@ function CarouselTestimonial() {
                       <div className="team-img pull-right">
                         <img
                           src={student1alpha}
-                          alt=""
+                          alt="First Slide"
                           className="img-responsive"
                         />
                       </div>
                     </div>
                     <div className="col-md-6">
                       <div className="team-info">
-                        <h3>Hasbi Zakin</h3>
+                        <h3>Sundar Pichai</h3>
                         <h6>Engineering Course Student</h6>
                         <div className="team-div"></div>
                         <p>
@@ -87,7 +88,7 @@ function CarouselTestimonial() {
                       <div className="team-img pull-right">
                         <img
                           src={student2alpha}
-                          alt=""
+                          alt="Second Slide"
                           className="img-responsive"
                         />
                       </div>
@@ -137,7 +138,7 @@ function CarouselTestimonial() {
                         <div className="team-img pull-right">
                           <img
                             src={student3alpha}
-                            alt=""
+                            alt="Third Slide"
                             className="img-responsive"
                           />
                         </div>

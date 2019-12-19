@@ -123,3 +123,20 @@ nav {
 .input-group-text {
   transition: 1s ease;
 }
+.comments-section {
+  overflow: auto;
+  margin-bottom: 15px;
+}
+.avatar {
+  float: left;
+  max-width: 10%;
+  max-height: 10%;
+  margin-right: 10px;
+}
+.comments-content {
+  float: left;
+}
+.comments-padding {
+  margin: 0;
+  padding: 0;
+}

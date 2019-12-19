@@ -163,57 +163,56 @@ function Home() {
                   Contact
                 </a>
               </li>
-            </ul>
-            {userAuth.isAuthenticated ? (
-              // `Welcome, ${users.username} !`,
-              <div>
-                <span>
-                  <b>
-                    <i
-                      className={`${color} js-scroll-trigger text-capitalize`}
-                      id="welcome-message"
+
+              {userAuth.isAuthenticated ? (
+                // `Welcome, ${users.username} !`,
+                <>
+                  <li className="nav-item">
+                    <a className={`nav-link ${color} js-scroll-trigger`}>
+                      Welcome <strong>{users.username}</strong> !{" "}
+                    </a>
+                  </li>
+                  <li>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      style={{ marginTop: "5px" }}
+                      className={`${color} text-center`}
+                      onClick={() => {
+                        userAuth.signout(() => history.push("/"));
+                      }}
                     >
-                      Welcome {users.username} !{" "}
-                    </i>
-                  </b>
-                </span>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={`nav-link ${color} js-scroll-trigger`}
-                  onClick={() => {
-                    userAuth.signout(() => history.push("/"));
-                  }}
-                >
-                  logout
-                </Button>
-              </div>
-            ) : (
-              <ButtonGroup>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  className={`nav-link ${color} js-scroll-trigger`}
-                  onClick={() => history.push("/register")}
-                >
-                  Sign Up
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={`nav-link ${color} js-scroll-trigger`}
-                  onClick={() => history.push("/login")}
-                >
-                  Login
-                </Button>
-              </ButtonGroup>
-            )}
+                      logout
+                    </Button>
+                  </li>
+                </>
+              ) : (
+                <ButtonGroup>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    className={`nav-link ${color} js-scroll-trigger`}
+                    onClick={() => history.push("/register")}
+                  >
+                    Sign Up
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={`nav-link ${color} js-scroll-trigger`}
+                    onClick={() => history.push("/login")}
+                  >
+                    Login
+                  </Button>
+                </ButtonGroup>
+              )}
+            </ul>
           </div>
         </div>
       </nav>
       <header className="masthead">
         <div className="container">
-          <div className="intro-text">
+          <div id="page-top" className="intro-text">
             <div className="intro-lead-norm">Welcome To Coursepedia</div>
             <div className="intro-heading text-uppercase">
               Find Recommended Courses Easily
