@@ -18,7 +18,7 @@ class AdultsCourses extends Component {
     // if (this.state.allAdultsData.length > 0) return;
     axios.get(`${BACKEND_URI}/courses`).then(result => {
       result.data.map(item => {
-        if (item.ageCategory === "adult") {
+        if (item.ageCategory === "adult" || item.ageCategory === "adults") {
           this.setState({
             allAdultsData: [...this.state.allAdultsData, item]
           });

@@ -15,9 +15,11 @@ class KidsCourses extends Component {
   getKidsData = () => {
     axios.get(`${BACKEND_URI}/courses/`).then(result => {
       result.data.map(item => {
-        this.setState({
-          allKidsData: [...this.state.allKidsData, item]
-        });
+        if (item.ageCategory === "kids") {
+          this.setState({
+            allKidsData: [...this.state.allKidsData, item]
+          });
+        }
       });
     });
   };

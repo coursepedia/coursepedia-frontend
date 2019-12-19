@@ -115,10 +115,10 @@ export default function CourseCategory({ fieldCategory, data }) {
                       <strong>Telephone: </strong>
                       {modalContent.phoneNumber}
                     </li>
-                    {/* <li className="pb-2">
+                    <li className="pb-2">
                       <strong>Age: </strong>
                       <span className="text-capitalize">{modalContent.ageCategory}</span>
-                    </li> */}
+                    </li>
                     <li className="pb-2">
                       <strong>Price : </strong>
                       {new Intl.NumberFormat("id-ID", {
