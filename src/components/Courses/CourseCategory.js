@@ -6,6 +6,7 @@ import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
 
 import { BACKEND_URI } from "../../helpers/path";
+import { userAuth } from "../../helpers/userAuth";
 
 export default function CourseCategory({ fieldCategory, data }) {
   const [toggle, setToggle] = useState(false);
@@ -130,17 +131,20 @@ export default function CourseCategory({ fieldCategory, data }) {
                       <strong>Type : </strong>
                       <span className="text-capitalize">{modalContent.fieldCategory}</span>
                     </li>
-                    {modalContent.comments &&
+                    {modalContent.comments ? (
                       modalContent.comments.map((el, i) => (
                         <div key={i}>
                           <p>
-                            <strong>{el.users.username}</strong>
+                            <b>Comment from {el.users.username}</b>
                           </p>
                           <p>{el.content}</p>
                         </div>
-                      ))}
+                      ))
+                    ) : (
+                      <div>Belum ada komentar tentang course ini</div>
+                    )}
                   </ul>
-                  <CommentBox courseId={modalContent._id} />
+                  {userAuth.isAuthenticated ? <CommentBox courseId={modalContent._id} modalContent={modalContent} setModalContent={setModalContent} /> : <div>Silahkan login untuk bisa memberikan komentar untuk course ini</div>}
                 </div>
               </MDBModalBody>
               <MDBModalFooter>

@@ -169,7 +169,9 @@ function ModalPage() {
                   {modalContent.comments ? (
                     modalContent.comments.map((el, i) => (
                       <div key={i}>
-                        <p>{el.users.username}</p>
+                        <p>
+                          <b>Comment from {el.users.username}</b>
+                        </p>
                         <p>{el.content}</p>
                       </div>
                     ))
