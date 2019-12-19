@@ -39,15 +39,13 @@ function CarouselTestimonial() {
                     </div>
                     <div className="col-md-6">
                       <div className="team-info">
-                        <h3>John Doe</h3>
-                        <h6>Enginnering Student</h6>
+                        <h3>Hasbi Zakin</h3>
+                        <h6>Engineering Course Student</h6>
                         <div className="team-div"></div>
                         <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Ea illum voluptatem dicta numquam molestias,
-                          obcaecati est atque? Consequuntur tenetur, perferendis
-                          vel repellat, tempore sequi in fuga inventore qui nisi
-                          blanditiis?
+                          Through Coursepedia, i evolve from an ordinary student
+                          to extraordinary students in high school. Coursepedia
+                          really help me to find the right course for me.
                         </p>
                         <ul className="list-inline social-buttons">
                           <li className="list-inline-item">
@@ -72,92 +70,103 @@ function CarouselTestimonial() {
                 </MDBView>
               </MDBCarouselItem>
               <MDBCarouselItem itemId="2">
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="team-img pull-right">
-                      <img
-                        src={student2alpha}
-                        alt=""
-                        className="img-responsive"
-                      />
+                <MDBView>
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="team-img pull-right">
+                        <img
+                          src={student2alpha}
+                          alt=""
+                          className="img-responsive"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="team-info">
+                        <h3>Mark Zuckerberg</h3>
+                        <h6>Communication Course Student</h6>
+                        <div className="team-div"></div>
+                        <p>
+                          I have a bad skill in communication. Trying to solve
+                          that problem, i google every information in the
+                          internet to find something that can help my
+                          communication skill. In the process of searching, i
+                          stumble upon Coursepedia and found that there is a
+                          Communication course teached by the expert with good
+                          reviews. So far the experience is good, so i recommend
+                          you to try Coursepedia if you got same problem as me.
+                        </p>
+                        <ul className="list-inline social-buttons">
+                          <li className="list-inline-item">
+                            <a href="">
+                              <i className="fa fa-facebook"></i>
+                            </a>
+                          </li>
+                          <li className="list-inline-item">
+                            <a href="">
+                              <i className="fa fa-twitter"></i>
+                            </a>
+                          </li>
+                          <li className="list-inline-item">
+                            <a href="">
+                              <i className="fa fa-linkedin"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                  <div className="col-md-6">
-                    <div className="team-info">
-                      <h3>Mark Zuckerberg</h3>
-                      <h6>Enginnering Student</h6>
-                      <div className="team-div"></div>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Ea illum voluptatem dicta numquam molestias, obcaecati
-                        est atque? Consequuntur tenetur, perferendis vel
-                        repellat, tempore sequi in fuga inventore qui nisi
-                        blanditiis?
-                      </p>
-                      <ul className="list-inline social-buttons">
-                        <li className="list-inline-item">
-                          <a href="">
-                            <i className="fa fa-facebook"></i>
-                          </a>
-                        </li>
-                        <li className="list-inline-item">
-                          <a href="">
-                            <i className="fa fa-twitter"></i>
-                          </a>
-                        </li>
-                        <li className="list-inline-item">
-                          <a href="">
-                            <i className="fa fa-linkedin"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                </MDBView>
               </MDBCarouselItem>
               <MDBCarouselItem itemId="3">
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="team-img pull-right">
-                      <img
-                        src={student3alpha}
-                        alt=""
-                        className="img-responsive"
-                      />
+                <MDBView>
+                  <div className="row">
+                    <div className="col-md-6">
+                      <div className="team-img pull-right">
+                        <img
+                          src={student3alpha}
+                          alt=""
+                          className="img-responsive"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="team-info">
+                        <h3>Tim Cook</h3>
+                        <h6>Programming Course Student</h6>
+                        <div className="team-div"></div>
+                        <p>
+                          When i search for job online, i found many of it are
+                          programming jobs. At that time, i don't have any
+                          programming skills. So i try to search the internet,
+                          but instead of helping me to understand programming,
+                          deep down it make me more confused. My friend tell me
+                          back then to try Coursepedia, and i really thankful to
+                          my friend for that information. I find the right
+                          programming coruse for me and then land a job as
+                          programmer.
+                        </p>
+                        <ul className="list-inline social-buttons">
+                          <li className="list-inline-item">
+                            <a href="">
+                              <i className="fa fa-facebook"></i>
+                            </a>
+                          </li>
+                          <li className="list-inline-item">
+                            <a href="">
+                              <i className="fa fa-twitter"></i>
+                            </a>
+                          </li>
+                          <li className="list-inline-item">
+                            <a href="">
+                              <i className="fa fa-linkedin"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                  <div className="col-md-6">
-                    <div className="team-info">
-                      <h3>Tim Cook</h3>
-                      <h6>Enginnering Student</h6>
-                      <div className="team-div"></div>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Ea illum voluptatem dicta numquam molestias, obcaecati
-                        est atque? Consequuntur tenetur, perferendis vel
-                        repellat, tempore sequi in fuga inventore qui nisi
-                        blanditiis?
-                      </p>
-                      <ul className="list-inline social-buttons">
-                        <li className="list-inline-item">
-                          <a href="">
-                            <i className="fa fa-facebook"></i>
-                          </a>
-                        </li>
-                        <li className="list-inline-item">
-                          <a href="">
-                            <i className="fa fa-twitter"></i>
-                          </a>
-                        </li>
-                        <li className="list-inline-item">
-                          <a href="">
-                            <i className="fa fa-linkedin"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                </MDBView>
               </MDBCarouselItem>
             </MDBCarouselInner>
           </MDBCarousel>
