@@ -358,7 +358,6 @@ function Home() {
           </div>
         </div>
       </section>{" "}
-      */}
       <footer className="footer">
         <div className="container">
           <div className="row align-items-center">
