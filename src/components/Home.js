@@ -211,8 +211,6 @@ function Home() {
         </div>
       </nav>
 
-      {/* Login Popover */}
-
       <header className="masthead">
         <div className="container">
           <div className="intro-text">
@@ -353,22 +351,8 @@ function Home() {
         </div>
       </section>
 
-      <section className="bg-light page-section" id="team">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12 text-center">
-              <h2 className="section-heading text-uppercase">
-                <b>What our students have to say</b>
-              </h2>
-              <h3 className="section-subheading text-muted">
-                Testimonials from our students
-              </h3>
-            </div>
-          </div>
-          {/* <CarouselTestimonial /> */}
-          <CarouselTestimonial />
-        </div>
-      </section>
+      {/* <CarouselTestimonial /> */}
+      <CarouselTestimonial />
 
       {/* Contact Us */}
       <ContactUs />
@@ -378,7 +362,7 @@ function Home() {
           <div className="row align-items-center">
             <div className="col-md-4">
               <span className="copyright">
-                Copyright &copy; Your Website 2019
+                Copyright &copy; Coursepedia 2019
               </span>
             </div>
             <div className="col-md-4">
