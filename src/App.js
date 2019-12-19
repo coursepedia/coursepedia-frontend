@@ -11,7 +11,6 @@ import { UserContext } from "./components/UserContext";
 import "./App.css";
 import AdultsCourses from "./components/Courses/AdultsCourses/AdultsCourses";
 import CourseLandingPage from "./components/Courses/CourseLandingPage";
-import TerimaKasih from "./components/TerimaKasih";
 // import CommentBox from "./components/CommentBox";
 
 function App() {
