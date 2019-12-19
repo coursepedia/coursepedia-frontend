@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, MDBFormInline } from "mdbreact";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -25,6 +26,7 @@ const useStyles = makeStyles(theme => ({
 
 function AddNewCourse() {
   const classes = useStyles();
+  let history = useHistory();
   const [open, setOpen] = useState(false);
   const [imageName, setImageName] = useState("");
   const [newCourse, setNewCourse] = useState({
@@ -59,10 +61,18 @@ function AddNewCourse() {
     event.preventDefault();
     axios
       .post(BACKEND_URI + "/courses", newCourse) //harus sama dengan route yang di backend"
-      .then(res => {
-        console.log(res);
+      .then(() => {
+        history.push("/courses");
       })
-      .catch(error => setError(error.response.data.message));
+      .catch(error => {
+        if (error) {
+          if (error.response) {
+            setError(error.response.data.message);
+          } else {
+            setError(error.message);
+          }
+        }
+      });
   };
 
   const handleChangeField = event => {
@@ -73,9 +83,9 @@ function AddNewCourse() {
     setNewCourse({ ...newCourse, [event.target.name]: event.target.value });
   };
 
-  React.useEffect(() => {
-    console.log(newCourse);
-  }, [newCourse]);
+  // React.useEffect(() => {
+  //   console.log(newCourse);
+  // }, [newCourse]);
 
   const handleClose = () => {
     setOpen(false);

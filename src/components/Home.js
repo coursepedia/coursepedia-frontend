@@ -25,21 +25,19 @@ function Home() {
   const [bg, setBg] = useState("");
   const [color, setColor] = useState("");
   const [display, setDisplay] = useState("");
-  const [users, addUsers] = useContext(UserContext);
+  const [users] = useContext(UserContext);
 
-  const [listCourses, setListCourses] = useState([]);
+  // const [listCourses, setListCourses] = useState([]);
   // const [isLogin, setIsLogin] = useState(false);
 
-  useEffect(() => {
-    axios
-      .get(BACKEND_URI + "/courses")
-      .then(res => {
-        // console.log(res);
-        setListCourses(res.data);
-        console.log(res.data);
-      })
-      .catch(error => console.log(error.message));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(BACKEND_URI + "/courses")
+  //     .then(res => {
+  //       setListCourses(res.data);
+  //     })
+  //     .catch(error => console.log(error.message));
+  // }, []);
 
   const floatButtonStyle = {
     display: "none",
@@ -52,20 +50,20 @@ function Home() {
     transition: "display 2s ease"
   };
 
-  function getScrollHeight() {
-    setScrollY(window.pageYOffset);
-    if (scrollY >= 400) {
-      setBg("navdark-bg");
-      setColor("textcolor-change");
-      setDisplay("floatbutton-show");
-    } else {
-      setBg("");
-      setColor("");
-      setDisplay("");
-    }
-  }
-
   useLayoutEffect(() => {
+    function getScrollHeight() {
+      setScrollY(window.pageYOffset);
+      if (scrollY >= 400) {
+        setBg("navdark-bg");
+        setColor("textcolor-change");
+        setDisplay("floatbutton-show");
+      } else {
+        setBg("");
+        setColor("");
+        setDisplay("");
+      }
+    }
+
     function watchScroll() {
       window.addEventListener("scroll", getScrollHeight);
     }
@@ -78,7 +76,7 @@ function Home() {
     // (window).scroll(function(){
     //   ('nav').toggleClass('scroll', (this).scrollTop() > 50);
     // });
-  }, [getScrollHeight]);
+  }, [scrollY]);
 
   const handleFab = () => {
     if (userAuth.isAuthenticated) {
@@ -88,82 +86,48 @@ function Home() {
     }
   };
 
-  // console.log(users);
   return (
     <div>
       {/* floating action button */}
       <div onClick={handleFab}>
-        <Fab
-          style={floatButtonStyle}
-          className={display}
-          color="primary"
-          aria-label="add"
-        >
+        <Fab style={floatButtonStyle} className={display} color="primary" aria-label="add">
           <span className="tooltiptext">Adding Recommendation Course</span>
           <AddIcon />
         </Fab>
       </div>
-
-      <nav
-        style={{ transition: "0.75s ease" }}
-        className={`navbar navbar-expand-lg ${bg} fixed-top`}
-        id="mainNav"
-      >
+      <nav style={{ transition: "0.75s ease" }} className={`navbar navbar-expand-lg ${bg} fixed-top`} id="mainNav">
         <div className="container">
           <a className="navbar-brand js-scroll-trigger" href="#page-top">
             <b className={`${color}`}>Coursepedia</b>
           </a>
-          <button
-            className="navbar-toggler navbar-toggler-right"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarResponsive"
-            aria-controls="navbarResponsive"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+          <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i className="fa fa-bars"></i>
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav text-uppercase ml-auto">
               <li className="nav-item">
-                <a
-                  className={`nav-link ${color} js-scroll-trigger`}
-                  href="#services"
-                >
+                <a className={`nav-link ${color} js-scroll-trigger`} href="#services">
                   Awesome Feature
                 </a>
               </li>
               <li className="nav-item">
-                <a
-                  className={`nav-link ${color} js-scroll-trigger`}
-                  href="#portfolio"
-                >
+                <a className={`nav-link ${color} js-scroll-trigger`} href="#portfolio">
                   Courses
                 </a>
               </li>
               <li className="nav-item">
-                <a
-                  className={`nav-link ${color} js-scroll-trigger`}
-                  href="#about"
-                >
+                <a className={`nav-link ${color} js-scroll-trigger`} href="#about">
                   About
                 </a>
               </li>
               <li className="nav-item">
-                <a
-                  className={`nav-link ${color} js-scroll-trigger`}
-                  href="#team"
-                >
+                <a className={`nav-link ${color} js-scroll-trigger`} href="#team">
                   Testimonials
                 </a>
               </li>
               <li className="nav-item">
-                <a
-                  className={`nav-link ${color} js-scroll-trigger`}
-                  href="#contact"
-                >
+                <a className={`nav-link ${color} js-scroll-trigger`} href="#contact">
                   Contact
                 </a>
               </li>
@@ -189,20 +153,10 @@ function Home() {
               </div>
             ) : (
               <ButtonGroup>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  className={`nav-link ${color} js-scroll-trigger`}
-                  onClick={() => history.push("/register")}
-                >
+                <Button variant="outlined" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/register")}>
                   Sign Up
                 </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={`nav-link ${color} js-scroll-trigger`}
-                  onClick={() => history.push("/login")}
-                >
+                <Button variant="contained" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/login")}>
                   Login
                 </Button>
               </ButtonGroup>
@@ -210,16 +164,12 @@ function Home() {
           </div>
         </div>
       </nav>
-
       {/* Login Popover */}
-
       <header className="masthead">
         <div className="container">
           <div className="intro-text">
             <div className="intro-lead-norm">Welcome To Coursepedia</div>
-            <div className="intro-heading text-uppercase">
-              Find Recommended Courses Easily
-            </div>
+            <div className="intro-heading text-uppercase">Find Recommended Courses Easily</div>
             {/* <a
               onClick={() => history.push("/courses")}
               className="btn btn-primary padding-sml btn-xl js-scroll-trigger"
@@ -230,7 +180,6 @@ function Home() {
           </div>
         </div>
       </header>
-
       <section className="page-section" id="services">
         <div className="container">
           <div className="row">
@@ -238,9 +187,7 @@ function Home() {
               <h2 className="section-heading text-uppercase">
                 <b>Awesome Feature</b>
               </h2>
-              <h3 className="section-subheading text-muted">
-                Find out our best feature
-              </h3>
+              <h3 className="section-subheading text-muted">Find out our best feature</h3>
             </div>
           </div>
           <div className="row text-center">
@@ -250,10 +197,7 @@ function Home() {
                 <i className="fa fa-search fa-stack-1x fa-inverse"></i>
               </span>
               <h4 className="service-heading">Find Recommended Course</h4>
-              <p className="text-muted">
-                Through Coursepedia you can find many course carefully selected
-                by our team and other Coursepedia users
-              </p>
+              <p className="text-muted">Through Coursepedia you can find many course carefully selected by our team and other Coursepedia users</p>
             </div>
             <div className="col-md-4">
               <span className="fa-stack fa-4x">
@@ -261,10 +205,7 @@ function Home() {
                 <i className="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
               </span>
               <h4 className="service-heading">Add Recommended Course</h4>
-              <p className="text-muted">
-                Know a good course out there that's not in our list ? Don't
-                worry, as we humbly accept recommendation from our users
-              </p>
+              <p className="text-muted">Know a good course out there that's not in our list ? Don't worry, as we humbly accept recommendation from our users</p>
             </div>
             <div className="col-md-4">
               <span className="fa-stack fa-4x">
@@ -272,18 +213,12 @@ function Home() {
                 <i className="fa fa-check fa-stack-1x fa-inverse"></i>
               </span>
               <h4 className="service-heading">Qualified Trainer</h4>
-              <p className="text-muted">
-                The course listed in Coursepedia are carefully selected by our
-                team, to ensure that, they are qualified up to standard
-                established by our best consultant{" "}
-              </p>
+              <p className="text-muted">The course listed in Coursepedia are carefully selected by our team, to ensure that, they are qualified up to standard established by our best consultant </p>
             </div>
           </div>
         </div>
       </section>
-
       <ModalPage />
-
       <section className="page-section" id="about">
         <div className="container">
           <div className="row">
@@ -291,9 +226,7 @@ function Home() {
               <h2 className="section-heading text-uppercase">
                 <b>About Us</b>
               </h2>
-              <h3 className="section-subheading text-muted">
-                Timeline of Coursepedia creation
-              </h3>
+              <h3 className="section-subheading text-muted">Timeline of Coursepedia creation</h3>
             </div>
           </div>
           <div className="row">
@@ -301,11 +234,7 @@ function Home() {
               <ul className="timeline">
                 <li>
                   <div className="timeline-image">
-                    <img
-                      className="rounded-circle img-fluid-modal"
-                      src="img/about/1.jpg"
-                      alt=""
-                    />
+                    <img className="rounded-circle img-fluid-modal" src="img/about/1.jpg" alt="" />
                   </div>
                   <div className="timeline-panel">
                     <div className="timeline-heading">
@@ -317,11 +246,7 @@ function Home() {
                 </li>
                 <li className="timeline-inverted">
                   <div className="timeline-image">
-                    <img
-                      className="rounded-circle img-fluid-modal"
-                      src="img/about/2.jpg"
-                      alt=""
-                    />
+                    <img className="rounded-circle img-fluid-modal" src="img/about/2.jpg" alt="" />
                   </div>
                   <div className="timeline-panel">
                     <div className="timeline-heading">
@@ -329,10 +254,7 @@ function Home() {
                       <h4 className="subheading">Planning The Future Ahead</h4>
                     </div>
                     <div className="timeline-body">
-                      <p className="text-muted">
-                        New year, new challenge. We have many plan for the
-                        future ahead. Stay tune!
-                      </p>
+                      <p className="text-muted">New year, new challenge. We have many plan for the future ahead. Stay tune!</p>
                     </div>
                   </div>
                 </li>{" "}
@@ -352,7 +274,6 @@ function Home() {
           </div>
         </div>
       </section>
-
       <section className="bg-light page-section" id="team">
         <div className="container">
           <div className="row">
@@ -360,9 +281,7 @@ function Home() {
               <h2 className="section-heading text-uppercase">
                 <b>What our students have to say</b>
               </h2>
-              <h3 className="section-subheading text-muted">
-                Testimonials from our students
-              </h3>
+              <h3 className="section-subheading text-muted">Testimonials from our students</h3>
             </div>
           </div>
           {/* <CarouselTestimonial /> */}
@@ -377,37 +296,31 @@ function Home() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-4">
-              <span className="copyright">
-                Copyright &copy; Your Website 2019
-              </span>
+              <span className="copyright">Copyright &copy; Your Website 2019</span>
             </div>
             <div className="col-md-4">
               <ul className="list-inline social-buttons">
                 <li className="list-inline-item">
-                  <a href="#">
+                  <a href="https://www.twitter.com">
                     <i className="fa fa-twitter"></i>
                   </a>
                 </li>
                 <li className="list-inline-item">
-                  <a href="#">
+                  <a href="https://www.facebook.com">
                     <i className="fa fa-facebook-f"></i>
                   </a>
                 </li>
-                <li className="list-inline-item">
-                  <a href="#">
+                {/* <li className="list-inline-item">
+                  <a href="https://www.linkedin.com">
                     <i className="fa fa-linkedin-in"></i>
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="col-md-4">
               <ul className="list-inline quicklinks">
-                <li className="list-inline-item">
-                  <a href="#">Privacy Policy</a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="#">Terms of Use</a>
-                </li>
+                <li className="list-inline-item">Privacy Policy</li>
+                <li className="list-inline-item">Terms of Use</li>
               </ul>
             </div>
           </div>

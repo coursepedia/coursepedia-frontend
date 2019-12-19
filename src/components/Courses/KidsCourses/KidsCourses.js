@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { MDBContainer, MDBRow, MDBBtn, MDBCol } from "mdbreact";
 import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
-
 import { BACKEND_URI } from "../../../helpers/path";
 import CourseCategory from "../CourseCategory";
 class KidsCourses extends Component {
@@ -32,8 +31,6 @@ class KidsCourses extends Component {
   render() {
     const { url } = this.props.match;
     let query = new URLSearchParams(this.props.location.search);
-    console.log(url, "ini URLLLLLLLLLLLLL");
-    console.log(query, "ini QUERYYYYYYYYYYYYYYYYYYY");
     return (
       <div>
         {/* header */}
@@ -47,9 +44,7 @@ class KidsCourses extends Component {
                       <b>Kid's Courses</b>
                     </h3>
                   </h2>
-                  <h3 className="section-subheading text-muted">
-                    Find out activities what you want to learn
-                  </h3>
+                  <h3 className="section-subheading text-muted">Find out activities what you want to learn</h3>
                 </div>
               </div>
             </div>
@@ -75,9 +70,7 @@ class KidsCourses extends Component {
               </Link>
             </MDBCol>
             <MDBCol size="3">
-              <Link
-                to={`${url}/showall?ageCategory=kids&fieldCategory=math and science`}
-              >
+              <Link to={`${url}/showall?ageCategory=kids&fieldCategory=math and science`}>
                 <MDBBtn color="light-green">Math & Science</MDBBtn>
               </Link>
             </MDBCol>
@@ -86,10 +79,7 @@ class KidsCourses extends Component {
           <br />
         </MDBContainer>
 
-        <CourseCategory
-          fieldCategory={query.get("fieldCategory")}
-          data={this.state.allKidsData}
-        />
+        <CourseCategory fieldCategory={query.get("fieldCategory")} data={this.state.allKidsData} />
       </div>
     );
   }

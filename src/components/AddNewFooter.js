@@ -12,30 +12,27 @@ function AddNewFooter() {
             <div className="col-md-4">
               <ul className="list-inline social-buttons">
                 <li className="list-inline-item">
-                  <a href="#">
+                  <a href="https://www.twitter.com">
                     <i className="fa fa-twitter"></i>
                   </a>
                 </li>
+
                 <li className="list-inline-item">
-                  <a href="#">
+                  <a href="https://www.facebook.com">
                     <i className="fa fa-facebook-f"></i>
                   </a>
                 </li>
-                <li className="list-inline-item">
-                  <a href="#">
+                {/* <li className="list-inline-item">
+                  <a href="https://www.linkedin.com">
                     <i className="fa fa-linkedin-in"></i>
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="col-md-4">
               <ul className="list-inline quicklinks">
-                <li className="list-inline-item">
-                  <a href="#">Privacy Policy</a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="#">Terms of Use</a>
-                </li>
+                <li className="list-inline-item">Privacy Policy</li>
+                <li className="list-inline-item">Terms of Use</li>
               </ul>
             </div>
           </div>
