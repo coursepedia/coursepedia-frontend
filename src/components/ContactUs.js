@@ -46,7 +46,7 @@ export default class ContactUs extends Component {
             <div className="row">
               <div className="col-lg-12 text-center">
                 <h2 className="section-heading text-uppercase">Contact Us</h2>
-                <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 className="section-subheading text-muted">For criticism and suggestions about this web, please contact us directly via form below. </h3>
               </div>
             </div>
             <div className="row">

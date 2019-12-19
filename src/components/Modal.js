@@ -9,6 +9,7 @@ import avatar from "../assets/images/dummy-avatar.png";
 // import { MDBInput } from "mdbreact";
 import CommentBox from "./CommentBox";
 import { BACKEND_URI } from "../helpers/path";
+import { userAuth } from "../helpers/userAuth";
 
 function ModalPage() {
   let history = useHistory();
@@ -37,6 +38,7 @@ function ModalPage() {
   const handleClick = data => {
     setToggle(prevState => true);
     setModalContent(data);
+    console.log(data);
   };
 
   const handleClickDirection = data => {
@@ -175,7 +177,7 @@ function ModalPage() {
                     <div>Belum ada komentar tentang course ini</div>
                   )}
                 </ul>
-                <CommentBox courseId={modalContent._id} modalContent={modalContent} setModalContent={setModalContent} />
+                {userAuth.isAuthenticated ? <CommentBox courseId={modalContent._id} modalContent={modalContent} setModalContent={setModalContent} /> : <div>Silahkan login untuk bisa memberikan komentar untuk course ini</div>}
               </div>
             </MDBModalBody>
             <MDBModalFooter>
