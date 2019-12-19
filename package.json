@@ -1,5 +1,6 @@
 {
   "name": "another-coursepedia-frontend",
+  "description": "Easy Find - Easy Learn - Brighter Future",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
