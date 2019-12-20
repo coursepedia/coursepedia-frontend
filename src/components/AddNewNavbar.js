@@ -62,12 +62,24 @@ function AddNewNavbar() {
         </Fab>
       </div> */}
 
-      <nav style={{ transition: "0.75s ease" }} className={`navbar navbar-expand-lg ${bg} fixed-top`} id="mainNav">
+      <nav
+        style={{ transition: "0.75s ease" }}
+        className={`navbar navbar-expand-lg ${bg} fixed-top`}
+        id="mainNav"
+      >
         <div className="container">
           <a className="navbar-brand js-scroll-trigger" href="#page-top">
             <b className={`${color}`}>Coursepedia</b>
           </a>
-          <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            className="navbar-toggler navbar-toggler-right"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             Menu
             <i className="fa fa-bars"></i>
           </button>
@@ -79,7 +91,11 @@ function AddNewNavbar() {
                 </a>
               </li> */}
               <li className="nav-item">
-                <a className={`nav-link ${color} js-scroll-trigger`} href="#courses" onClick={() => history.push("/")}>
+                <a
+                  className={`nav-link ${color} js-scroll-trigger`}
+                  href="#courses"
+                  onClick={() => history.push("/")}
+                >
                   Home
                 </a>
               </li>
@@ -94,7 +110,11 @@ function AddNewNavbar() {
                 </a>
               </li> */}
               <li className="nav-item">
-                <a className={`nav-link ${color} js-scroll-trigger`} href="#portofolio" onClick={() => history.push("/")}>
+                <a
+                  className={`nav-link ${color} js-scroll-trigger`}
+                  href="#portofolio"
+                  onClick={() => history.push("/")}
+                >
                   Courses
                 </a>
               </li>
@@ -122,10 +142,13 @@ function AddNewNavbar() {
         <div className="container">
           <div className="intro-text">
             <div className="intro-lead-norm">
-              <i>Do You Have New Recommendation Course?</i>
+              Know recommended course out there that's not in our list ?
             </div>
-            <div className="intro-heading text-uppercase">Please Tell To Us !</div>
-            <a className="btn btn-primary padding-sml btn-xl js-scroll-trigger" href="#form-add">
+            <div className="intro-heading text-uppercase">Please Tell Us !</div>
+            <a
+              className="btn btn-primary padding-sml btn-xl js-scroll-trigger"
+              href="#form-add"
+            >
               Get Form
             </a>
           </div>

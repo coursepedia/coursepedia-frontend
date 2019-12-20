@@ -1,54 +1,45 @@
 html {
   scroll-behavior: smooth;
 }
-
 nav {
   transition: background-color 5s ease;
 }
-
+#welcome-message {
+  font-style: normal;
+}
 .navdark-bg {
   background-color: black !important;
   transition: background-color 0.5s ease-in !important;
 }
-
 .textcolor-change {
   color: white !important;
 }
-
 .padding-sml {
   padding: 10px 50px;
 }
-
 .register-background {
   border-color: #327bff;
   border: 100px;
 }
-
 .floatbutton-show {
   display: inline !important;
 }
-
 .modal-show {
   display: block;
 }
-
 /* This is the divider to divide original App.css */
-
 .App {
   text-align: center;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -59,11 +50,9 @@ nav {
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 .App-link {
   color: #61dafb;
 }
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -72,31 +61,25 @@ nav {
     transform: rotate(360deg);
   }
 }
-
 .courses {
   height: 100vh;
 }
-
 .row > div {
   padding: 1rem;
   /* background-color: #33b5e5; */
   text-align: center;
 }
-
 .img-fluid {
   height: 350px;
   width: 1000px;
 }
-
 .img-fluid-modal {
   max-width: 100%;
   height: auto;
 }
-
 .card-body {
   height: 250px;
 }
-
 /* Tooltip text */
 .floatbutton-show .tooltiptext {
   visibility: hidden;
@@ -106,7 +89,6 @@ nav {
   text-align: center;
   padding: 5px 0;
   border-radius: 6px;
-
   /* Position the tooltip text */
   position: absolute;
   z-index: 1;
@@ -114,12 +96,10 @@ nav {
   /* left: 50%; */
   right: 100%;
   margin-left: -60px;
-
   /* Fade in tooltip */
   opacity: 0;
   transition: opacity 0.3s;
 }
-
 /* Tooltip arrow */
 .floatbutton-show .tooltiptext::after {
   content: "";
@@ -131,18 +111,32 @@ nav {
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
-
 /* Show the tooltip text when you mouse over the tooltip container */
 .floatbutton-show:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
-
 .input-group-text:hover {
   background-color: #03a9f4;
   transition: 1s ease;
 }
-
 .input-group-text {
   transition: 1s ease;
+}
+.comments-section {
+  overflow: auto;
+  margin-bottom: 15px;
+}
+.avatar {
+  float: left;
+  max-width: 10%;
+  max-height: 10%;
+  margin-right: 10px;
+}
+.comments-content {
+  float: left;
+}
+.comments-padding {
+  margin: 0;
+  padding: 0;
 }

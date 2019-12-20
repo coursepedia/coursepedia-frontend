@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 // import Layout from '../components/layout'
-import { Button, FormFeedback, Form, FormGroup, Label, Input } from "reactstrap";
+import {
+  Button,
+  FormFeedback,
+  Form,
+  FormGroup,
+  Label,
+  Input
+} from "reactstrap";
 import axios from "axios";
 
 import { BACKEND_URI } from "../helpers/path";
@@ -71,32 +78,81 @@ export default class ContactUs extends Component {
             {this.state.error && <h1 style={{ color: "red", textAlign: "center" }}>{this.state.error}</h1>}
             <div className="row">
               <div className="col-lg-12">
-                <form id="contactForm" name="sentMessage" noValidate="noValidate" onSubmit={this.handleSubmit}>
+                <form
+                  id="contactForm"
+                  name="sentMessage"
+                  noValidate="noValidate"
+                  onSubmit={this.handleSubmit}
+                >
                   <div className="row">
                     <div className="col-md-6">
                       <div className="form-group">
-                        <input className="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name." name="name" value={this.state.name} onChange={this.handleChange.bind(this, "name")} />
+                        <input
+                          className="form-control"
+                          id="name"
+                          type="text"
+                          placeholder="Your Name *"
+                          required="required"
+                          data-validation-required-message="Please enter your name."
+                          name="name"
+                          value={this.state.name}
+                          onChange={this.handleChange.bind(this, "name")}
+                        />
                         <p className="help-block text-danger"></p>
                       </div>
                       <div className="form-group">
-                        <input className="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address." name="email" value={this.state.email} onChange={this.handleChange.bind(this, "email")} />
+                        <input
+                          className="form-control"
+                          id="email"
+                          type="email"
+                          placeholder="Your Email *"
+                          required="required"
+                          data-validation-required-message="Please enter your email address."
+                          name="email"
+                          value={this.state.email}
+                          onChange={this.handleChange.bind(this, "email")}
+                        />
                         <p className="help-block text-danger"></p>
                       </div>
                       <div className="form-group">
-                        <input className="form-control" id="subject" type="text" placeholder="Your Subject *" required="required" data-validation-required-message="Please enter your phone number." name="subject" value={this.state.subject} onChange={this.handleChange.bind(this, "subject")} />
+                        <input
+                          className="form-control"
+                          id="subject"
+                          type="text"
+                          placeholder="Your Subject *"
+                          required="required"
+                          data-validation-required-message="Please enter your phone number."
+                          name="subject"
+                          value={this.state.subject}
+                          onChange={this.handleChange.bind(this, "subject")}
+                        />
                         <p className="help-block text-danger"></p>
                       </div>
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <textarea className="form-control" id="message" type="textarea" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message." name="message" value={this.state.message} onChange={this.handleChange.bind(this, "message")} />
+                        <textarea
+                          className="form-control"
+                          id="message"
+                          type="textarea"
+                          placeholder="Your Message *"
+                          required="required"
+                          data-validation-required-message="Please enter a message."
+                          name="message"
+                          value={this.state.message}
+                          onChange={this.handleChange.bind(this, "message")}
+                        />
                         <p className="help-block text-danger"></p>
                       </div>
                     </div>
                     <div className="clearfix"></div>
                     <div className="col-lg-12 text-center">
                       <div id="success"></div>
-                      <button id="sendMessageButton" className="btn btn-primary btn-xl text-uppercase" type="submit">
+                      <button
+                        id="sendMessageButton"
+                        className="btn btn-primary btn-xl text-uppercase"
+                        type="submit"
+                      >
                         Submit
                       </button>
                     </div>

@@ -168,18 +168,21 @@ function ModalPage() {
                   </li>
                   {modalContent.comments ? (
                     modalContent.comments.map((el, i) => (
-                      <div key={i}>
-                        <p>
-                          <b>Comment from {el.users.username}</b>
-                        </p>
-                        <p>{el.content}</p>
+                      <div className="comments-section" key={i}>
+                        <img className="avatar" src={avatar} />
+                        <div className="comments-content">
+                          <p className="comments-padding text-capitalize">
+                            <strong>{el.users.username}</strong>
+                          </p>
+                          <p className="comments-padding">{el.content}</p>
+                        </div>
                       </div>
                     ))
                   ) : (
-                    <div>Belum ada komentar tentang course ini</div>
+                    <div>There is no comment for this course yet</div>
                   )}
                 </ul>
-                {userAuth.isAuthenticated ? <CommentBox courseId={modalContent._id} modalContent={modalContent} setModalContent={setModalContent} /> : <div>Silahkan login untuk bisa memberikan komentar untuk course ini</div>}
+                {userAuth.isAuthenticated ? <CommentBox courseId={modalContent._id} modalContent={modalContent} setModalContent={setModalContent} /> : <div>To comment in this course, please login first</div>}
               </div>
             </MDBModalBody>
             <MDBModalFooter>

@@ -65,7 +65,12 @@ export default function CourseLandingPage() {
     <div>
       {/* floating action button */}
       <div onClick={handleFab}>
-        <Fab style={floatButtonStyle} className={display} color="primary" aria-label="add">
+        <Fab
+          style={floatButtonStyle}
+          className={display}
+          color="primary"
+          aria-label="add"
+        >
           <span className="tooltiptext">Adding Recommendation Course</span>
           <AddIcon />
         </Fab>
@@ -76,12 +81,20 @@ export default function CourseLandingPage() {
       <header className="mastheadcourse">
         <div className="container">
           <div className="intro-text">
-            <div className="intro-lead-in">Welcome To Coursepedia</div>
-            <div className="intro-heading text-uppercase">Let's Choose Any Courses by Your Age Category</div>
-            <a className="btn btn-primary btn-xl js-scroll-trigger" href="#adult">
+            <div className="intro-lead-norm">Welcome To Coursepedia</div>
+            <div className="intro-heading text-uppercase">
+              Let's Choose Courses by Your Age Category
+            </div>
+            <a
+              className="btn btn-primary btn-xl js-scroll-trigger"
+              href="#adult"
+            >
               ADULTS <br /> 15 y.o
             </a>{" "}
-            <a className="btn btn-primary btn-xl js-scroll-trigger" href="#kids">
+            <a
+              className="btn btn-primary btn-xl js-scroll-trigger"
+              href="#kids"
+            >
               KIDS <br /> 8-14 y.o
             </a>
           </div>

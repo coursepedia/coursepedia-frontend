@@ -4,6 +4,8 @@ import CommentBox from "../CommentBox";
 import Box from "@material-ui/core/Box";
 import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
+import { userAuth } from "../../helpers/userAuth";
+import avatar from "../../assets/images/dummy-avatar.png";
 
 import { BACKEND_URI } from "../../helpers/path";
 import { userAuth } from "../../helpers/userAuth";
@@ -133,11 +135,14 @@ export default function CourseCategory({ fieldCategory, data }) {
                     </li>
                     {modalContent.comments ? (
                       modalContent.comments.map((el, i) => (
-                        <div key={i}>
-                          <p>
-                            <b>Comment from {el.users.username}</b>
-                          </p>
-                          <p>{el.content}</p>
+                        <div className="comments-section" key={i}>
+                          <img className="avatar" src={avatar} />
+                          <div className="comments-content">
+                            <p className="comments-padding text-capitalize">
+                              <strong>{el.users.username}</strong>
+                            </p>
+                            <p className="comments-padding">{el.content}</p>
+                          </div>
                         </div>
                       ))
                     ) : (
