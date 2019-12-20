@@ -8,7 +8,6 @@ import { userAuth } from "../../helpers/userAuth";
 import avatar from "../../assets/images/dummy-avatar.png";
 
 import { BACKEND_URI } from "../../helpers/path";
-import { userAuth } from "../../helpers/userAuth";
 
 export default function CourseCategory({ fieldCategory, data }) {
   const [toggle, setToggle] = useState(false);
