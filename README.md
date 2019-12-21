@@ -14,4 +14,4 @@ And create your own `env`
 
 ## Link
 
-You can find this project live on [Coursepedia.com](https://coursepedia.nelify.com)
+You can find this project live on [Coursepedia.com](https://coursepedia.netlify.com/)
