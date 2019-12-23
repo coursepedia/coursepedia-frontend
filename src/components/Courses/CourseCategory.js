@@ -183,21 +183,32 @@ export default function CourseCategory({ fieldCategory, data }) {
                         {modalContent.fieldCategory}
                       </span>
                     </li>
-                    {modalContent.comments &&
-                      modalContent.comments.map((el, i) => (
-                        <div className="comments-section" key={i}>
-                          <img className="avatar" src={avatar} />
-                          <div className="comments-content">
-                            <p className="comments-padding text-capitalize">
-                              <strong>{el.users.username}</strong>
-                            </p>
-                            <p className="comments-padding">{el.content}</p>
-                          </div>
+                    {modalContent.comments ? (
+                    modalContent.comments.map((el, i) => (
+                      <div className="comments-section" key={i}>
+                        <img className="avatar" src={avatar} />
+                        <div className="comments-content">
+                          <p className="comments-padding text-capitalize">
+                            <strong>{el.users.username}</strong>
+                          </p>
+                          <p className="comments-padding">{el.content}</p>
                         </div>
-                      ))}
-                  </ul>
-                  <CommentBox courseId={modalContent._id} />
-                </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div>There is no comment for this course yet</div>
+                  )}
+                </ul>
+                {userAuth.isAuthenticated ? (
+                  <CommentBox
+                    courseId={modalContent._id}
+                    modalContent={modalContent}
+                    setModalContent={setModalContent}
+                  />
+                ) : (
+                  <div>To comment in this course, please login first</div>
+                )}
+              </div>
               </MDBModalBody>
               <MDBModalFooter>
                 <MDBBtn
