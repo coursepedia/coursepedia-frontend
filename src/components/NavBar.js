@@ -1,5 +1,6 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "./UserContext";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { userAuth } from "../helpers/userAuth";
@@ -14,6 +15,7 @@ function NavBar() {
   const [bg, setBg] = useState("");
   const [color, setColor] = useState("");
   const [display, setDisplay] = useState("");
+  const [users] = useContext(UserContext);
 
   // const floatButtonStyle = {
   //   display: "none",
@@ -98,31 +100,39 @@ function NavBar() {
                   Courses
                 </a>
               </li>
+              {userAuth.isAuthenticated ? (
+                // `Welcome, ${users.username} !`,
+                <>
+                  <li className="nav-item">
+                    <a className={`nav-link ${color} js-scroll-trigger`}>
+                      Welcome <strong>{users.username}</strong> !{" "}
+                    </a>
+                  </li>
+                  <li>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      style={{ marginTop: "5px" }}
+                      className={`${color} text-center`}
+                      onClick={() => {
+                        userAuth.signout(() => history.push("/"));
+                      }}
+                    >
+                      logout
+                    </Button>
+                  </li>
+                </>
+              ) : (
+                <ButtonGroup>
+                  <Button variant="outlined" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/register")}>
+                    Sign Up
+                  </Button>
+                  <Button variant="contained" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/login")}>
+                    Login
+                  </Button>
+                </ButtonGroup>
+              )}
             </ul>
-            {userAuth.isAuthenticated ? (
-              // `Welcome, ${users.username} !`,
-              <div>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={`nav-link ${color} js-scroll-trigger`}
-                  onClick={() => {
-                    userAuth.signout(() => history.push("/"));
-                  }}
-                >
-                  logout
-                </Button>
-              </div>
-            ) : (
-              <ButtonGroup>
-                <Button variant="outlined" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/register")}>
-                  Sign Up
-                </Button>
-                <Button variant="contained" color="primary" className={`nav-link ${color} js-scroll-trigger`} onClick={() => history.push("/login")}>
-                  Login
-                </Button>
-              </ButtonGroup>
-            )}
           </div>
         </div>
       </nav>
